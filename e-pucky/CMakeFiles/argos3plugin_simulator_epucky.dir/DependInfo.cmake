@@ -4,6 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp" "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o"
+  "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp" "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o"
+  "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp" "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o"
   "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/dynamics2d_epucky_model.cpp" "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.cpp.o"
   "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/epucky_entity.cpp" "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o"
   "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/qtopengl_epucky.cpp" "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.o"

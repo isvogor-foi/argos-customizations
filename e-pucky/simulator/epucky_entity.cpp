@@ -15,6 +15,9 @@
 #include <argos3/plugins/simulator/entities/led_equipped_entity.h>
 #include <argos3/plugins/simulator/entities/light_sensor_equipped_entity.h>
 #include <argos3/plugins/simulator/entities/proximity_sensor_equipped_entity.h>
+#include "battery_sensor_equipped_entity.h"
+//#include <argos3/core/utility/logging/argos_log.h>
+
 
 namespace argos {
 
@@ -50,7 +53,9 @@ namespace argos {
       m_pcLightSensorEquippedEntity(NULL),
       m_pcProximitySensorEquippedEntity(NULL),
       m_pcRABEquippedEntity(NULL),
-      m_pcWheeledEntity(NULL) {
+      m_pcWheeledEntity(NULL),
+      m_pcBatterySensorEquippedEntity(NULL)
+   {
    }
 
    /****************************************/
@@ -70,7 +75,9 @@ namespace argos {
       m_pcLightSensorEquippedEntity(NULL),
       m_pcProximitySensorEquippedEntity(NULL),
       m_pcRABEquippedEntity(NULL),
-      m_pcWheeledEntity(NULL) {
+      m_pcWheeledEntity(NULL),
+      m_pcBatterySensorEquippedEntity(NULL)
+      {
       try {
          /*
           * Create and init components
@@ -104,6 +111,12 @@ namespace argos {
             PROXIMITY_SENSOR_RING_RANGE,
             8,
             m_pcEmbodiedEntity->GetOriginAnchor());
+
+          /* BATTERY */
+
+         m_pcBatterySensorEquippedEntity = new CBatterySensorEquippedEntity(this, "battery_0");
+         AddComponent(*m_pcBatterySensorEquippedEntity);
+
          /* Light sensor equipped entity */
          m_pcLightSensorEquippedEntity =
             new CLightSensorEquippedEntity(this,
@@ -144,6 +157,8 @@ namespace argos {
          m_pcControllableEntity = new CControllableEntity(this, "controller_0");
          AddComponent(*m_pcControllableEntity);
          m_pcControllableEntity->SetController(str_controller_id);
+
+         
          /* Update components */
          UpdateComponents();
       }
@@ -194,6 +209,12 @@ namespace argos {
             PROXIMITY_SENSOR_RING_RANGE,
             8,
             m_pcEmbodiedEntity->GetOriginAnchor());
+
+          /* BATTERY */
+
+         m_pcBatterySensorEquippedEntity = new CBatterySensorEquippedEntity(this, "battery_0");
+         AddComponent(*m_pcBatterySensorEquippedEntity);
+         
          /* Light sensor equipped entity */
          m_pcLightSensorEquippedEntity =
             new CLightSensorEquippedEntity(this,
@@ -238,6 +259,7 @@ namespace argos {
          m_pcControllableEntity = new CControllableEntity(this);
          AddComponent(*m_pcControllableEntity);
          m_pcControllableEntity->Init(GetNode(t_tree, "controller"));
+
          /* Update components */
          UpdateComponents();
       }

@@ -123,6 +123,87 @@ argos3plugin_simulator_epucky/fast:
 	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/build
 .PHONY : argos3plugin_simulator_epucky/fast
 
+control_interface/ci_battery_sensor.o: control_interface/ci_battery_sensor.cpp.o
+
+.PHONY : control_interface/ci_battery_sensor.o
+
+# target to build an object file
+control_interface/ci_battery_sensor.cpp.o:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o
+.PHONY : control_interface/ci_battery_sensor.cpp.o
+
+control_interface/ci_battery_sensor.i: control_interface/ci_battery_sensor.cpp.i
+
+.PHONY : control_interface/ci_battery_sensor.i
+
+# target to preprocess a source file
+control_interface/ci_battery_sensor.cpp.i:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.i
+.PHONY : control_interface/ci_battery_sensor.cpp.i
+
+control_interface/ci_battery_sensor.s: control_interface/ci_battery_sensor.cpp.s
+
+.PHONY : control_interface/ci_battery_sensor.s
+
+# target to generate assembly for a file
+control_interface/ci_battery_sensor.cpp.s:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.s
+.PHONY : control_interface/ci_battery_sensor.cpp.s
+
+simulator/battery_sensor.o: simulator/battery_sensor.cpp.o
+
+.PHONY : simulator/battery_sensor.o
+
+# target to build an object file
+simulator/battery_sensor.cpp.o:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o
+.PHONY : simulator/battery_sensor.cpp.o
+
+simulator/battery_sensor.i: simulator/battery_sensor.cpp.i
+
+.PHONY : simulator/battery_sensor.i
+
+# target to preprocess a source file
+simulator/battery_sensor.cpp.i:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.i
+.PHONY : simulator/battery_sensor.cpp.i
+
+simulator/battery_sensor.s: simulator/battery_sensor.cpp.s
+
+.PHONY : simulator/battery_sensor.s
+
+# target to generate assembly for a file
+simulator/battery_sensor.cpp.s:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.s
+.PHONY : simulator/battery_sensor.cpp.s
+
+simulator/battery_sensor_equipped_entity.o: simulator/battery_sensor_equipped_entity.cpp.o
+
+.PHONY : simulator/battery_sensor_equipped_entity.o
+
+# target to build an object file
+simulator/battery_sensor_equipped_entity.cpp.o:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o
+.PHONY : simulator/battery_sensor_equipped_entity.cpp.o
+
+simulator/battery_sensor_equipped_entity.i: simulator/battery_sensor_equipped_entity.cpp.i
+
+.PHONY : simulator/battery_sensor_equipped_entity.i
+
+# target to preprocess a source file
+simulator/battery_sensor_equipped_entity.cpp.i:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.i
+.PHONY : simulator/battery_sensor_equipped_entity.cpp.i
+
+simulator/battery_sensor_equipped_entity.s: simulator/battery_sensor_equipped_entity.cpp.s
+
+.PHONY : simulator/battery_sensor_equipped_entity.s
+
+# target to generate assembly for a file
+simulator/battery_sensor_equipped_entity.cpp.s:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.s
+.PHONY : simulator/battery_sensor_equipped_entity.cpp.s
+
 simulator/dynamics2d_epucky_model.o: simulator/dynamics2d_epucky_model.cpp.o
 
 .PHONY : simulator/dynamics2d_epucky_model.o
@@ -213,6 +294,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... argos3plugin_simulator_epucky"
+	@echo "... control_interface/ci_battery_sensor.o"
+	@echo "... control_interface/ci_battery_sensor.i"
+	@echo "... control_interface/ci_battery_sensor.s"
+	@echo "... simulator/battery_sensor.o"
+	@echo "... simulator/battery_sensor.i"
+	@echo "... simulator/battery_sensor.s"
+	@echo "... simulator/battery_sensor_equipped_entity.o"
+	@echo "... simulator/battery_sensor_equipped_entity.i"
+	@echo "... simulator/battery_sensor_equipped_entity.s"
 	@echo "... simulator/dynamics2d_epucky_model.o"
 	@echo "... simulator/dynamics2d_epucky_model.i"
 	@echo "... simulator/dynamics2d_epucky_model.s"

@@ -11,10 +11,10 @@ set(ARGOS3_HEADERS_PLUGINS_ROBOTS_EPUCKY_CONTROLINTERFACE
   control_interface/ci_battery_sensor.h)
 
 set(ARGOS3_HEADERS_PLUGINS_ROBOTS_EPUCKY_SIMULATOR 
-	simulator/dynamics2d_epucky_model.h 
+  simulator/dynamics2d_epucky_model.h 
+  simulator/epucky_entity.h
   simulator/battery_sensor.h
-  simulator/battery_sensor_equipped_entity.h
-	simulator/epucky_entity.h)
+  simulator/battery_sensor_equipped_entity.h)
 
 #
 # E-pucky sources
@@ -25,12 +25,12 @@ set(ARGOS3_SOURCES_PLUGINS_ROBOTS_EPUCKY
       control_interface/ci_battery_sensor.cpp)
 
 set(ARGOS3_SOURCES_PLUGINS_ROBOTS_EPUCKY 
-	${ARGOS3_SOURCES_PLUGINS_ROBOTS_EPUCKY}
-	${ARGOS3_HEADERS_PLUGINS_ROBOTS_EPUCKY_SIMULATOR}
-    	simulator/dynamics2d_epucky_model.cpp
-    	simulator/epucky_entity.cpp
+  ${ARGOS3_SOURCES_PLUGINS_ROBOTS_EPUCKY}
+  ${ARGOS3_HEADERS_PLUGINS_ROBOTS_EPUCKY_SIMULATOR}
+      simulator/dynamics2d_epucky_model.cpp
+      simulator/epucky_entity.cpp
       simulator/battery_sensor.cpp
-      simulator/battery_sensor_equipped_entity.cpp)
+      simulator/battery_sensor_equipped_entity.h)
 
   # Compile the graphical visualization only if the necessary libraries have been found
 

@@ -57,9 +57,33 @@ include CMakeFiles/argos3plugin_simulator_epucky.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/argos3plugin_simulator_epucky.dir/flags.make
 
+CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o: CMakeFiles/argos3plugin_simulator_epucky.dir/flags.make
+CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o: control_interface/ci_battery_sensor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp > CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.i
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp -o CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.s
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o.requires:
+
+.PHONY : CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o.requires
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o.provides: CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o.requires
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o.provides.build
+.PHONY : CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o.provides
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o
+
+
 CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.cpp.o: CMakeFiles/argos3plugin_simulator_epucky.dir/flags.make
 CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.cpp.o: simulator/dynamics2d_epucky_model.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/dynamics2d_epucky_model.cpp
 
 CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.cpp.i: cmake_force
@@ -83,7 +107,7 @@ CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.c
 
 CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o: CMakeFiles/argos3plugin_simulator_epucky.dir/flags.make
 CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o: simulator/epucky_entity.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/epucky_entity.cpp
 
 CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.i: cmake_force
@@ -105,9 +129,57 @@ CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o.provi
 CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o
 
 
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o: CMakeFiles/argos3plugin_simulator_epucky.dir/flags.make
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o: simulator/battery_sensor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp > CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.i
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp -o CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.s
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o.requires:
+
+.PHONY : CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o.requires
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o.provides: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o.requires
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o.provides.build
+.PHONY : CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o.provides
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o
+
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o: CMakeFiles/argos3plugin_simulator_epucky.dir/flags.make
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o: simulator/battery_sensor_equipped_entity.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp > CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.i
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp -o CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.s
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o.requires:
+
+.PHONY : CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o.requires
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o.provides: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o.requires
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_epucky.dir/build.make CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o.provides.build
+.PHONY : CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o.provides
+
+CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o
+
+
 CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.o: CMakeFiles/argos3plugin_simulator_epucky.dir/flags.make
 CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.o: simulator/qtopengl_epucky.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/qtopengl_epucky.cpp
 
 CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.i: cmake_force
@@ -131,21 +203,27 @@ CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.o.pro
 
 # Object files for target argos3plugin_simulator_epucky
 argos3plugin_simulator_epucky_OBJECTS = \
+"CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o" \
+"CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o" \
+"CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.o"
 
 # External object files for target argos3plugin_simulator_epucky
 argos3plugin_simulator_epucky_EXTERNAL_OBJECTS =
 
+libargos3plugin_simulator_epucky.so: CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o
 libargos3plugin_simulator_epucky.so: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.cpp.o
 libargos3plugin_simulator_epucky.so: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o
+libargos3plugin_simulator_epucky.so: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o
+libargos3plugin_simulator_epucky.so: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o
 libargos3plugin_simulator_epucky.so: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.o
 libargos3plugin_simulator_epucky.so: CMakeFiles/argos3plugin_simulator_epucky.dir/build.make
 libargos3plugin_simulator_epucky.so: /usr/local/lib/argos3/libargos3plugin_simulator_genericrobot.so
 libargos3plugin_simulator_epucky.so: /usr/local/lib/argos3/libargos3plugin_simulator_dynamics2d.so
 libargos3plugin_simulator_epucky.so: CMakeFiles/argos3plugin_simulator_epucky.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library libargos3plugin_simulator_epucky.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX shared library libargos3plugin_simulator_epucky.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/argos3plugin_simulator_epucky.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -153,8 +231,11 @@ CMakeFiles/argos3plugin_simulator_epucky.dir/build: libargos3plugin_simulator_ep
 
 .PHONY : CMakeFiles/argos3plugin_simulator_epucky.dir/build
 
+CMakeFiles/argos3plugin_simulator_epucky.dir/requires: CMakeFiles/argos3plugin_simulator_epucky.dir/control_interface/ci_battery_sensor.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_epucky.dir/requires: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/dynamics2d_epucky_model.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_epucky.dir/requires: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/epucky_entity.cpp.o.requires
+CMakeFiles/argos3plugin_simulator_epucky.dir/requires: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor.cpp.o.requires
+CMakeFiles/argos3plugin_simulator_epucky.dir/requires: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/battery_sensor_equipped_entity.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_epucky.dir/requires: CMakeFiles/argos3plugin_simulator_epucky.dir/simulator/qtopengl_epucky.cpp.o.requires
 
 .PHONY : CMakeFiles/argos3plugin_simulator_epucky.dir/requires

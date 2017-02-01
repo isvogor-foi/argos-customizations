@@ -16,10 +16,12 @@ namespace argos {
    class CLightSensorEquippedEntity;
    class CProximitySensorEquippedEntity;
    class CRABEquippedEntity;
+   class CBatterySensorEquippedEntity;
 }
 
 #include <argos3/core/simulator/entity/composable_entity.h>
 #include <argos3/plugins/simulator/entities/wheeled_entity.h>
+
 
 namespace argos {
 
@@ -78,9 +80,15 @@ namespace argos {
          return *m_pcWheeledEntity;
       }
 
+      inline CBatterySensorEquippedEntity& GetBatterySensorEquippedEntity(){
+         return *m_pcBatterySensorEquippedEntity;
+      }
+
       virtual std::string GetTypeDescription() const {
          return "e-pucky";
       }
+
+
 
    private:
 
@@ -96,6 +104,7 @@ namespace argos {
       CProximitySensorEquippedEntity*        m_pcProximitySensorEquippedEntity;
       CRABEquippedEntity*                    m_pcRABEquippedEntity;
       CWheeledEntity*                        m_pcWheeledEntity;
+      CBatterySensorEquippedEntity*          m_pcBatterySensorEquippedEntity;
    };
 
 }
