@@ -1,3 +1,0 @@
-/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles/edit_cache.dir
-/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles/rebuild_cache.dir
-/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/CMakeFiles/argos3plugin_simulator_epucky.dir
