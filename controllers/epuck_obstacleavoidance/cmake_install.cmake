@@ -1,4 +1,4 @@
-# Install script for directory: /home/ivan/dev/argos3/argos3-examples/controllers/epuck_obstacleavoidance
+# Install script for directory: /home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/epuck_obstacleavoidance
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ivan/dev/argos3/argos3-examples/controllers/epuck_obstacleavoidance/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/epuck_obstacleavoidance/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

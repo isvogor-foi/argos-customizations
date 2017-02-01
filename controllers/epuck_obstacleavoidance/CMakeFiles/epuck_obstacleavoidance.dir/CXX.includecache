@@ -6,13 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h
-argos3/core/control_interface/ci_sensor.h
--
-
-/home/ivan/dev/argos3/argos3-examples/controllers/epuck_obstacleavoidance/epuck_obstacleavoidance.cpp
+/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/epuck_obstacleavoidance/epuck_obstacleavoidance.cpp
 epuck_obstacleavoidance.h
-/home/ivan/dev/argos3/argos3-examples/controllers/epuck_obstacleavoidance/epuck_obstacleavoidance.h
+/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/epuck_obstacleavoidance/epuck_obstacleavoidance.h
 argos3/core/utility/configuration/argos_configuration.h
 -
 argos3/core/utility/logging/argos_log.h
@@ -20,7 +16,7 @@ argos3/core/utility/logging/argos_log.h
 argos3/core/simulator/space/space.h
 -
 
-/home/ivan/dev/argos3/argos3-examples/controllers/epuck_obstacleavoidance/epuck_obstacleavoidance.h
+/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/epuck_obstacleavoidance/epuck_obstacleavoidance.h
 argos3/core/control_interface/ci_controller.h
 -
 argos3/plugins/robots/generic/control_interface/ci_differential_steering_actuator.h
@@ -30,5 +26,9 @@ argos3/plugins/robots/generic/control_interface/ci_proximity_sensor.h
 argos3/core/utility/math/rng.h
 -
 /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h
+-
+
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h
+argos3/core/control_interface/ci_sensor.h
 -
 

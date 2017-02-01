@@ -22,12 +22,16 @@ namespace argos {
       		virtual void Reset();
       		virtual void Update();
 
-			//virtual ~CBatterySensorEquippedEntity();
 			virtual void Init(TConfigurationNode& t_node);
-
 		    virtual std::string GetTypeDescription() const {
 		    	return "battery";
 		    }
+
+		public:
+		    Real m_fVoltage;
+		    Real m_fCurrent;
+
+
 	}; // end class
 } // end namespace
 

@@ -7,7 +7,6 @@
 
 namespace argos{
 
-
 	Real CCI_BatterySensor::GetReadings() {
 		return m_Readings;
 	}

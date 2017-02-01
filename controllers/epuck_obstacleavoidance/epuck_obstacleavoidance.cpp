@@ -13,7 +13,7 @@
      m_pcWheels(NULL),
      m_pcProximity(NULL),
      m_batterySensor(NULL),
-     m_fWheelVelocity(2.5f) {}
+     m_fWheelVelocity(15.5f) {}
 
   /****************************************/
   /****************************************/
@@ -147,6 +147,9 @@
     // change the whell velocity according to previous conditions
 
       m_pcWheels->SetLinearVelocity(current_left_velocity, current_right_velocity);
+
+      RLOG << "Battery reading: " << m_batterySensor->GetReadings() << std::endl;
+
       //ConsumeBattery();
 
   }

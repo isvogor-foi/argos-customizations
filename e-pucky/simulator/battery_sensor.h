@@ -27,10 +27,9 @@ namespace argos {
       //virtual ~CBatterySensor() {}
       virtual void SetRobot(CComposableEntity& c_entity);
       virtual void Init(TConfigurationNode& t_tree);
+
       virtual void Update();
       virtual void Reset();
-
-      Real m_capacity;
 
     protected:
 		//CEmbodiedEntity* m_pcEmbodiedEntity; // to who am I associated?
@@ -38,11 +37,12 @@ namespace argos {
 	    CControllableEntity* m_pcControllableEntity;
 		CSpace& m_cSpace;
 
+		// currently, randomly generate some data
+		CRandom::CRNG* m_pcRNG;
+
+
+
 	}; // end CBatterySensor
-
-
-
-	//CBatteryEntity *m_batteryEntity;
 
 } // end argos
 
