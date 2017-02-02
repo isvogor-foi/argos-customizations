@@ -19,7 +19,8 @@ namespace argos {
 		public:	
 			//virtual ~CCI_BatterySensor() {}
 
-			Real GetReadings() ;
+			Real GetSoc() ;
+			Real GetStartingSoc();
 
 		#ifdef ARGOS_WITH_LUA
 		      virtual void CreateLuaState(lua_State* pt_lua_state);
@@ -27,7 +28,8 @@ namespace argos {
 		#endif
 
 		protected:
-			Real m_Readings;
+			Real m_SOC;	// State of charge, should be between 0 and 1
+			Real fStartingSoc;
 
 	};
 }

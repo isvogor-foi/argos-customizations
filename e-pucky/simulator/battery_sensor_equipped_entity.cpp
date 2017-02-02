@@ -7,17 +7,20 @@ namespace argos {
 
 	CBatterySensorEquippedEntity::CBatterySensorEquippedEntity(CComposableEntity* pc_parent) :
 		CEntity(pc_parent),
-		m_fCurrent(0),
-		m_fVoltage(0)
-
+		m_fVoltage(9.0f),
+		m_fIdleCurrent(0),
+		m_fDriveCurrent(0),
+		m_fProcessingLoadCurrent(0)
 	{
 		Enable();
 	}
 
 	CBatterySensorEquippedEntity::CBatterySensorEquippedEntity(CComposableEntity* pc_parent, const std::string& str_id) :
 		CEntity(pc_parent, str_id),
-		m_fCurrent(0),
-		m_fVoltage(0)
+		m_fVoltage(9.0f),
+		m_fIdleCurrent(0),
+		m_fDriveCurrent(0),
+		m_fProcessingLoadCurrent(0)
 	{
 		Enable();
 	}
@@ -25,6 +28,12 @@ namespace argos {
 	void CBatterySensorEquippedEntity::Init(TConfigurationNode& t_tree) {
 		try {
 			CEntity::Init(t_tree);
+			// get init values
+			// TODO: this should really be moved to a robot, or other entities (e.g. processing entity, energy entity)
+			//
+			GetNodeAttributeOrDefault(t_tree, "idle_i", m_fIdleCurrent, m_fIdleCurrent);
+			GetNodeAttributeOrDefault(t_tree, "drive_i", m_fDriveCurrent, m_fDriveCurrent);
+			GetNodeAttributeOrDefault(t_tree, "proc_i", m_fProcessingLoadCurrent, m_fProcessingLoadCurrent);
 		}
 		catch(CARGoSException& ex) {
 			THROW_ARGOSEXCEPTION_NESTED("Initialization error in battery sensor equipped entity", ex);
@@ -34,8 +43,8 @@ namespace argos {
 	void CBatterySensorEquippedEntity::Reset() {}
 
 	void CBatterySensorEquippedEntity::Update() {
-		m_fCurrent = 0.5f;
-		m_fVoltage = 12.0f;
+		// m_fCurrent = m_fIdleCurrent + m_fDriveCurrent + m_fProcessingLoadCurrent;
+		// m_fCurrent = 0.1f;
 	}
 
 

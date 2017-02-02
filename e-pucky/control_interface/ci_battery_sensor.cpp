@@ -7,9 +7,16 @@
 
 namespace argos{
 
-	Real CCI_BatterySensor::GetReadings() {
-		return m_Readings;
+	Real CCI_BatterySensor::GetSoc() {
+		return m_SOC;
 	}
+
+	Real CCI_BatterySensor::GetStartingSoc(){
+		return fStartingSoc;
+	}
+
+
+	// lua stuff
 
 	#ifdef ARGOS_WITH_LUA
 	   void CCI_BatterySensor::CreateLuaState(lua_State* pt_lua_state) {

@@ -7,7 +7,7 @@ namespace argos {
 }
 
 #include <argos3/core/simulator/entity/entity.h>
-#include <argos3/core/simulator/entity/embodied_entity.h>
+#include <argos3/plugins/simulator/entities/wheeled_entity.h>
 
 namespace argos {
 	class CBatterySensorEquippedEntity : public CEntity {
@@ -19,18 +19,41 @@ namespace argos {
 			CBatterySensorEquippedEntity(CComposableEntity* pc_parent);
       		CBatterySensorEquippedEntity(CComposableEntity* pc_parent, const std::string& str_id);
 
+
       		virtual void Reset();
       		virtual void Update();
 
 			virtual void Init(TConfigurationNode& t_node);
+
+			// getters
+
 		    virtual std::string GetTypeDescription() const {
 		    	return "battery";
 		    }
 
-		public:
-		    Real m_fVoltage;
-		    Real m_fCurrent;
+		    virtual Real GetVoltage() const {
+		    	return m_fVoltage;
+		    }
 
+		    virtual Real GetIdleCurrent() const{
+		    	return m_fIdleCurrent;
+		    }
+
+		    virtual Real GetDriveCurrent() const{
+		    	return m_fDriveCurrent;
+		    }
+
+		    virtual Real GetProcessingCurrent() const{
+		    	return m_fProcessingLoadCurrent;
+		    }
+
+		protected:
+		    Real m_fVoltage;
+
+		private:
+		    Real m_fIdleCurrent;
+		    Real m_fDriveCurrent;
+		    Real m_fProcessingLoadCurrent;
 
 	}; // end class
 } // end namespace

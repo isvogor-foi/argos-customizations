@@ -14,6 +14,9 @@ namespace argos {
 #include "../control_interface/ci_battery_sensor.h"
 #include <argos3/core/simulator/sensor.h>
 #include <argos3/core/simulator/space/space.h>
+#include <argos3/core/simulator/entity/embodied_entity.h>
+#include <argos3/core/simulator/entity/composable_entity.h>
+#include <argos3/plugins/simulator/entities/wheeled_entity.h>
 
 namespace argos {
 
@@ -32,15 +35,19 @@ namespace argos {
       virtual void Reset();
 
     protected:
-		//CEmbodiedEntity* m_pcEmbodiedEntity; // to who am I associated?
+		CEmbodiedEntity* m_pcEmbodiedEntity; // to who am I associated?
 		CBatterySensorEquippedEntity* m_pcBatteryEntity;
 	    CControllableEntity* m_pcControllableEntity;
 		CSpace& m_cSpace;
-
 		// currently, randomly generate some data
 		CRandom::CRNG* m_pcRNG;
 
+	    CWheeledEntity* m_pcWheeledEntity;
 
+
+    private:
+        Real fStartingSoc;
+        Real fNominalSoc;
 
 	}; // end CBatterySensor
 

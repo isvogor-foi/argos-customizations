@@ -148,8 +148,8 @@
 
       m_pcWheels->SetLinearVelocity(current_left_velocity, current_right_velocity);
 
-      RLOG << "Battery reading: " << m_batterySensor->GetReadings() << std::endl;
-
+      //RLOG << "Battery reading: " << m_batterySensor->GetReadings() << std::endl;
+      	RLOG << "SSOC: " << m_batterySensor->GetStartingSoc() << ", " << m_batterySensor->GetSoc() << std::endl;
       //ConsumeBattery();
 
   }
