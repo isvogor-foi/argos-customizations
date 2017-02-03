@@ -34,6 +34,7 @@ namespace argos {
 			GetNodeAttributeOrDefault(t_tree, "idle_i", m_fIdleCurrent, m_fIdleCurrent);
 			GetNodeAttributeOrDefault(t_tree, "drive_i", m_fDriveCurrent, m_fDriveCurrent);
 			GetNodeAttributeOrDefault(t_tree, "proc_i", m_fProcessingLoadCurrent, m_fProcessingLoadCurrent);
+
 		}
 		catch(CARGoSException& ex) {
 			THROW_ARGOSEXCEPTION_NESTED("Initialization error in battery sensor equipped entity", ex);
@@ -45,6 +46,7 @@ namespace argos {
 	void CBatterySensorEquippedEntity::Update() {
 		// m_fCurrent = m_fIdleCurrent + m_fDriveCurrent + m_fProcessingLoadCurrent;
 		// m_fCurrent = 0.1f;
+		//m_fDriveCurrent = 3;
 	}
 
 

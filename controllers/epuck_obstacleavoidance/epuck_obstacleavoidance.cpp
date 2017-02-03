@@ -92,7 +92,7 @@
       * have to recompile if we want to try other settings.
       */
      GetNodeAttributeOrDefault(t_node, "velocity", m_fWheelVelocity, m_fWheelVelocity);
-     
+     m_time = 0;
      //m_fWheelVelocity = (float) (GetRandomInteger(10, 100, pcRNG) / 10.0f);
 
      //InitializeBattery();
@@ -148,8 +148,15 @@
 
       m_pcWheels->SetLinearVelocity(current_left_velocity, current_right_velocity);
 
+      if(m_batterySensor->GetSoc() > 0.2f ){
+          m_pcWheels->SetLinearVelocity(0, 0);
+      } else {
+    	  m_time++;
+      }
+
+
       //RLOG << "Battery reading: " << m_batterySensor->GetReadings() << std::endl;
-      	RLOG << "SSOC: " << m_batterySensor->GetStartingSoc() << ", " << m_batterySensor->GetSoc() << std::endl;
+      	RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << m_time << std::endl;
       //ConsumeBattery();
 
   }

@@ -96,6 +96,7 @@ private:
     */
    /* Wheel speed. */
    Real m_fWheelVelocity;
+   int m_time;
 
   // battery 
   //float batteryCapacity;

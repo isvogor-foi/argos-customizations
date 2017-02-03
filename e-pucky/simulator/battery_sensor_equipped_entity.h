@@ -31,27 +31,29 @@ namespace argos {
 		    }
 
 		    virtual Real GetVoltage() const {
-		    	return m_fVoltage;
+		    	return m_fVoltage / 36000; //
 		    }
 
 		    virtual Real GetIdleCurrent() const{
-		    	return m_fIdleCurrent;
+		    	return m_fIdleCurrent / 36000;
 		    }
 
 		    virtual Real GetDriveCurrent() const{
-		    	return m_fDriveCurrent;
+		    	return m_fDriveCurrent / 36000;
 		    }
 
 		    virtual Real GetProcessingCurrent() const{
-		    	return m_fProcessingLoadCurrent;
+		    	return m_fProcessingLoadCurrent / 36000;
 		    }
+
+		    Real m_fDriveCurrent;
+
 
 		protected:
 		    Real m_fVoltage;
 
-		private:
+
 		    Real m_fIdleCurrent;
-		    Real m_fDriveCurrent;
 		    Real m_fProcessingLoadCurrent;
 
 	}; // end class

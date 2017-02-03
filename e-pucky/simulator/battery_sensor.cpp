@@ -32,11 +32,15 @@ namespace argos {
 	void CBatterySensor::Init(TConfigurationNode& t_tree) {
 		try {
 			CCI_BatterySensor::Init(t_tree);
+			m_pcBatteryEntity->Init(t_tree);
+
 			//m_pcRNG = CRandom::CreateRNG("argos");
 			m_SOC = 0;
 			// read XML attributes
 	         GetNodeAttributeOrDefault(t_tree, "starting_soc", fStartingSoc, fStartingSoc);
 	         GetNodeAttributeOrDefault(t_tree, "nominal_soc", fNominalSoc, fNominalSoc);
+
+
 
 		} catch (CARGoSException& ex) {
 			THROW_ARGOSEXCEPTION_NESTED("Initialization error in default battery sensor", ex);
@@ -44,18 +48,18 @@ namespace argos {
 	}
 
 	void CBatterySensor::Update() {
-		//if(m_)
-		//CRange < UInt32 > cRange(0.5f, 12.0f);
-		//m_Readings = m_pcRNG->Uniform(cRange);
-		//m_Readings = m_pcWheeledEntity->GetWheelVelocity(0);
-		//fStartingSoc += CPhysicsEngine::GetSimulationClockTick();
-		//m_pcBatteryEntity->Update();
+		// coulomb counting -- linear currently, make nonlinear
 
-		m_SOC = m_SOC + ( (m_pcBatteryEntity->GetIdleCurrent()) / fNominalSoc) * CPhysicsEngine::GetSimulationClockTick();
-		m_SOC = m_pcWheels->GetWheelVelocity(0); // you must have a reference to _entities.so in the CMake file
-		//m_SOC = m_pcBatteryEntity->GetCurrent();
-		//m_SOC = 5.0f;
-		//m_pcBatteryEntity->Update()
+		Real driveCurrent = m_pcBatteryEntity->GetDriveCurrent();
+		if(m_pcWheels->GetWheelVelocity(0) == 0 || m_pcWheels->GetWheelVelocity(1) == 0){
+			driveCurrent = driveCurrent / 2.0f;
+		} else if (m_pcWheels->GetWheelVelocity(0) == 0 && m_pcWheels->GetWheelVelocity(1) == 0) {
+			driveCurrent = 0.0f;
+		}
+
+		float totalCurrent = driveCurrent + m_pcBatteryEntity->GetIdleCurrent() + m_pcBatteryEntity->GetProcessingCurrent();
+		m_SOC = m_SOC + ( totalCurrent / fNominalSoc) * CPhysicsEngine::GetSimulationClockTick();
+		//m_SOC = m_pcBatteryEntity->GetDriveCurrent();
 	}
 
 	void CBatterySensor::Reset() { }

@@ -22,7 +22,7 @@
       </actuators>
       <sensors>
         <proximity implementation="default" show_rays="true" />
-	<battery implementation="default" starting_soc="1.1" nominal_soc="0.1" idle_i="0.1" drive_i="1" proc_i="0.5"/>
+	<battery implementation="default" starting_soc="1.0" nominal_soc="0.1" idle_i="0.1" drive_i="0.7" proc_i="0.5"/>
       </sensors>
       <params velocity="5" />
     </epuck_obstacleavoidance_controller>
