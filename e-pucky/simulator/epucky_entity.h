@@ -16,7 +16,9 @@ namespace argos {
    class CLightSensorEquippedEntity;
    class CProximitySensorEquippedEntity;
    class CRABEquippedEntity;
+   class CWheeledEntity;
    class CBatterySensorEquippedEntity;
+
 }
 
 #include <argos3/core/simulator/entity/composable_entity.h>

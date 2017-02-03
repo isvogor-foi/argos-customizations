@@ -7,7 +7,6 @@ namespace argos {
 }
 
 #include <argos3/core/simulator/entity/entity.h>
-#include <argos3/plugins/simulator/entities/wheeled_entity.h>
 
 namespace argos {
 	class CBatterySensorEquippedEntity : public CEntity {

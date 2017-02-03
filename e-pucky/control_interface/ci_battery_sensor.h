@@ -17,8 +17,6 @@ namespace argos {
 
 	class CCI_BatterySensor : public CCI_Sensor{
 		public:	
-			//virtual ~CCI_BatterySensor() {}
-
 			Real GetSoc() ;
 			Real GetStartingSoc();
 

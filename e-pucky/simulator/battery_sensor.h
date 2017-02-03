@@ -7,16 +7,14 @@
 namespace argos {
 	class CBatterySensor;
 	class CBatterySensorEquippedEntity;
+	class CWheeledEntity;
 }
-
-//#include "battery_entity.h"
 
 #include "../control_interface/ci_battery_sensor.h"
 #include <argos3/core/simulator/sensor.h>
 #include <argos3/core/simulator/space/space.h>
-#include <argos3/core/simulator/entity/embodied_entity.h>
-#include <argos3/core/simulator/entity/composable_entity.h>
-#include <argos3/plugins/simulator/entities/wheeled_entity.h>
+#include "battery_sensor_equipped_entity.h"
+
 
 namespace argos {
 
@@ -39,13 +37,8 @@ namespace argos {
 		CBatterySensorEquippedEntity* m_pcBatteryEntity;
 	    CControllableEntity* m_pcControllableEntity;
 		CSpace& m_cSpace;
-		// currently, randomly generate some data
-		CRandom::CRNG* m_pcRNG;
+		CWheeledEntity* m_pcWheels;
 
-	    CWheeledEntity* m_pcWheeledEntity;
-
-
-    private:
         Real fStartingSoc;
         Real fNominalSoc;
 

@@ -15,6 +15,7 @@
 #include <argos3/plugins/simulator/entities/led_equipped_entity.h>
 #include <argos3/plugins/simulator/entities/light_sensor_equipped_entity.h>
 #include <argos3/plugins/simulator/entities/proximity_sensor_equipped_entity.h>
+#include <argos3/plugins/simulator/entities/wheeled_entity.h>
 #include "battery_sensor_equipped_entity.h"
 //#include <argos3/core/utility/logging/argos_log.h>
 
