@@ -18,10 +18,8 @@ namespace argos {
 			CBatterySensorEquippedEntity(CComposableEntity* pc_parent);
       		CBatterySensorEquippedEntity(CComposableEntity* pc_parent, const std::string& str_id);
 
-
       		virtual void Reset();
       		virtual void Update();
-
 			virtual void Init(TConfigurationNode& t_node);
 
 			// getters
@@ -46,17 +44,17 @@ namespace argos {
 		    	return m_fProcessingLoadCurrent / 36000;
 		    }
 
-		    Real m_fDriveCurrent;
-
-
 		protected:
 		    Real m_fVoltage;
-
-
 		    Real m_fIdleCurrent;
 		    Real m_fProcessingLoadCurrent;
+		    Real m_fDriveCurrent;
+		    // TODO: add C rating
+
+
 
 	}; // end class
+
 } // end namespace
 
 #endif

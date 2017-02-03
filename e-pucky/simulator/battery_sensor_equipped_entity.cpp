@@ -28,9 +28,11 @@ namespace argos {
 	void CBatterySensorEquippedEntity::Init(TConfigurationNode& t_tree) {
 		try {
 			CEntity::Init(t_tree);
-			// get init values
+			//
 			// TODO: this should really be moved to a robot, or other entities (e.g. processing entity, energy entity)
 			//
+
+			// get init values from XML
 			GetNodeAttributeOrDefault(t_tree, "idle_i", m_fIdleCurrent, m_fIdleCurrent);
 			GetNodeAttributeOrDefault(t_tree, "drive_i", m_fDriveCurrent, m_fDriveCurrent);
 			GetNodeAttributeOrDefault(t_tree, "proc_i", m_fProcessingLoadCurrent, m_fProcessingLoadCurrent);
@@ -44,9 +46,6 @@ namespace argos {
 	void CBatterySensorEquippedEntity::Reset() {}
 
 	void CBatterySensorEquippedEntity::Update() {
-		// m_fCurrent = m_fIdleCurrent + m_fDriveCurrent + m_fProcessingLoadCurrent;
-		// m_fCurrent = 0.1f;
-		//m_fDriveCurrent = 3;
 	}
 
 

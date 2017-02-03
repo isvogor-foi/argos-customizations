@@ -25,7 +25,9 @@ namespace argos {
 
 	  CBatterySensor();	
 
+	  // TODO: Fix destructors (i.e. implement them)
       //virtual ~CBatterySensor() {}
+
       virtual void SetRobot(CComposableEntity& c_entity);
       virtual void Init(TConfigurationNode& t_tree);
 
@@ -33,11 +35,11 @@ namespace argos {
       virtual void Reset();
 
     protected:
-		CEmbodiedEntity* m_pcEmbodiedEntity; // to who am I associated?
+		CEmbodiedEntity* m_pcEmbodiedEntity; 			// to who am I associated?
 		CBatterySensorEquippedEntity* m_pcBatteryEntity;
 	    CControllableEntity* m_pcControllableEntity;
+		CWheeledEntity* m_pcWheels;						// get wheels for velocity
 		CSpace& m_cSpace;
-		CWheeledEntity* m_pcWheels;
 
         Real fStartingSoc;
         Real fNominalSoc;
