@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h
+argos3/core/control_interface/ci_sensor.h
+-
+argos3/core/utility/math/angles.h
+-
+
+/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion/efootbot_diffusion.cpp
+efootbot_diffusion.h
+/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion/efootbot_diffusion.h
+argos3/core/utility/configuration/argos_configuration.h
+-
+argos3/core/utility/math/vector2.h
+-
+
+/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion/efootbot_diffusion.h
+argos3/core/control_interface/ci_controller.h
+-
+argos3/plugins/robots/generic/control_interface/ci_differential_steering_actuator.h
+-
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h
+-
+
