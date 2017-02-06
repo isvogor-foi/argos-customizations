@@ -29,26 +29,36 @@ namespace argos {
 		    }
 
 		    virtual Real GetVoltage() const {
-		    	return m_fVoltage / 36000; //
+		    	return m_fVoltage; //
 		    }
 
 		    virtual Real GetIdleCurrent() const{
-		    	return m_fIdleCurrent / 36000;
+		    	return m_fIdleCurrent;
 		    }
 
 		    virtual Real GetDriveCurrent() const{
-		    	return m_fDriveCurrent / 36000;
+		    	return m_fDriveCurrent;
 		    }
 
 		    virtual Real GetProcessingCurrent() const{
-		    	return m_fProcessingLoadCurrent / 36000;
+		    	return m_fProcessingLoadCurrent;
+		    }
+
+		    virtual Real GetNominalCapacity() const {
+		    	return m_fNominalCapacity;
 		    }
 
 		protected:
+		    // battery data
 		    Real m_fVoltage;
+		    Real m_fNominalCapacity;
+		    Real m_fCRate;
+
+		    // battery consumption data, should be moved to a robot
 		    Real m_fIdleCurrent;
 		    Real m_fProcessingLoadCurrent;
 		    Real m_fDriveCurrent;
+
 		    // TODO: add C rating
 
 

@@ -43,6 +43,9 @@ namespace argos {
 
         Real fStartingSoc;
         Real fNominalSoc;
+        Real fConsumedCapacity;
+
+        int iRunningTime;
 
 	}; // end CBatterySensor
 

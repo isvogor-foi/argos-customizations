@@ -31,11 +31,15 @@ namespace argos {
 			//
 			// TODO: this should really be moved to a robot, or other entities (e.g. processing entity, energy entity)
 			//
-
 			// get init values from XML
 			GetNodeAttributeOrDefault(t_tree, "idle_i", m_fIdleCurrent, m_fIdleCurrent);
 			GetNodeAttributeOrDefault(t_tree, "drive_i", m_fDriveCurrent, m_fDriveCurrent);
 			GetNodeAttributeOrDefault(t_tree, "proc_i", m_fProcessingLoadCurrent, m_fProcessingLoadCurrent);
+
+			GetNodeAttributeOrDefault(t_tree, "nominal_capacity", m_fNominalCapacity, m_fNominalCapacity);
+			GetNodeAttributeOrDefault(t_tree, "nominal_voltage", m_fVoltage, m_fVoltage);
+			//GetNodeAttributeOrDefault(t_tree, "empty_voltage", m_fProcessingLoadCurrent, m_fProcessingLoadCurrent);
+
 
 		}
 		catch(CARGoSException& ex) {

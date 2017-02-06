@@ -28,6 +28,7 @@ namespace argos {
 		protected:
 			Real m_SOC;	// State of charge, should be between 0 and 1
 			Real fStartingSoc;
+			Real m_Voltage;
 
 	};
 }

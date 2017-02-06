@@ -148,12 +148,14 @@
 
       m_pcWheels->SetLinearVelocity(current_left_velocity, current_right_velocity);
 
+      /*
       if(m_batterySensor->GetSoc() > 0.2f ){
           m_pcWheels->SetLinearVelocity(0, 0);
       } else {
     	  m_time++;
       }
-
+	  */
+      m_time++;
 
       //RLOG << "Battery reading: " << m_batterySensor->GetReadings() << std::endl;
       	RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << m_time << std::endl;
