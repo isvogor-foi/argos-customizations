@@ -11,6 +11,7 @@ namespace argos {
 }
 
 #include "../control_interface/ci_battery_sensor.h"
+#include "spline.h"
 #include <argos3/core/simulator/sensor.h>
 #include <argos3/core/simulator/space/space.h>
 #include "battery_sensor_equipped_entity.h"
@@ -42,10 +43,11 @@ namespace argos {
 		CSpace& m_cSpace;
 
         Real fStartingSoc;
-        Real fNominalSoc;
         Real fConsumedCapacity;
 
-        int iRunningTime;
+    private:
+        tk::spline splineFunction;
+        std::string m_sDischargeType;
 
 	}; // end CBatterySensor
 

@@ -23,14 +23,14 @@
       <sensors>
         <proximity implementation="default" show_rays="true" />
 	<battery implementation="default" 
+		discharge_type="linear"
 		starting_soc="1.0" 
-		nominal_soc="0.1"
 		nominal_voltage="4.2"
-		empty_voltage="3.7"
-		nominal_capacity="0.5"
-		idle_i="0.1" 
-		drive_i="0.7" 
-		proc_i="0.5"/>
+		empty_voltage="2.7"
+		nominal_capacity="0.0001"
+		idle_i="0.4" 
+		drive_i="1.5" 
+		proc_i="1.0"/>
       </sensors>
       <params velocity="5" />
     </epuck_obstacleavoidance_controller>

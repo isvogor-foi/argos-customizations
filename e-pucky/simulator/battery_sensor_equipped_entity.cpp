@@ -7,7 +7,8 @@ namespace argos {
 
 	CBatterySensorEquippedEntity::CBatterySensorEquippedEntity(CComposableEntity* pc_parent) :
 		CEntity(pc_parent),
-		m_fVoltage(9.0f),
+		m_fVoltage(4.2f),
+		m_fEmptyVoltage(2.7f),
 		m_fIdleCurrent(0),
 		m_fDriveCurrent(0),
 		m_fProcessingLoadCurrent(0)
@@ -17,7 +18,8 @@ namespace argos {
 
 	CBatterySensorEquippedEntity::CBatterySensorEquippedEntity(CComposableEntity* pc_parent, const std::string& str_id) :
 		CEntity(pc_parent, str_id),
-		m_fVoltage(9.0f),
+		m_fVoltage(4.2f),
+		m_fEmptyVoltage(2.7f),
 		m_fIdleCurrent(0),
 		m_fDriveCurrent(0),
 		m_fProcessingLoadCurrent(0)
@@ -28,18 +30,16 @@ namespace argos {
 	void CBatterySensorEquippedEntity::Init(TConfigurationNode& t_tree) {
 		try {
 			CEntity::Init(t_tree);
-			//
-			// TODO: this should really be moved to a robot, or other entities (e.g. processing entity, energy entity)
-			//
-			// get init values from XML
+
+			// get battery info
+			GetNodeAttributeOrDefault(t_tree, "nominal_capacity", m_fNominalCapacity, m_fNominalCapacity);
+			GetNodeAttributeOrDefault(t_tree, "nominal_voltage", m_fVoltage, m_fVoltage);
+			GetNodeAttributeOrDefault(t_tree, "empty_voltage", m_fEmptyVoltage, m_fEmptyVoltage);
+
+			// get power consumption info (this should be moved to a robot)
 			GetNodeAttributeOrDefault(t_tree, "idle_i", m_fIdleCurrent, m_fIdleCurrent);
 			GetNodeAttributeOrDefault(t_tree, "drive_i", m_fDriveCurrent, m_fDriveCurrent);
 			GetNodeAttributeOrDefault(t_tree, "proc_i", m_fProcessingLoadCurrent, m_fProcessingLoadCurrent);
-
-			GetNodeAttributeOrDefault(t_tree, "nominal_capacity", m_fNominalCapacity, m_fNominalCapacity);
-			GetNodeAttributeOrDefault(t_tree, "nominal_voltage", m_fVoltage, m_fVoltage);
-			//GetNodeAttributeOrDefault(t_tree, "empty_voltage", m_fProcessingLoadCurrent, m_fProcessingLoadCurrent);
-
 
 		}
 		catch(CARGoSException& ex) {

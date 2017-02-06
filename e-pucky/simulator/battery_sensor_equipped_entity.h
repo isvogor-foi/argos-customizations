@@ -48,21 +48,25 @@ namespace argos {
 		    	return m_fNominalCapacity;
 		    }
 
+		    virtual Real GetCRate() const {
+		    	return m_fCRate;
+		    }
+
+		    virtual Real GetEmptyVoltage() const {
+		    	return m_fEmptyVoltage;
+		    }
+
 		protected:
 		    // battery data
-		    Real m_fVoltage;
-		    Real m_fNominalCapacity;
+		    Real m_fVoltage;			// in V
+		    Real m_fEmptyVoltage;		// in V
+		    Real m_fNominalCapacity; 	// in Ah
 		    Real m_fCRate;
 
 		    // battery consumption data, should be moved to a robot
 		    Real m_fIdleCurrent;
 		    Real m_fProcessingLoadCurrent;
 		    Real m_fDriveCurrent;
-
-		    // TODO: add C rating
-
-
-
 	}; // end class
 
 } // end namespace
