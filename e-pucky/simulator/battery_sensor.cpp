@@ -32,6 +32,7 @@ namespace argos {
 			CCI_BatterySensor::Init(t_tree);
 			m_pcBatteryEntity->Init(t_tree);
 
+			m_SOC = 100;
 			fStartingSoc = m_pcBatteryEntity->GetNominalCapacity() * 1000 * 60 * 60 * CPhysicsEngine::GetSimulationClockTick();
 			fConsumedCapacity = 0;
 			// read XML attributes
@@ -61,13 +62,17 @@ namespace argos {
 		}
 		float totalCurrent = driveCurrent + m_pcBatteryEntity->GetIdleCurrent() + m_pcBatteryEntity->GetProcessingCurrent();
 
-		if(m_sDischargeType.compare("linear") == 0){
-			fConsumedCapacity += totalCurrent * 1000 / 60 / 60 / CPhysicsEngine::GetInverseSimulationClockTick() ;
-			m_SOC = (1 - fConsumedCapacity / fStartingSoc) * 100;
+		if(m_SOC > 0){
+			if(m_sDischargeType.compare("linear") == 0){
+				fConsumedCapacity += totalCurrent * 1000 / 60 / 60 / CPhysicsEngine::GetInverseSimulationClockTick() ;
+				m_SOC = (1 - fConsumedCapacity / fStartingSoc) * 100;
+			} else {
+				fConsumedCapacity += totalCurrent * 1000 / 60 / 60 / CPhysicsEngine::GetInverseSimulationClockTick() ;
+				m_SOC = (splineFunction(fConsumedCapacity) - m_pcBatteryEntity->GetEmptyVoltage()) /
+									(m_pcBatteryEntity->GetVoltage() - m_pcBatteryEntity->GetEmptyVoltage()) * 100;
+			}
 		} else {
-			fConsumedCapacity += totalCurrent * 1000 / 60 / 60 / CPhysicsEngine::GetInverseSimulationClockTick() ;
-			m_SOC = (splineFunction(fConsumedCapacity) - m_pcBatteryEntity->GetEmptyVoltage()) /
-								(m_pcBatteryEntity->GetVoltage() - m_pcBatteryEntity->GetEmptyVoltage()) * 100;
+			m_SOC = 0;
 		}
 	}
 

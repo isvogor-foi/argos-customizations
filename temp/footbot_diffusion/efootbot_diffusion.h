@@ -28,6 +28,8 @@
 #include <argos3/plugins/robots/generic/control_interface/ci_differential_steering_actuator.h>
 /* Definition of the foot-bot proximity sensor */
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h"
+#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h"
+
 
 /*
  * All the ARGoS stuff in the 'argos' namespace.
@@ -103,6 +105,8 @@ private:
     * and grows exponentially to 1 when the obstacle is
     * touching the robot.
     */
+   CCI_BatterySensor* m_batterySensor;
+   
    Real m_fDelta;
    /* Wheel speed. */
    Real m_fWheelVelocity;

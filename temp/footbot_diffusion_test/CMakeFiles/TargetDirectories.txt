@@ -1,0 +1,3 @@
+/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/CMakeFiles/edit_cache.dir
+/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/CMakeFiles/rebuild_cache.dir
+/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/CMakeFiles/efootbot_diffusion.dir

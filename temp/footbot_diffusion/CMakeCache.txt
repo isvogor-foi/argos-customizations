@@ -114,7 +114,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Project
+CMAKE_PROJECT_NAME:STATIC=footbot_controller
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -172,7 +172,13 @@ Project_BINARY_DIR:STATIC=/home/ivan/dev/argos-custom/argos3/plugins/robots/temp
 Project_SOURCE_DIR:STATIC=/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion
 
 //Dependencies for the target
-efootbot_diffusion_LIB_DEPENDS:STATIC=general;/usr/local/lib/argos3/libargos3core_simulator.so;general;/usr/local/lib/argos3/libargos3plugin_simulator_footbot.so;general;/usr/local/lib/argos3/libargos3plugin_simulator_genericrobot.so;
+efootbot_diffusion_LIB_DEPENDS:STATIC=general;/usr/local/lib/argos3/libargos3core_simulator.so;general;/usr/local/lib/argos3/libargos3plugin_simulator_footbot.so;general;/usr/local/lib/argos3/libargos3plugin_simulator_genericrobot.so;general;/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/libargos3plugin_simulator_efootbot.so;
+
+//Value Computed by CMake
+footbot_controller_BINARY_DIR:STATIC=/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion
+
+//Value Computed by CMake
+footbot_controller_SOURCE_DIR:STATIC=/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion
 
 //Dependencies for the target
 footbot_diffusion_LIB_DEPENDS:STATIC=general;/usr/local/lib/argos3/libargos3core_simulator.so;general;/usr/local/lib/argos3/libargos3plugin_simulator_footbot.so;general;/usr/local/lib/argos3/libargos3plugin_simulator_genericrobot.so;

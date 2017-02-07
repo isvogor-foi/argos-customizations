@@ -1,3 +1,6 @@
+PROJECT(epucky_controller)
+cmake_minimum_required(VERSION 3.5)
+
 add_library(epuck_obstacleavoidance MODULE epuck_obstacleavoidance.h epuck_obstacleavoidance.cpp)
 target_link_libraries(epuck_obstacleavoidance
   #argos3core_simulator

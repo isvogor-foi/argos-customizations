@@ -4,6 +4,7 @@
 #include <argos3/core/utility/configuration/argos_configuration.h>
 /* 2D vector definition */
 #include <argos3/core/utility/math/vector2.h>
+#include <argos3/core/utility/logging/argos_log.h>
 
 /****************************************/
 /****************************************/
@@ -11,6 +12,7 @@
 CEFootBotDiffusion::CEFootBotDiffusion() :
    m_pcWheels(NULL),
    m_pcProximity(NULL),
+   m_batterySensor(NULL),
    m_cAlpha(10.0f),
    m_fDelta(0.5f),
    m_fWheelVelocity(2.5f),
@@ -45,6 +47,8 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
     */
    m_pcWheels    = GetActuator<CCI_DifferentialSteeringActuator>("differential_steering");
    m_pcProximity = GetSensor  <CCI_EFootBotProximitySensor      >("efootbot_proximity"    );
+   m_batterySensor = GetSensor<CCI_BatterySensor                >("battery");
+
    /*
     * Parse the configuration file
     *
@@ -88,6 +92,8 @@ void CEFootBotDiffusion::ControlStep() {
          m_pcWheels->SetLinearVelocity(0.0f, m_fWheelVelocity);
       }
    }
+   RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << std::endl;
+
 }
 
 /****************************************/

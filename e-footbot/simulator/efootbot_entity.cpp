@@ -22,6 +22,9 @@
 #include "efootbot_distance_scanner_equipped_entity.h"
 #include "efootbot_turret_entity.h"
 
+//battery
+#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.h"
+
 namespace argos {
 
    /****************************************/
@@ -70,7 +73,8 @@ namespace argos {
       m_pcProximitySensorEquippedEntity(NULL),
       m_pcRABEquippedEntity(NULL),
       m_pcWheeledEntity(NULL),
-      m_pcWiFiEquippedEntity(NULL) {
+      m_pcWiFiEquippedEntity(NULL),
+      m_pcBatterySensorEquippedEntity(NULL) {
    }
 
    /****************************************/
@@ -158,6 +162,12 @@ namespace argos {
             PROXIMITY_SENSOR_RING_RANGE,
             24,
             m_pcEmbodiedEntity->GetOriginAnchor());
+
+         /* Battery equipped entity */
+
+        m_pcBatterySensorEquippedEntity = new CBatterySensorEquippedEntity(this, "battery_0");
+        AddComponent(*m_pcBatterySensorEquippedEntity);
+
          /* Gripper equipped entity */
          m_pcGripperEquippedEntity =
             new CGripperEquippedEntity(this,
@@ -316,6 +326,11 @@ namespace argos {
             PROXIMITY_SENSOR_RING_RANGE,
             24,
             m_pcEmbodiedEntity->GetOriginAnchor());
+         /* Battery equipped entity */
+
+        m_pcBatterySensorEquippedEntity = new CBatterySensorEquippedEntity(this, "battery_0");
+        AddComponent(*m_pcBatterySensorEquippedEntity);
+
          /* Gripper equipped entity */
          m_pcGripperEquippedEntity =
             new CGripperEquippedEntity(this,

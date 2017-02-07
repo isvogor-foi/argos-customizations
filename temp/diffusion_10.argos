@@ -16,13 +16,21 @@
   <!-- *************** -->
   <controllers>
 
-    <efootbot_diffusion_controller id="fdc"
-                                  library="footbot_diffusion/libefootbot_diffusion.so">
+    <efootbot_diffusion_controller id="fdc" library="/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion/libefootbot_diffusion.so">
       <actuators>
         <differential_steering implementation="default" />
       </actuators>
       <sensors>
         <efootbot_proximity implementation="default" show_rays="true" />
+    	<battery implementation="default" 
+    		discharge_type="non-linear"
+    		starting_soc="1.0" 
+    		nominal_voltage="4.2"
+    		empty_voltage="2.7"
+    		nominal_capacity="0.0001"
+    		idle_i="0.4" 
+    		drive_i="1.5" 
+    		proc_i="1.0"/>
       </sensors>
       <params alpha="7.5" delta="0.1" velocity="5" />
     </efootbot_diffusion_controller>
@@ -59,7 +67,7 @@
     <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="10" max_trials="100">
+      <entity quantity="30" max_trials="100">
         <e-footbot id="fb">
           <controller config="fdc" />
         </e-footbot>
@@ -72,7 +80,7 @@
     <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="uniform" min="0,0,0" max="360,0,0" />
-      <entity quantity="5" max_trials="100">
+      <entity quantity="10" max_trials="100">
         <box id="b" size="0.3,0.3,0.5" movable="false" />
       </entity>
     </distribute>

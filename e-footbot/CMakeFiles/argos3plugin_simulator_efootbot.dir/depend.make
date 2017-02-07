@@ -31,6 +31,18 @@ CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_tur
 CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.o: control_interface/ci_efootbot_turret_encoder_sensor.cpp
 CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.o: control_interface/ci_efootbot_turret_encoder_sensor.h
 
+CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp
+CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h
+
+CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h
+CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp
+CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.h
+CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.h
+CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/spline.h
+
+CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp
+CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.h
+
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/dynamics2d_efootbot_model.cpp.o: simulator/dynamics2d_efootbot_model.cpp
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/dynamics2d_efootbot_model.cpp.o: simulator/dynamics2d_efootbot_model.h
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/dynamics2d_efootbot_model.cpp.o: simulator/efootbot_entity.h
@@ -59,6 +71,7 @@ CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_entity.cpp.o: 
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_entity.cpp.o: simulator/efootbot_entity.cpp
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_entity.cpp.o: simulator/efootbot_entity.h
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_entity.cpp.o: simulator/efootbot_turret_entity.h
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_entity.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.h
 
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_gripper_default_actuator.cpp.o: control_interface/ci_efootbot_gripper_actuator.h
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_gripper_default_actuator.cpp.o: simulator/efootbot_gripper_default_actuator.cpp

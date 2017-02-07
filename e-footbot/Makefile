@@ -393,6 +393,87 @@ control_interface/ci_efootbot_turret_encoder_sensor.cpp.s:
 	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.s
 .PHONY : control_interface/ci_efootbot_turret_encoder_sensor.cpp.s
 
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.o: home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o
+
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.o
+
+# target to build an object file
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o
+
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.i: home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.i
+
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.i
+
+# target to preprocess a source file
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.i:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.i
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.i
+
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.s: home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.s
+
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.s
+
+# target to generate assembly for a file
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.s:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.s
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.s
+
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.o: home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o
+
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.o
+
+# target to build an object file
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o
+
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.i: home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.i
+
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.i
+
+# target to preprocess a source file
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.i:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.i
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.i
+
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.s: home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.s
+
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.s
+
+# target to generate assembly for a file
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.s:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.s
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.s
+
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.o: home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o
+
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.o
+
+# target to build an object file
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o
+
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.i: home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.i
+
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.i
+
+# target to preprocess a source file
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.i:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.i
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.i
+
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.s: home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.s
+
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.s
+
+# target to generate assembly for a file
+home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.s:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.s
+.PHONY : home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.s
+
 simulator/dynamics2d_efootbot_model.o: simulator/dynamics2d_efootbot_model.cpp.o
 
 .PHONY : simulator/dynamics2d_efootbot_model.o
@@ -810,6 +891,15 @@ help:
 	@echo "... control_interface/ci_efootbot_turret_encoder_sensor.o"
 	@echo "... control_interface/ci_efootbot_turret_encoder_sensor.i"
 	@echo "... control_interface/ci_efootbot_turret_encoder_sensor.s"
+	@echo "... home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.o"
+	@echo "... home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.i"
+	@echo "... home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.s"
+	@echo "... home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.o"
+	@echo "... home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.i"
+	@echo "... home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.s"
+	@echo "... home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.o"
+	@echo "... home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.i"
+	@echo "... home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.s"
 	@echo "... simulator/dynamics2d_efootbot_model.o"
 	@echo "... simulator/dynamics2d_efootbot_model.i"
 	@echo "... simulator/dynamics2d_efootbot_model.s"
