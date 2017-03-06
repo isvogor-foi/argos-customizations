@@ -1,0 +1,3 @@
+/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/CMakeFiles/rebuild_cache.dir
+/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/CMakeFiles/edit_cache.dir
+/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/CMakeFiles/base_station_controller.dir

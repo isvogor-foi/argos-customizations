@@ -1,3 +1,6 @@
+PROJECT(charging_station)
+cmake_minimum_required(VERSION 3.5)
+
 add_library(id_loop_functions MODULE 
   id_qtuser_functions.h
   id_qtuser_functions.cpp)
