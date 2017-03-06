@@ -13,6 +13,7 @@ CEFootBotDiffusion::CEFootBotDiffusion() :
    m_pcWheels(NULL),
    m_pcProximity(NULL),
    m_batterySensor(NULL),
+   m_pcLEDs(NULL),
    m_cAlpha(10.0f),
    m_fDelta(0.5f),
    m_fWheelVelocity(2.5f),
@@ -45,9 +46,11 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
     * list a device in the XML and then you request it here, an error
     * occurs.
     */
-   m_pcWheels    = GetActuator<CCI_DifferentialSteeringActuator>("differential_steering");
+   m_pcWheels    = GetActuator<CCI_DifferentialSteeringActuator >("differential_steering");
    m_pcProximity = GetSensor  <CCI_EFootBotProximitySensor      >("efootbot_proximity"    );
    m_batterySensor = GetSensor<CCI_BatterySensor                >("battery");
+   m_pcLEDs        = GetActuator <CCI_LEDsActuator              >("leds");
+
 
    /*
     * Parse the configuration file
@@ -60,12 +63,29 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_cGoStraightAngleRange.Set(-ToRadians(m_cAlpha), ToRadians(m_cAlpha));
    GetNodeAttributeOrDefault(t_node, "delta", m_fDelta, m_fDelta);
    GetNodeAttributeOrDefault(t_node, "velocity", m_fWheelVelocity, m_fWheelVelocity);
+
+
 }
 
 /****************************************/
 /****************************************/
 
 void CEFootBotDiffusion::ControlStep() {
+    int intensityCompensation = 0;
+    if(m_batterySensor->GetSoc() > 80)
+      intensityCompensation = 20;
+    if(m_batterySensor->GetSoc() <= 45)
+      intensityCompensation = -15;
+
+
+    CEFootBotDiffusion::HSV data = CEFootBotDiffusion::HSV(m_batterySensor->GetSoc() + intensityCompensation, 1.0, 0.3);
+    CEFootBotDiffusion::RGB value = HSVToRGB(data);
+
+    //const CColor *color = new CColor((UInt8) value.R, (UInt8) value.G, (UInt8) value.B, (UInt8) 255);
+    //m_pcLEDs->SetAllColors(CColor::WHITE);
+    //m_pcLEDs->SetSingleColor(12, *color);
+
+
    /* Get readings from proximity sensor */
    const CCI_EFootBotProximitySensor::TReadings& tProxReads = m_pcProximity->GetReadings();
    /* Sum them together */
@@ -92,8 +112,79 @@ void CEFootBotDiffusion::ControlStep() {
          m_pcWheels->SetLinearVelocity(0.0f, m_fWheelVelocity);
       }
    }
-   RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << std::endl;
+   RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << value.R <<":"<< value.G <<":"<< value.B << std::endl;
 
+}
+
+
+  CEFootBotDiffusion::RGB CEFootBotDiffusion::HSVToRGB(CEFootBotDiffusion::HSV hsv) {
+  double r = 0, g = 0, b = 0;
+
+  if (hsv.S == 0)
+  {
+    r = hsv.V;
+    g = hsv.V;
+    b = hsv.V;
+  }
+  else
+  {
+    int i;
+    double f, p, q, t;
+
+    if (hsv.H == 360)
+      hsv.H = 0;
+    else
+      hsv.H = hsv.H / 60;
+
+    i = (int)trunc(hsv.H);
+    f = hsv.H - i;
+
+    p = hsv.V * (1.0 - hsv.S);
+    q = hsv.V * (1.0 - (hsv.S * f));
+    t = hsv.V * (1.0 - (hsv.S * (1.0 - f)));
+
+    switch (i)
+    {
+    case 0:
+      r = hsv.V;
+      g = t;
+      b = p;
+      break;
+
+    case 1:
+      r = q;
+      g = hsv.V;
+      b = p;
+      break;
+
+    case 2:
+      r = p;
+      g = hsv.V;
+      b = t;
+      break;
+
+    case 3:
+      r = p;
+      g = q;
+      b = hsv.V;
+      break;
+
+    case 4:
+      r = t;
+      g = p;
+      b = hsv.V;
+      break;
+
+    default:
+      r = hsv.V;
+      g = p;
+      b = q;
+      break;
+    }
+
+  }
+
+  return CEFootBotDiffusion::RGB((unsigned char)(r * 255), (unsigned char)(g * 255), (unsigned char)(b * 255));
 }
 
 /****************************************/

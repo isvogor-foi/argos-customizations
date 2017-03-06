@@ -15,6 +15,7 @@ CEFootBotDiffusion::CEFootBotDiffusion() :
 		m_pcWheels(NULL), 
 		m_batterySensor(NULL),
 		m_pcProximity(NULL), 
+		m_pcLEDs(NULL),
 		m_cAlpha(10.0f), 
 		m_fDelta(0.01f), 
 		m_fWheelVelocity(2.5f), 
@@ -46,11 +47,10 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
 	 * list a device in the XML and then you request it here, an error
 	 * occurs.
 	 */
-	m_pcWheels = GetActuator < CCI_DifferentialSteeringActuator
-			> ("differential_steering");
-	m_pcProximity = GetSensor < CCI_EFootBotProximitySensor
-			> ("efootbot_proximity");
-     m_batterySensor = GetSensor<CCI_BatterySensor               >("battery");
+	m_pcWheels 		= GetActuator 	<CCI_DifferentialSteeringActuator > ("differential_steering");
+	m_pcProximity 	= GetSensor 	<CCI_EFootBotProximitySensor> 		("efootbot_proximity");
+    m_batterySensor = GetSensor 	<CCI_BatterySensor>					("battery");
+    m_pcLEDs		= GetActuator	<CCI_LEDsActuator>					("leds");
 
 	/*
 	 * Parse the configuration file
@@ -63,6 +63,9 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
 	m_cGoStraightAngleRange.Set(-ToRadians(m_cAlpha), ToRadians(m_cAlpha));
 	GetNodeAttributeOrDefault(t_node, "delta", m_fDelta, m_fDelta);
 	GetNodeAttributeOrDefault(t_node, "velocity", m_fWheelVelocity, m_fWheelVelocity);
+
+	m_pcLEDs->SetSingleColor(12, CColor::RED);
+	std::cout << "LEDs: " << m_pcLEDs->GetNumLEDs();
 
 	/***********************************/
 	/******* New stuff -- Ivan *********/
@@ -88,6 +91,7 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
 
 /****************************************/
 void CEFootBotDiffusion::ControlStep() {
+
 	// Get readings from proximity sensor
 	const CCI_EFootBotProximitySensor::TReadings& tProxReads = m_pcProximity->GetReadings();
 	// Sum them together 
@@ -133,7 +137,7 @@ void CEFootBotDiffusion::ControlStep() {
 		m_ForwardSteps++;
 		m_pcWheels->SetLinearVelocity(m_DefaultFwdVelocity, m_DefaultFwdVelocity);
 	}
-      	RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << std::endl;
+      	RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "ts: " << m_pcLEDs->GetNumLEDs() << std::endl;
 
 
 }

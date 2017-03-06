@@ -21,9 +21,8 @@
 #include <argos3/plugins/simulator/entities/wifi_equipped_entity.h>
 #include "efootbot_distance_scanner_equipped_entity.h"
 #include "efootbot_turret_entity.h"
-
 //battery
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.h"
+#include "battery_sensor_equipped_entity.h"
 
 namespace argos {
 
@@ -443,6 +442,7 @@ namespace argos {
          m_pcControllableEntity->Init(GetNode(t_tree, "controller"));
          /* Update components */
          UpdateComponents();
+
       }
       catch(CARGoSException& ex) {
          THROW_ARGOSEXCEPTION_NESTED("Failed to initialize entity \"" << GetId() << "\".", ex);

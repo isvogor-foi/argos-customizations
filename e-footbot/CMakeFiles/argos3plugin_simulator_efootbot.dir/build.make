@@ -297,28 +297,28 @@ CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_tur
 CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.o
 
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o: CMakeFiles/argos3plugin_simulator_efootbot.dir/flags.make
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp
+CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o: CMakeFiles/argos3plugin_simulator_efootbot.dir/flags.make
+CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o: control_interface/ci_battery_sensor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_battery_sensor.cpp
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp > CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.i
+CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_battery_sensor.cpp > CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.i
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp -o CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.s
+CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_battery_sensor.cpp -o CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.s
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o.requires:
+CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o.requires:
 
-.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o.requires
+.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o.requires
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o.provides: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o.requires
-	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o.provides.build
-.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o.provides
+CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o.provides: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o.requires
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o.provides.build
+.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o.provides
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o
+CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o
 
 
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/dynamics2d_efootbot_model.cpp.o: CMakeFiles/argos3plugin_simulator_efootbot.dir/flags.make
@@ -633,52 +633,52 @@ CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_entity.
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_entity.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_entity.cpp.o
 
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o: CMakeFiles/argos3plugin_simulator_efootbot.dir/flags.make
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o: CMakeFiles/argos3plugin_simulator_efootbot.dir/flags.make
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o: simulator/battery_sensor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/battery_sensor.cpp
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp > CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.i
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/battery_sensor.cpp > CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.i
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp -o CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.s
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/battery_sensor.cpp -o CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.s
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o.requires:
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o.requires:
 
-.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o.requires
+.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o.requires
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o.provides: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o.requires
-	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o.provides.build
-.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o.provides
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o.provides: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o.requires
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o.provides.build
+.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o.provides
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o
 
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o: CMakeFiles/argos3plugin_simulator_efootbot.dir/flags.make
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o: CMakeFiles/argos3plugin_simulator_efootbot.dir/flags.make
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o: simulator/battery_sensor_equipped_entity.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/battery_sensor_equipped_entity.cpp
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp > CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.i
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/battery_sensor_equipped_entity.cpp > CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.i
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp -o CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.s
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/battery_sensor_equipped_entity.cpp -o CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.s
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o.requires:
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o.requires:
 
-.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o.requires
+.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o.requires
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o.provides: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o.requires
-	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o.provides.build
-.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o.provides
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o.provides: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o.requires
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o.provides.build
+.PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o.provides
 
-CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o
+CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o
 
 
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/qtopengl_efootbot.cpp.o: CMakeFiles/argos3plugin_simulator_efootbot.dir/flags.make
@@ -717,7 +717,7 @@ argos3plugin_simulator_efootbot_OBJECTS = \
 "CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_proximity_sensor.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_actuator.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.o" \
-"CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o" \
+"CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/dynamics2d_efootbot_model.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_base_ground_rotzonly_sensor.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_distance_scanner_default_actuator.cpp.o" \
@@ -731,8 +731,8 @@ argos3plugin_simulator_efootbot_OBJECTS = \
 "CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_default_actuator.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_encoder_default_sensor.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_entity.cpp.o" \
-"CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o" \
-"CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o" \
+"CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o" \
+"CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/qtopengl_efootbot.cpp.o"
 
 # External object files for target argos3plugin_simulator_efootbot
@@ -748,7 +748,7 @@ libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbo
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_proximity_sensor.cpp.o
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_actuator.cpp.o
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.o
-libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o
+libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/dynamics2d_efootbot_model.cpp.o
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_base_ground_rotzonly_sensor.cpp.o
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_distance_scanner_default_actuator.cpp.o
@@ -762,8 +762,8 @@ libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbo
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_default_actuator.cpp.o
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_encoder_default_sensor.cpp.o
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_entity.cpp.o
-libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o
-libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o
+libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o
+libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/qtopengl_efootbot.cpp.o
 libargos3plugin_simulator_efootbot.so: CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make
 libargos3plugin_simulator_efootbot.so: /usr/local/lib/argos3/libargos3plugin_simulator_genericrobot.so
@@ -788,7 +788,7 @@ CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin
 CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_proximity_sensor.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_actuator.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.o.requires
-CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp.o.requires
+CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/dynamics2d_efootbot_model.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_base_ground_rotzonly_sensor.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_distance_scanner_default_actuator.cpp.o.requires
@@ -802,8 +802,8 @@ CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin
 CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_default_actuator.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_encoder_default_sensor.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_turret_entity.cpp.o.requires
-CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp.o.requires
-CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp.o.requires
+CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o.requires
+CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor_equipped_entity.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_efootbot.dir/requires: CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/qtopengl_efootbot.cpp.o.requires
 
 .PHONY : CMakeFiles/argos3plugin_simulator_efootbot.dir/requires

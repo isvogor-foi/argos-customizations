@@ -28,6 +28,7 @@
 #include <argos3/plugins/robots/generic/control_interface/ci_differential_steering_actuator.h>
 /* Definition of the foot-bot proximity sensor */
 #include <argos3/core/utility/math/rng.h>
+#include <argos3/plugins/robots/generic/control_interface/ci_leds_actuator.h>
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h"
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h"
 /*
@@ -135,6 +136,9 @@ private:
 	int m_MinAngle, m_MaxAngle;		// between which angles are random rotations
 	int m_MinVelocity, m_MaxVelocity;	// between which velocites is my default velocity
 	int m_MinDistance, m_MaxDistance;	// between which distances do I stop and change direction
+
+	// testing the LEDs
+	CCI_LEDsActuator* m_pcLEDs;
 	
 	CRandom::CRNG* pcRNG = CRandom::CreateRNG("argos"); // default random instance
 	virtual int GetRandomInteger(int min, int max, CRandom::CRNG* pcRNG); // function for generating randoms (to clean up code a bit)

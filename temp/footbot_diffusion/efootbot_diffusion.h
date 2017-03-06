@@ -29,6 +29,7 @@
 /* Definition of the foot-bot proximity sensor */
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h"
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h"
+#include <argos3/plugins/robots/generic/control_interface/ci_leds_actuator.h>
 
 
 /*
@@ -42,7 +43,49 @@ using namespace argos;
  */
 class CEFootBotDiffusion : public CCI_Controller {
 
-public:
+  public:
+
+  class RGB
+  {
+  public:
+    unsigned char R;
+    unsigned char G;
+    unsigned char B;
+
+    RGB(unsigned char r, unsigned char g, unsigned char b)
+    {
+      R = r;
+      G = g;
+      B = b;
+    }
+
+    bool Equals(RGB rgb)
+    {
+      return (R == rgb.R) && (G == rgb.G) && (B == rgb.B);
+    }
+  };
+
+class HSV
+  {
+  public:
+    double H;
+    double S;
+    double V;
+
+    HSV(double h, double s, double v)
+    {
+      H = h;
+      S = s;
+      V = v;
+    }
+
+    bool Equals(HSV hsv)
+    {
+      return (H == hsv.H) && (S == hsv.S) && (V == hsv.V);
+    }
+  };
+static CEFootBotDiffusion::RGB HSVToRGB(CEFootBotDiffusion::HSV hsv);
+
 
    /* Class constructor. */
    CEFootBotDiffusion();
@@ -113,6 +156,9 @@ private:
    /* Angle tolerance range to go straight.
     * It is set to [-alpha,alpha]. */
    CRange<CRadians> m_cGoStraightAngleRange;
+
+    // testing the LEDs
+  CCI_LEDsActuator* m_pcLEDs;
 
 };
 

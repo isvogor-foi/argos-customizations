@@ -48,6 +48,7 @@ namespace argos {
     private:
         tk::spline splineFunction;
         std::string m_sDischargeType;
+	    void InitCapacitiy();
 
 	}; // end CBatterySensor
 

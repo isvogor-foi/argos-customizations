@@ -37,4 +37,6 @@ argos3/plugins/robots/generic/control_interface/ci_differential_steering_actuato
 -
 /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h
 -
+argos3/plugins/robots/generic/control_interface/ci_leds_actuator.h
+-
 

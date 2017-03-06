@@ -114,7 +114,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Project
+CMAKE_PROJECT_NAME:STATIC=epucky_controller
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -173,6 +173,12 @@ Project_SOURCE_DIR:STATIC=/home/ivan/dev/argos-custom/argos3/plugins/robots/cont
 
 //Dependencies for the target
 epuck_obstacleavoidance_LIB_DEPENDS:STATIC=general;/usr/local/lib/argos3/libargos3core_simulator.so;general;/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/libargos3plugin_simulator_epucky.so;general;/usr/local/lib/argos3/libargos3plugin_simulator_genericrobot.so;
+
+//Value Computed by CMake
+epucky_controller_BINARY_DIR:STATIC=/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/epuck_obstacleavoidance
+
+//Value Computed by CMake
+epucky_controller_SOURCE_DIR:STATIC=/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/epuck_obstacleavoidance
 
 
 ########################

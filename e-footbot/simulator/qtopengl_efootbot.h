@@ -30,6 +30,8 @@ namespace argos {
 
       virtual void Draw(CEFootBotEntity& c_entity);
 
+      void Update(CEFootBotEntity& c_entity);
+
    protected:
 
       /** Renders a materialless wheel
@@ -71,6 +73,7 @@ namespace argos {
       void RenderBeacon();
       /** Renders the camera */
       void RenderCamera();
+
 
    private:
 

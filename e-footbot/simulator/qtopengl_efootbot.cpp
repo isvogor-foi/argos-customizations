@@ -15,6 +15,7 @@
 #include <argos3/plugins/simulator/entities/gripper_equipped_entity.h>
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_widget.h>
 
+
 namespace argos {
 
    /****************************************/
@@ -173,9 +174,9 @@ namespace argos {
       glEndList();
 
       /* Create the camera display list */
-      glNewList(m_unCameraList, GL_COMPILE);
-      RenderCamera();
-      glEndList();
+      //glNewList(m_unCameraList, GL_COMPILE);
+      //RenderCamera();
+      //glEndList();
    }
 
    /****************************************/
@@ -190,27 +191,28 @@ namespace argos {
 
    void CQTOpenGLEFootBot::Draw(CEFootBotEntity& c_entity) {
       /* Place the wheels */
-      glPushMatrix();
-      glTranslatef(0.0f, HALF_INTERWHEEL_DISTANCE, 0.0f);
+	  glPushMatrix();
+      glTranslatef(0.0f, HALF_INTERWHEEL_DISTANCE, 0.05f);
       glCallList(m_unWheelList);
       glPopMatrix();
       glPushMatrix();
-      glTranslatef(0.0f, -HALF_INTERWHEEL_DISTANCE, 0.0f);
+      glTranslatef(0.0f, -HALF_INTERWHEEL_DISTANCE, 0.05f);
       glCallList(m_unWheelList);
       glPopMatrix();
-      /* Place the tracks */
+      // Place the tracks
       glPushMatrix();
       glTranslatef(0.0f, HALF_INTERTRACK_DISTANCE, 0.0f);
-      glCallList(m_unTrackList);
+      //glCallList(m_unTrackList);
       glPopMatrix();
       glPushMatrix();
       glTranslatef(0.0f, -HALF_INTERTRACK_DISTANCE, 0.0f);
-      glCallList(m_unTrackList);
+      //glCallList(m_unTrackList);
       glPopMatrix();
-      /* Place the tracks */
-      glCallList(m_unBaseList);
-      /* Place the gripper module */
+      // Place the tracks
+      //glCallList(m_unBaseList);
+      // Place the gripper module
       glPushMatrix();
+
       /* Read gripper orientation from efootbot entity */
       GLfloat fGripperOrientation = ToDegrees(c_entity.GetTurretEntity().GetRotation()).GetValue();
       glRotatef(fGripperOrientation, 0.0f, 0.0f, 1.0f);
@@ -346,7 +348,7 @@ namespace argos {
    /****************************************/
 
    void CQTOpenGLEFootBot::SetCircuitBoardMaterial() {
-      const GLfloat pfColor[]     = { 0.0f, 0.0f, 1.0f, 1.0f };
+      const GLfloat pfColor[]     = { 1.0f, 1.0f, 1.0f, 1.0f };
       const GLfloat pfSpecular[]  = { 0.5f, 0.5f, 1.0f, 1.0f };
       const GLfloat pfShininess[] = { 10.0f                  };
       const GLfloat pfEmission[]  = { 0.0f, 0.0f, 0.0f, 1.0f };

@@ -19,18 +19,20 @@
     <efootbot_diffusion_controller id="fdc" library="/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion/libefootbot_diffusion.so">
       <actuators>
         <differential_steering implementation="default" />
+        <leds implementation="default" medium="leds" />
       </actuators>
       <sensors>
         <efootbot_proximity implementation="default" show_rays="true" />
-    	<battery implementation="default" 
-    		discharge_type="non-linear"
-    		starting_soc="1.0" 
-    		nominal_voltage="4.2"
-    		empty_voltage="2.7"
-    		nominal_capacity="0.0001"
-    		idle_i="0.4" 
-    		drive_i="1.5" 
-    		proc_i="1.0"/>
+        <battery implementation="default" 
+          discharge_type="non-linear"
+          starting_soc="1.0" 
+          c_rating="50000"
+          nominal_voltage="4.2"
+          empty_voltage="2.7"
+          nominal_capacity="0.0001"
+          idle_i="0.4" 
+          drive_i="1.5" 
+          proc_i="1.0"/>
       </sensors>
       <params alpha="7.5" delta="0.1" velocity="5" />
     </efootbot_diffusion_controller>
@@ -110,7 +112,9 @@
   <!-- ********* -->
   <!-- * Media * -->
   <!-- ********* -->
-  <media />
+  <media>
+    <led id="leds" />
+  </media>
 
   <!-- ****************** -->
   <!-- * Visualization * -->

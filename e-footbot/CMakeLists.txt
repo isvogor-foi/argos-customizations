@@ -18,7 +18,7 @@ set(ARGOS3_HEADERS_PLUGINS_ROBOTS_EFOOTBOT_CONTROLINTERFACE
   control_interface/ci_efootbot_turret_actuator.h
   control_interface/ci_efootbot_turret_encoder_sensor.h
   # battery
-  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h)
+  control_interface/ci_battery_sensor.h)
 # argos3/plugins/robots/foot-bot/simulator
 
 
@@ -38,8 +38,8 @@ set(ARGOS3_HEADERS_PLUGINS_ROBOTS_EFOOTBOT_CONTROLINTERFACE
     simulator/efootbot_turret_encoder_default_sensor.h
     simulator/efootbot_turret_entity.h
     # more on battery
-    /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.h
-  	/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.h)
+    simulator/battery_sensor.h
+  	simulator/battery_sensor_equipped_entity.h)
 
 #
 # Foot-bot sources
@@ -57,7 +57,7 @@ set(ARGOS3_SOURCES_PLUGINS_ROBOTS_EFOOTBOT
   control_interface/ci_efootbot_turret_actuator.cpp
   control_interface/ci_efootbot_turret_encoder_sensor.cpp
   #battery
-  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.cpp)
+  control_interface/ci_battery_sensor.cpp)
 
   set(ARGOS3_SOURCES_PLUGINS_ROBOTS_EFOOTBOT
     ${ARGOS3_SOURCES_PLUGINS_ROBOTS_EFOOTBOT}
@@ -77,8 +77,8 @@ set(ARGOS3_SOURCES_PLUGINS_ROBOTS_EFOOTBOT
     simulator/efootbot_turret_encoder_default_sensor.cpp
     simulator/efootbot_turret_entity.cpp
     # battery
-    /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor.cpp
-    /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/simulator/battery_sensor_equipped_entity.cpp)
+    simulator/battery_sensor.cpp
+    simulator/battery_sensor_equipped_entity.cpp)
   # Compile the graphical visualization only if the necessary libraries have been found
   include(./ARGoSCheckQTOpenGL.cmake)
   if(ARGOS_COMPILE_QTOPENGL)

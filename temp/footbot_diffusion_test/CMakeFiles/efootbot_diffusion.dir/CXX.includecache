@@ -35,6 +35,8 @@ argos3/plugins/robots/generic/control_interface/ci_differential_steering_actuato
 -
 argos3/core/utility/math/rng.h
 -
+argos3/plugins/robots/generic/control_interface/ci_leds_actuator.h
+-
 /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h
 -
 /home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h

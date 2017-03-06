@@ -134,6 +134,7 @@ namespace argos {
          m_unLastTurretMode == MODE_POSITION_CONTROL) {
          TurretActiveToPassive();
       }
+
    }
 
    /****************************************/
@@ -168,6 +169,7 @@ namespace argos {
    void CDynamics2DEFootBotModel::MoveTo(const CVector3& c_position,
                                         const CQuaternion& c_orientation) {
       /* Release grippers and grippees */
+
       m_pcGripper->Release();
       m_pcGrippable->ReleaseAll();
       /* Move robot */
@@ -292,6 +294,7 @@ namespace argos {
             }
             break;
       }
+
    }
 
    /****************************************/
