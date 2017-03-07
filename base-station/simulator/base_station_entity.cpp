@@ -278,9 +278,9 @@ namespace argos {
    
    REGISTER_ENTITY(CEBaseStationEntity,
                    "base-station",
-                   "Carlo Pinciroli [ilpincy@gmail.com]",
-                   "1.0",
-                   "The e-puck robot.",
+                   "Ivan Svogor",
+                   "0.1",
+                   "Base station - used for charger, based on e-puck robot by Carlo Pinciroli",
                    "The e-puck is a open-hardware, extensible robot intended for education. In its\n"
                    "simplest form, it is a two-wheeled robot equipped with proximity sensors,\n"
                    "ground sensors, light sensors, a microphone, a frontal camera, and a ring of\n"

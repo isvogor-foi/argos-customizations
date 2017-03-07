@@ -4,8 +4,8 @@
  * @author Carlo Pinciroli - <ilpincy@gmail.com>
  */
 
-#ifndef PHYSX_EPUCK_MODEL_H
-#define PHYSX_EPUCK_MODEL_H
+#ifndef PHYSX_BASE_STATION_MODEL_H
+#define PHYSX_BASE_STATION_MODEL_H
 
 namespace argos {
    class CPhysXEngine;

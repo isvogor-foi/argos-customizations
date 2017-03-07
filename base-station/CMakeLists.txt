@@ -1,5 +1,5 @@
 #
-# E-puck headers
+# Base Station headers
 #
 # argos3/plugins/robots/base-station/simulator
 

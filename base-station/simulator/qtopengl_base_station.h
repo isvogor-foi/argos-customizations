@@ -4,8 +4,8 @@
  * @author Carlo Pinciroli - <ilpincy@gmail.com>
  */
 
-#ifndef QTOPENGL_EPUCK_H
-#define QTOPENGL_EPUCK_H
+#ifndef QTOPENGL_BASE_STATION_H
+#define QTOPENGL_BASE_STATION_H
 
 namespace argos {
    class CQTOpenGLBaseStation;

@@ -4,8 +4,8 @@
  * @author Carlo Pinciroli - <ilpincy@gmail.com>
  */
 
-#ifndef EPUCK_ENTITY_H
-#define EPUCK_ENTITY_H
+#ifndef BASE_STATION_ENTITY_H
+#define BASE_STATION_ENTITY_H
 
 namespace argos {
    class CControllableEntity;

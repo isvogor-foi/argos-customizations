@@ -4,8 +4,8 @@
  * @author Carlo Pinciroli - <ilpincy@gmail.com>
  */
 
-#ifndef DYNAMICS2D_EPUCK_MODEL_H
-#define DYNAMICS2D_EPUCK_MODEL_H
+#ifndef DYNAMICS2D_BASE_STATION_MODEL_H
+#define DYNAMICS2D_BASE_STATION_MODEL_H
 
 namespace argos {
    class CDynamics2DDifferentialSteeringControl;

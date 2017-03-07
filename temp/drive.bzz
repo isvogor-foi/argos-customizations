@@ -35,28 +35,29 @@ function hexagon() {
 
 # Executed at init time
 function init() {
-  #start_charging()
-  #stop_charging()
-  #start_processing()
-  #stop_processing()
-  #log("Current SOC: ", soc)
+  # start_charging()
+  # stop_charging()
+  # start_processing()
+  # stop_processing()
+  # log("Current SOC: ", soc)
+  # type: 99 efootbot, 89 base-station
   statef = hexagon
 }
 
 # Executed every time step
 function step() {
   log("ID: ", id, " SOC: ", soc)
-  if(id == 1){
+  if(id == 1 and type == 99){
     debug("I am different: ", soc)
     start_processing()
   }
-  else{
+  else if(type == 99){
     debug(" SOC: ", soc)
   }
   if(soc != 0 and soc > 50 and CHARGING == 0) { 
     statef() 
   }
-  else {
+  else if (type == 99) {
     goto(0.0, 0.0)
     start_charging()
     CHARGING = 1
