@@ -11,6 +11,8 @@ namespace argos {
 		m_fEmptyVoltage(2.7f),
 		m_fIdleCurrent(0),
 		m_fDriveCurrent(0),
+		m_fJitterPercentageMin(0),
+		m_fJitterPercentageMax(0),
 		m_fProcessingLoadCurrent(0)
 	{
 		Enable();
@@ -42,6 +44,8 @@ namespace argos {
 			GetNodeAttributeOrDefault(t_tree, "proc_i", m_fProcessingLoadCurrent, m_fProcessingLoadCurrent);
 			GetNodeAttributeOrDefault(t_tree, "c_rating", m_fCRate, m_fCRate);
 			GetNodeAttributeOrDefault(t_tree, "randomize_soc", m_bRandomizeInitialSOC, m_bRandomizeInitialSOC);
+			GetNodeAttributeOrDefault(t_tree, "jitter_percentage_min", m_fJitterPercentageMin, m_fJitterPercentageMin);
+			GetNodeAttributeOrDefault(t_tree, "jitter_percentage_max", m_fJitterPercentageMax, m_fJitterPercentageMax);
 
 		}
 		catch(CARGoSException& ex) {

@@ -36,12 +36,24 @@ namespace argos {
 		    	return m_fIdleCurrent;
 		    }
 
+		    virtual Real SetIdleCurrent(Real current) {
+		    	m_fIdleCurrent = current;
+		    }
+
 		    virtual Real GetDriveCurrent() const{
 		    	return m_fDriveCurrent;
 		    }
 
+		    virtual Real SetDriveCurrent(Real current){
+		    	m_fDriveCurrent = current;
+		    }
+
 		    virtual Real GetProcessingCurrent() const{
 		    	return m_fProcessingLoadCurrent;
+		    }
+
+		    virtual Real SetProcessingCurrent(Real current){
+		    	m_fProcessingLoadCurrent = current;
 		    }
 
 		    virtual Real GetNominalCapacity() const {
@@ -64,6 +76,14 @@ namespace argos {
 		    	return m_bRandomizeInitialSOC;
 		    }
 
+		    virtual Real GetJitterPercentageMax() const {
+		    	return m_fJitterPercentageMax;
+		    }
+
+		    virtual Real GetJitterPercentageMin() const {
+		    	return m_fJitterPercentageMin;
+		    }
+
 		protected:
 		    // battery data
 		    Real m_fVoltage;			// in V
@@ -77,6 +97,8 @@ namespace argos {
 		    Real m_fProcessingLoadCurrent;
 		    Real m_fDriveCurrent;
 		    bool m_bRandomizeInitialSOC;
+		    Real m_fJitterPercentageMin;
+		    Real m_fJitterPercentageMax;
 	}; // end class
 
 } // end namespace

@@ -32,6 +32,8 @@
           nominal_voltage="4.2"
           empty_voltage="2.7"
           nominal_capacity="0.0001"
+          jitter_percentage_min="80"
+          jitter_percentage_max="150"
           idle_i="0.4" 
           drive_i="1.5" 
           proc_i="1.0"/>

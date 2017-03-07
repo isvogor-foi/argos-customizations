@@ -46,6 +46,26 @@ namespace argos {
             fStartingCapacity = (m_pcBatteryEntity->GetNominalCapacity() * random) * simulation_thick_factor;
             fConsumedCapacity = fNominalCapacity - fStartingCapacity;
         }
+
+        m_pcBatteryEntity->SetIdleCurrent(m_pcBatteryEntity->GetIdleCurrent() *
+        		(float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(), m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f);
+
+        m_pcBatteryEntity->SetDriveCurrent(m_pcBatteryEntity->GetDriveCurrent() *
+                		(float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(), m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f);
+
+        m_pcBatteryEntity->SetProcessingCurrent(m_pcBatteryEntity->GetProcessingCurrent() *
+                		(float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(), m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f);
+
+        /*
+        m_pcBatteryEntity->GetDriveCurrent() *= (float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(),
+        		m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f;
+        m_pcBatteryEntity->GetIdleCurrent() *= (float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(),
+        		m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f;
+        m_pcBatteryEntity->GetProcessingCurrent() *= (float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(),
+        		m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f;
+        		*/
+        // randomize current consumption
+
     }
 
     void CBatterySensor::Init(TConfigurationNode & t_tree)
@@ -177,7 +197,8 @@ namespace argos {
 
     void CBatterySensor::Discharging()
     {
-        float totalCurrent = 0;
+    	//std::cout << "i: " << m_pcBatteryEntity->GetIdleCurrent() << ", d: " << m_pcBatteryEntity->GetDriveCurrent() << ", p: " << m_pcBatteryEntity->GetProcessingCurrent() << std::endl;
+    	float totalCurrent = 0;
         Real driveCurrent = m_pcBatteryEntity->GetDriveCurrent();
         // if wheels are spinning, add driving current consumption
         if(m_pcWheels->GetWheelVelocity(0) == 0 || m_pcWheels->GetWheelVelocity(1) == 0){
@@ -211,7 +232,6 @@ namespace argos {
         else{
             m_fSOC = 0;
         }
-
     }
 
     CBatterySensor::RGBColor CBatterySensor::HSVColorToRGB(CBatterySensor::HSVColor *color)
