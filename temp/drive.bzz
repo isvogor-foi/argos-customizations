@@ -52,13 +52,13 @@ function step() {
   if(type == 99){
     start_processing()
   }
-  else if(type == 99){
+  else{
     debug(" SOC: ", soc)
   }
   if(soc != 0 and soc > 15 and CHARGING == 0) { 
     statef() 
   }
-  else if (type == 99) {
+  else {
     goto(0.0, 0.0)
     start_charging()
     CHARGING = 1

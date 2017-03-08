@@ -13,12 +13,12 @@ namespace argos {
    /****************************************/
    /****************************************/
 
-   static const Real EPUCK_MASS                = 0.4f;
+   static const Real EPUCK_MASS                = 0.000001f;
 
    static const Real EPUCK_PERSONAL_SPACE 	   = 0.0f; // if this is different from EPUCK_RADIUS, robots will overlap
    static const Real EPUCK_RADIUS              = 0.035f;
    static const Real EPUCK_INTERWHEEL_DISTANCE = 0.053f;
-   static const Real EPUCK_HEIGHT              = 0.086f;
+   static const Real EPUCK_HEIGHT              = 0.0f;
 
    static const Real EPUCK_MAX_FORCE           = 1.5f;
    static const Real EPUCK_MAX_TORQUE          = 1.5f;
@@ -61,7 +61,7 @@ namespace argos {
                         		 	 	  EPUCK_PERSONAL_SPACE,
                                           cpvzero));
       ptShape->e = 0.0; // No elasticity
-      ptShape->u = 0.7; // Lots of friction
+      ptShape->u = 0.0001f; // Lots of friction
       /* Constrain the actual base body to follow the diff steering control */
       m_cDiffSteering.AttachTo(ptBody);
       /* Set the body so that the default methods work as expected */

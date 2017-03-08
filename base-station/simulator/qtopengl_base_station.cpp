@@ -90,7 +90,7 @@ namespace argos {
       //glCallList(m_unBodyList);
 
       glPushMatrix();
-      glTranslatef(0.0f, 0.0f, 0.1f);
+      glTranslatef(0.0f, 0.0f, 0.001f);
 	  glCallList(m_unChassisList);
       //glCallList(m_unWheelList);
       glPopMatrix();

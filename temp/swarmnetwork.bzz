@@ -1,0 +1,1567 @@
+#
+#Include files
+#
+include "string.bzz"
+include "vec2.bzz"
+
+#
+#Global Variables
+#
+
+#
+#Neighbors' information
+#
+m_MessageState={}#{STATE_FREE,STATE_ASKING,STATE_JOINING,STATE_JOINED}
+m_MessageLabel={}#{0,1,...}
+m_MessageReqLabel={}#{1,2...}
+m_MessageReqID={}#{Random number}
+m_MessageResponse={}#{Grant,Refuse}
+m_MessageRange={}#{distance between robots}
+m_MessageBearing={}#{bearing in local coordiante}
+m_MessageIfRecycle={}#{N-no,Y-yes}
+m_MessageCNS={}#{label of robot should not sleep}
+m_MessageEnergy={}#{%}
+m_MessageComplete={}#{"Y"or"N"}
+m_neighbourCunt=0#used to cunt neighbours
+
+#
+#Message to send
+#
+m_selfMessage={.State="STATE_FREE",.Label=0,.ReqLabel=0,.ReqID=0,.Response=0,.Energy=0,.IfRecycle="N",.KeepStill=-1,.IfComplete="Y"}
+
+#
+#store the change request message
+#
+
+#
+#global variables: self states
+#
+m_eState="STATE_FREE"#Current State
+m_nLabel=-1#Current label (-1 when none)
+m_nReqlabel=-1#Current request label(-1 when none)
+m_unRequestId=0#Requeset ID(0 when none)
+m_energy=0
+m_uComplete="Y"#if no successor is not in state Joined, Y, else N
+
+m_navigation={.x=0,.y=0}#navigation vector
+m_bias=0#Global bias, used to map local coordinate to global coordinate
+m_cMeToPred={.Range=0.0,.Bearing=0.0,.GlobalBearing=0.0}#Vector to predecessor,range is the distance between robots, bearing is the angle of pred wrt self in local coordinate of self, globalbearing is the angle of self wrt pred in global coordinate
+m_chargesuccessor=-1#the origin label of the robot going up to take the place of the robot
+
+m_vecNodes={}#Table of the nodes in the graph
+m_unWaitCount=0#Counter to wait for something to happen
+m_unLabelSearchWaitTime=0#Number of steps to wait before looking for a free label
+m_unResponseTimeThreshold=0#Number of steps to wait for an answer to be received
+m_unJoiningLostPeriod=0#Number of steps to wait until giving up joining
+m_healProtecttime=0#wait a period after heal
+m_goupProtecttime=0
+m_sleepProtecttime=0
+m_joinedProtecttime=0
+m_completeProtecttime=0
+
+m_fTargetDistanceTolerance=0#Tolerance distance to a target location
+ROBOT_SAFETYDIST=0#Thresthold to start avoide collision
+MaxSpeed=0#Max speed of robot
+
+step_count=0#step cunt
+
+#
+#Tool Functions, i.e. funcitons used to calculate vectors
+#
+
+#
+#Normlize a vector2
+#PARAM vector: The vector2
+#RETURN: The normlized vector2
+#
+function Norm(vector){
+  var l = math.vec2.length(vector)
+  return {
+    .x = vector.x / l,
+    .y = vector.y / l
+  }
+}
+
+#
+#Map an angle(whose unit is Rad) to the range of [0,2pi], uniting with Rad 
+#PARAM angle: The angle whose unit is Rad
+#RETURN: The angle within range [0,2pi], the unit is Rad
+#
+
+function LimitAngle(angle){
+if(angle>2*math.pi)
+return angle-2*math.pi
+else if (angle<0)
+return angle+2*math.pi
+else
+return angle
+}
+
+#
+# Calculates the length of the given vector2.
+# PARAM v: The vector2.
+# RETURN: The length of the vector.
+#
+Length = function(v) {
+  return math.sqrt(v.x * v.x + v.y * v.y)
+}
+
+#
+# Calculates the angle of the given vector2.
+# PARAM v: The vector2.
+# RETURN: The angle of the vector, united with Rad
+#
+Angle = function(v) {
+  return math.atan(v.y, v.x)
+}
+
+#
+#Return the number of 'value' in 'table'
+#PARAM talbe: a table, value: an element(or not) of table
+#RETURN: the number of 'value' in 'table'
+#
+function count(table,value){
+var number=0
+var i=0
+while(i<size(table)){
+if(table[i]==value){
+number=number+1
+}
+i=i+1
+}
+return number
+}
+
+#
+#Return the last index of 'value' in 'table'
+#PARAM table: the table, value: an element in table
+#RETURN: the index of 'value'
+#
+function find(table,value){
+var index=nil
+var i=0
+while(i<size(table)){
+if(table[i]==value)
+index=i
+i=i+1
+}
+return index
+}
+
+#
+#Calculate (base)^(exponent)
+#PARAM base: the base, exponent: the exponent
+#RETURN: (base)^(exponent)
+#
+function pow(base,exponent){
+var i=0
+var renturn_val=1
+if(exponent==0)
+return 1
+else{
+    while(i<exponent){
+    renturn_val=renturn_val*base
+    i=i+1
+    }
+    return renturn_val
+    }
+}
+
+#
+# Graph parsing
+# PARAM fname: the name of the .graph file
+# RETURN: a map contains the .graph file, as: .Label, .Pred, .distance, .bearing, .State, .StateAge
+#
+function parse_graph(fname) {
+	# Graph data
+	var gd = {}
+	# Open the file
+	var fd = io.fopen(fname, "r")
+	if(not fd) {
+		log("Can't open '", fname, "'")
+		return nil
+	}
+	# Parse the file line by line
+	var rrec # Record read from line
+	var grec # Record parsed into graph
+	io.fforeach(fd, function(line) {
+		  # Parse file line
+		  rrec = string.split(line, "\t ")
+		  # Make record
+		  gd[string.toint(rrec[0])] = {      # The .graph file is stored according the sequence of label, predecessor, distance, bearing
+			  .Label = string.toint(rrec[0]),   # label of the point
+			  .Pred = string.toint(rrec[1]),   # label of its predecessor
+			  .distance = string.tofloat(rrec[2]), # distance to the predecessor
+			  .bearing = string.tofloat(rrec[3]), # bearing form the predecessor to this dot
+			  .State="UNASSIGNED",
+              .StateAge=0
+		  }})
+	# All done
+	io.fclose(fd)
+	return gd
+}
+
+#
+#Start listen to the information from neighbors.
+#Get: Update global variables used to store neighbors' information
+#
+
+function start_listen(){
+neighbors.listen("message",
+    function(vid,value,rid){
+    #store the received message
+    Get_DisAndAzi(rid)#get the position information of the sender
+    m_MessageState[m_neighbourCunt]=value.State
+    m_MessageLabel[m_neighbourCunt]=value.Label
+    m_MessageReqLabel[m_neighbourCunt]=value.ReqLabel
+    m_MessageReqID[m_neighbourCunt]=value.ReqID
+    m_MessageResponse[m_neighbourCunt]=value.Response
+    m_MessageEnergy[m_neighbourCunt]=value.Energy
+    m_MessageIfRecycle[m_neighbourCunt]=value.IfRecycle
+    m_MessageCNS[m_neighbourCunt]=value.KeepStill
+    m_MessageComplete[m_neighbourCunt]=value.IfComplete
+    m_neighbourCunt=m_neighbourCunt+1
+})
+}
+#
+#Function used to get the position information of the sender
+function Get_DisAndAzi(id){
+neighbors.foreach(
+  function(rid, data) {
+	if(rid==id){
+    m_MessageRange[m_neighbourCunt]=data.distance
+    m_MessageBearing[m_neighbourCunt]=data.azimuth
+    }
+    })
+}
+
+#
+#Algorithm Functions, i.e. functions build the main structure of the algorithm
+#
+#
+#Update node info according to neighbour robots
+#
+function UpdateNodeInfo(){
+#Collect informaiton
+#Update information
+var i=0
+
+while(i<m_neighbourCunt){
+if(m_MessageState[i]=="STATE_JOINED"){
+	m_vecNodes[m_MessageLabel[i]].State="ASSIGNED"
+	m_vecNodes[m_MessageLabel[i]].StateAge=m_unJoiningLostPeriod
+}
+else if(m_MessageState[i]=="STATE_JOINING"){
+	m_vecNodes[m_MessageLabel[i]].State="ASSIGNING"
+	m_vecNodes[m_MessageLabel[i]].StateAge=m_unJoiningLostPeriod
+}
+i=i+1
+}
+#Forget old information
+i=0
+while(i<size(m_vecNodes)){
+	if((m_vecNodes[i].StateAge>0) and (m_vecNodes[i].State=="ASSIGNING")){
+	m_vecNodes[i].StateAge=m_vecNodes[i].StateAge-1
+	if(m_vecNodes[i].StateAge==0)
+		m_vecNodes[i].State="UNASSIGNED"
+	}
+i=i+1
+}
+}
+
+function UpdateEnergyInfo(){
+	#test if should start charging
+	if(m_nLabel==1 and m_eState=="STATE_JOINED"){
+	start_charging()
+	}
+	else{
+	stop_charging()
+	}
+
+	m_selfMessage.Energy=m_energy	
+	#read energy
+	m_energy=soc
+	if(m_nLabel==1 and m_eState=="STATE_JOINED"){
+	if(m_energy<=95)
+	#a robot now charging and not fullily charged yet broadcast energy level as 0,
+	#so it can stay at the charging station until fullily charged
+	m_selfMessage.Energy=0	
+	}
+}
+
+#
+#Transistion to state free
+#
+function TransitionToFree(){
+#State value
+m_eState="STATE_FREE"#Current State
+m_nLabel=-1#Current label (-1 when none)
+m_nReqlabel=-1#Current request label(-1 when none)
+m_unRequestId=0#Requeset ID(0 when none)
+m_uComplete="Y"#if no successor is not in state Joined, Y, else N
+#Communication value
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+
+#naviagtion
+m_navigation.x=0.0
+m_navigation.y=0.0
+goto(m_navigation.x,m_navigation.y)
+
+#wait time set
+m_unWaitCount=m_unLabelSearchWaitTime
+
+#stop processing
+stop_processing()
+}
+
+#
+#Transistion to state asking
+#
+function TransitionToAsking(un_label){
+#State value
+m_eState="STATE_ASKING"#Current State
+m_nLabel=-1#Current label (-1 when none)
+m_nReqlabel=un_label#Current request label(-1 when none)
+m_unRequestId=id#Requeset ID(0 when none)
+m_uComplete="Y"#if no successor is not in state Joined, Y, else N
+#Communication value
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+
+#naviagtion
+m_navigation.x=0.0
+m_navigation.y=0.0
+goto(m_navigation.x,m_navigation.y)
+
+#wait time set
+m_unWaitCount=m_unResponseTimeThreshold
+
+#stop processing
+stop_processing()
+}
+
+#
+#Transistion to state joining
+#
+function TransitionToJoining(){
+#State value
+m_eState="STATE_JOINING"#Current State
+m_nLabel=m_nReqlabel #
+m_nReqlabel=-1#Current request label(-1 when none)
+m_unRequestId=-1#Requeset ID(0 when none)
+m_uComplete="N"#if no successor is not in state Joined, Y, else N
+#Communication value
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+m_selfMessage.KeepStill=m_vecNodes[m_nLabel].Pred#the predecessor should not change state
+
+#naviagtion
+m_navigation.x=0.0
+m_navigation.y=0.0
+goto(m_navigation.x,m_navigation.y)
+
+#set wait time
+m_unWaitCount=m_unJoiningLostPeriod
+
+#start listen
+neighbors.listen("reply",
+    function(vid,value,rid){
+    #store the received message
+    if(value.Label==m_nLabel){
+	m_cMeToPred.GlobalBearing=value.GlobalBearing
+	}
+})
+
+#stop process
+stop_processing()
+}
+
+#
+#Transistion to state goup
+#
+function TransitionTogoup(){
+m_eState="STATE_GOUP"
+m_nLabel=m_nReqlabel
+m_nReqlabel=-1
+m_unRequestId=-1
+m_uComplete="Y"#if no successor is not in state Joined, Y, else N
+
+#communication
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+m_selfMessage.KeepStill=m_vecNodes[m_nLabel].Pred#the predecessor should not change state
+
+#set delay time
+m_unWaitCount=m_unJoiningLostPeriod
+
+neighbors.listen("reply",
+    function(vid,value,rid){
+    #store the received message
+    if(value.Label==m_nLabel){
+	m_cMeToPred.GlobalBearing=value.GlobalBearing
+
+	}
+})
+
+#stop processing
+stop_processing()
+}
+
+#
+#Transition to state go down
+#
+function TransitionToGodown(DownLabel){
+#State value
+m_eState="STATE_GODOWN"
+m_nReqlabel=DownLabel
+m_unRequestId=id
+#Communication value
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+m_selfMessage.KeepStill=m_vecNodes[m_nLabel].Pred
+
+#wait time set
+m_unWaitCount=m_unResponseTimeThreshold
+
+#stop processing
+stop_charging()
+}
+
+#
+#Transitiont to state goup asking
+#
+function TransitionToGoupasking(){
+#State value
+m_eState="STATE_GOUPASKING"
+m_nReqlabel=m_vecNodes[m_nLabel].Pred
+m_unRequestId=id
+#Communication value
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+
+#wait time set
+m_unWaitCount=m_unResponseTimeThreshold
+}
+
+#
+#Transist to state heal
+#
+function TransitionToheal(){
+#State value
+m_eState="STATE_HEAL"
+m_nReqlabel=m_vecNodes[m_nLabel].Pred
+m_unRequestId=id
+#Communication value
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+m_selfMessage.KeepStill=m_vecNodes[m_nReqlabel].Pred
+
+#wait time set
+m_unWaitCount=m_unResponseTimeThreshold
+}
+
+#
+#Transistion to state joined
+#
+function TransitionToJoined(){
+#State value
+m_eState="STATE_JOINED"#Current State
+#m_nLabel=-1#Current label (-1 when none)
+#m_nReqlabel=-1#Current request label(-1 when none)
+#m_unRequestId=id#Requeset ID(0 when none)
+m_uComplete="N"#if no successor is not in state Joined, Y, else N
+#Communication value
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+m_selfMessage.KeepStill=-1
+
+#naviagtion
+m_navigation.x=0.0
+m_navigation.y=0.0
+goto(m_navigation.x,m_navigation.y)
+
+#wait time set
+m_healProtecttime=10
+m_goupProtecttime=10
+m_sleepProtecttime=10
+m_joinedProtecttime=20
+#update graph
+m_vecNodes[m_nLabel].State="ASSIGNED"
+#ignore joining guide communication message
+neighbors.ignore("reply")
+
+#start processing
+start_processing()
+}
+
+#
+#Transition to state sleep
+#
+function TransitionToSleep(){
+m_eState="STATE_SLEEP"#Current State
+m_nLabel=-1#Current label (-1 when none)
+m_nReqlabel=un_label#Current request label(-1 when none)
+m_unRequestId=id#Requeset ID(0 when none)
+m_uComplete="Y"#if no successor is not in state Joined, Y, else N
+goto(0.0,0.0)
+
+#stop processing
+stop_processing()
+}
+
+#
+#Do free
+#
+function DoFree(){
+#wait for a while before looking for a label
+if(m_unWaitCount>0){
+m_unWaitCount=m_unWaitCount-1
+return
+}
+
+#search for a proper label
+#find a set of joined robots
+var setJoinedLabels={}
+var setJoinedIndexes={}
+var i=0
+var j=0
+while(i<m_neighbourCunt){
+if(m_MessageState[i]=="STATE_JOINED"){
+setJoinedLabels[j]=m_MessageLabel[i]
+setJoinedIndexes[j]=i
+j=j+1
+}
+i=i+1
+}
+
+#go through the graph to look for a proper label
+var unFoundLabel=0
+var IDofPred=0
+i=1
+while(i<size(m_vecNodes) and (unFoundLabel==0)){
+#if the node is unassigned and the predecessor is insight
+if(m_vecNodes[i].State=="UNASSIGNED" and count(setJoinedLabels,m_vecNodes[i].Pred)==1){
+unFoundLabel=m_vecNodes[i].Label 
+IDofPred=find(m_MessageLabel,m_vecNodes[unFoundLabel].Pred)
+}
+i=i+1
+}
+
+if(unFoundLabel>0){
+TransitionToAsking(unFoundLabel)
+return
+}
+
+#navigation
+#if there is a joined robot within sight, move around joined robots
+#else, gather with other free robots
+if(size(setJoinedIndexes)>0){
+var tempvec_P={.x=0.0,.y=0.0}
+var tempvec_N={.x=0.0,.y=0.0}
+i=0
+while(i<size(setJoinedIndexes)){
+var index=setJoinedIndexes[i]
+tempvec_P=math.vec2.add(tempvec_P,math.vec2.newp(m_MessageRange[index],m_MessageBearing[index]+0.5*math.pi))
+tempvec_N=math.vec2.add(tempvec_N,math.vec2.newp(m_MessageRange[index]-5.0*ROBOT_SAFETYDIST,m_MessageBearing[index]))
+i=i+1
+}
+tempvec_P=math.vec2.scale(tempvec_P,size(setJoinedIndexes))
+tempvec_N=math.vec2.scale(tempvec_N,size(setJoinedIndexes))
+m_navigation=math.vec2.add(tempvec_P,tempvec_N)
+goto(m_navigation.x,m_navigation.y)
+}
+#no joined robots in sight
+else{
+i=0
+var tempvec={.x=0.0,.y=0.0}
+
+while(i<m_neighbourCunt){
+tempvec=math.vec2.add(tempvec,math.vec2.newp(m_MessageRange[i]-2.0*ROBOT_SAFETYDIST,m_MessageBearing[i]))
+i=i+1
+}
+m_navigation=math.vec2.scale(tempvec,1.0/i)
+goto(m_navigation.x,m_navigation.y)
+}
+
+#avoide collision
+i=0
+var turnAngle=0.0
+var needHide=0
+while(i<m_neighbourCunt){
+#if there is a robot within tolerance before, turn 90 degree to hide
+if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=0){
+turnAngle=m_MessageBearing[i]+math.pi/2.0
+needHide=1
+}
+i=i+1
+}
+
+if(needHide==1){
+m_navigation.x=0.0
+m_navigation.y=0.0
+m_navigation=math.vec2.newp(MaxSpeed,turnAngle)
+goto(m_navigation.x,m_navigation.y)
+}
+
+
+#set communication message
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+}
+
+#
+#Do asking
+#
+function DoAsking(){
+#gather response from predecessor
+var i=0
+var psResponse=-1
+while(i<m_neighbourCunt and psResponse==-1){
+if(m_MessageState[i]=="STATE_JOINED" and m_MessageLabel[i]==m_vecNodes[m_nReqlabel].Pred and m_MessageReqLabel[i]==m_nReqlabel and m_MessageResponse[i]!="REQ_NONE"){
+psResponse=i
+}
+i=i+1
+}
+
+#check if get a response
+if(psResponse!=-1){
+#check the id
+	if(m_MessageReqID[psResponse]==m_unRequestId){
+	#the same id, the label is assigned to me
+	TransitionToJoining()
+	return
+	}
+	else{
+	#not the same id, the label is assigned to another robot
+	TransitionToFree()
+	return
+	}
+}
+else{
+#no response,wait
+m_unWaitCount=m_unWaitCount-1
+	if(m_unWaitCount==0){
+	TransitionToFree()
+	return
+	}	
+}
+#navigation
+#navigation
+#if there is a joined robot within sight, move around joined robots
+#else, gather with other free robots
+#search for a proper label
+#find a set of joined robots
+var setJoinedIndexes={}
+i=0
+var j=0
+while(i<m_neighbourCunt){
+if(m_MessageState[i]=="STATE_JOINED"){
+setJoinedIndexes[j]=i
+j=j+1
+}
+i=i+1
+}
+
+if(size(setJoinedIndexes)>0){
+var tempvec_P={.x=0.0,.y=0.0}
+var tempvec_N={.x=0.0,.y=0.0}
+i=0
+while(i<size(setJoinedIndexes)){
+var index=setJoinedIndexes[i]
+tempvec_P=math.vec2.add(tempvec_P,math.vec2.newp(m_MessageRange[index],m_MessageBearing[index]+0.5*math.pi))
+tempvec_N=math.vec2.add(tempvec_N,math.vec2.newp(m_MessageRange[index]-5.0*ROBOT_SAFETYDIST,m_MessageBearing[index]))
+i=i+1
+}
+tempvec_P=math.vec2.scale(tempvec_P,size(setJoinedIndexes))
+tempvec_N=math.vec2.scale(tempvec_N,size(setJoinedIndexes))
+m_navigation=math.vec2.add(tempvec_P,tempvec_N)
+goto(m_navigation.x,m_navigation.y)
+}
+#no joined robots in sight
+else{
+i=0
+var tempvec={.x=0.0,.y=0.0}
+
+while(i<m_neighbourCunt){
+tempvec=math.vec2.add(tempvec,math.vec2.newp(m_MessageRange[i]-2.0*ROBOT_SAFETYDIST,m_MessageBearing[i]))
+i=i+1
+}
+m_navigation=math.vec2.scale(tempvec,1.0/i)
+goto(m_navigation.x,m_navigation.y)
+}
+
+#avoide collision
+i=0
+var turnAngle=0.0
+var needHide=0
+while(i<m_neighbourCunt){
+#if there is a robot within tolerance before, turn 90 degree to hide
+if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=0){
+turnAngle=m_MessageBearing[i]+math.pi/2.0
+needHide=1
+}
+i=i+1
+}
+
+if(needHide==1){
+m_navigation.x=0.0
+m_navigation.y=0.0
+m_navigation=math.vec2.newp(MaxSpeed,turnAngle)
+goto(m_navigation.x,m_navigation.y)
+}
+
+
+
+#set communicaiton message
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+}
+
+#
+#Do joining
+#
+function DoJoining(){
+#gather neighbor information
+#get information of pred
+var i=0
+var IDofPred=-1
+var shouldRecycle="N"
+while(i<m_neighbourCunt and IDofPred==-1){
+if(m_MessageLabel[i]==m_vecNodes[m_nLabel].Pred and m_MessageState[i]=="STATE_JOINED")
+IDofPred=i
+
+if(m_MessageLabel[i]==m_vecNodes[m_nLabel].Pred and m_MessageIfRecycle[i]=="Y"){
+	shouldRecycle="Y"
+}
+
+i=i+1
+}
+#navigation
+#find predecessor
+if(IDofPred!=-1){
+m_unWaitCount=m_unJoiningLostPeriod#if see pred, reset the timer
+
+var P2Target=math.vec2.newp(m_vecNodes[m_nLabel].distance,m_vecNodes[m_nLabel].bearing)
+m_cMeToPred.Range=m_MessageRange[IDofPred]#the poition of self to pred in local coordinate
+m_cMeToPred.Bearing=m_MessageBearing[IDofPred]
+
+#attention, m_cMeToPred.GlobalBearing is the bearing of self wrt pred in global coordinate
+var S2PGlobalBearing=0
+
+#m_cMeToPred.GlobalBearing=LimitAngle(m_cMeToPred.GlobalBearing)
+
+if(m_cMeToPred.GlobalBearing>math.pi)
+S2PGlobalBearing=m_cMeToPred.GlobalBearing-math.pi
+else
+S2PGlobalBearing=m_cMeToPred.GlobalBearing+math.pi
+
+var S2Pred=math.vec2.newp(m_cMeToPred.Range,S2PGlobalBearing)
+
+#the vector from self to target in global coordinate
+var S2Target=math.vec2.add(S2Pred,P2Target)
+#change the vector to local coordinate of self
+var S2Target_dis=Length(S2Target)
+var S2Target_bearing=Angle(S2Target)
+m_bias=m_cMeToPred.Bearing-S2PGlobalBearing
+S2Target_bearing=S2Target_bearing+m_bias
+m_navigation=math.vec2.newp(S2Target_dis,S2Target_bearing)
+goto(m_navigation.x,m_navigation.y)
+
+
+#test if is already in desired position, for robots going to the base station, the tolerance is bigger
+if(math.abs(S2Target.x)<m_fTargetDistanceTolerance and math.abs(S2Target.y)<m_fTargetDistanceTolerance){
+TransitionToJoined()
+return
+}
+
+}
+
+#miss pred, there is a change the another robot block the sight, keep moving as before for sometime
+else{
+m_unWaitCount=m_unWaitCount-1
+}
+
+#avoide collision
+i=0
+var turnAngle=0.0
+var needHide=0
+while(i<m_neighbourCunt){
+#if there is a robot within tolerance before, turn 90 degree to hide
+if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=0){
+turnAngle=m_MessageBearing[i]+math.pi/2.0
+log(m_MessageLabel[i],"hide")
+needHide=1
+}
+i=i+1
+}
+
+if(needHide==1){
+m_navigation.x=0.0
+m_navigation.y=0.0
+m_navigation=math.vec2.newp(MaxSpeed,turnAngle)
+goto(m_navigation.x,m_navigation.y)
+}
+
+if(m_unWaitCount==0){
+TransitionToAsking(m_nLabel)
+return
+}
+
+#set communication message
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+m_selfMessage.KeepStill=m_vecNodes[m_nLabel].Pred
+m_selfMessage.IfRecycle=shouldRecycle	
+}
+
+#
+#Do joined
+#
+function DoJoined(){
+#gather neighbour information
+var i=0
+m_uComplete="Y"
+var m_SeenPred=-1
+var ableTotrans="Y"#if able to trans out of state joined
+var shouldRecycle="N"
+var ableToup=-1
+var shouldheal=1
+
+var map_AskRequests={}
+var cunt_AskRequests=0
+var RequestLabel
+var ReqIndex=-1
+
+var map_Successors={}
+var cunt_successors=0
+
+var map_JoiningRequests={}
+var cunt_JoiningReqests=0
+var JoiningLabel
+
+var map_HealRequests={}
+var cunt_HealRequests=0
+var HealLabel=-1 
+var HealIndex=-1
+
+var map_ChargeRequests={}
+var cunt_ChargeRequests=0
+var ChargeLabel=-1
+var ChargeIndex=-1
+
+var GoDownAskLabel=-1
+var GoDownAskIndex=-1
+
+var shouldsleep=-1
+
+while(i<m_neighbourCunt){
+	#judge the message
+	#if a 
+	if(m_MessageState[i]=="STATE_ASKING"){
+	RequestLabel=m_MessageReqLabel[i]
+	if(m_vecNodes[RequestLabel].State=="UNASSIGNED" and m_nLabel==m_vecNodes[RequestLabel].Pred){
+	map_AskRequests[cunt_AskRequests]=i
+	cunt_AskRequests=cunt_AskRequests+1
+	}
+	}
+
+	if(m_MessageState[i]=="STATE_JOINING" or m_MessageState[i]=="STATE_GOUP"){
+	JoiningLabel=m_MessageLabel[i]
+	if(m_nLabel==m_vecNodes[JoiningLabel].Pred){
+	map_JoiningRequests[cunt_JoiningReqests]=i
+	cunt_JoiningReqests=cunt_JoiningReqests+1
+	}
+	}
+
+	#test if can see predecessor
+	if(m_MessageLabel[i]==m_vecNodes[m_nLabel].Pred){
+	m_SeenPred=1
+	m_unWaitCount=m_unJoiningLostPeriod
+	}
+
+	#test if exist robot force this robot stay in state joined
+	if(m_MessageCNS[i]==m_nLabel){
+	ableTotrans="N"
+	}
+	if(m_MessageState[i]=="STATE_GODOWN" and m_MessageLabel[i]==m_nLabel){
+	ableTotrans="N"
+	}
+
+	#test if exist heal requests
+	if(m_MessageState[i]=="STATE_HEAL"){
+	HealLabel=m_MessageReqLabel[i]
+	if(m_nLabel==m_vecNodes[HealLabel].Pred){
+	map_HealRequests[cunt_HealRequests]=i
+	cunt_HealRequests=cunt_HealRequests+1
+	}
+	}
+
+	if(m_MessageLabel[i]==0 and m_MessageIfRecycle[i]=="Y"){
+	shouldsleep=1
+	}
+
+	#check if should ask to go up
+	if(m_MessageState[i]=="STATE_JOINED" and m_MessageLabel[i]==m_vecNodes[m_nLabel].Pred){
+	#if pred has more energy
+	if(m_MessageEnergy[i]>m_energy){
+	ableToup=1
+	}
+	}
+
+	#check if goupasking message exists
+	if(m_MessageState[i]=="STATE_GOUPASKING"){
+	ChargeLabel=m_MessageReqLabel[i]
+	if(m_nLabel==ChargeLabel){
+	map_ChargeRequests[cunt_ChargeRequests]=i
+	cunt_ChargeRequests=cunt_ChargeRequests+1
+	}
+	}
+
+	if(m_MessageState[i]=="STATE_GOUP" and m_nLabel==m_MessageLabel[i]){
+	TransitionToGodown(m_chargesuccessor)
+	}
+
+	if(m_MessageState[i]=="STATE_GODOWN" and m_MessageLabel[i]==m_nLabel){
+	GoDownAskLabel=m_MessageReqLabel[i]
+	#is the pred
+	if(m_nLabel==m_vecNodes[GoDownAskLabel].Pred){
+	GoDownAskIndex=i
+	}
+	}
+
+	var mypred=m_vecNodes[m_nLabel].Pred
+	if(m_nLabel!=0){
+	if(m_MessageLabel[i]==m_vecNodes[mypred].Pred and (m_MessageState[i]=="STATE_GODOWN" or m_MessageState[i]=="STATE_GOUP")){
+	shouldheal=-1
+	}
+	}
+
+	#check if complete
+	if(m_joinedProtecttime>0){
+	m_joinedProtecttime=m_joinedProtecttime-1
+	m_uComplete="N"
+	}
+	else{
+	var templabel=m_MessageLabel[i]
+	if(templabel>0){
+	if(m_vecNodes[templabel].Pred==m_nLabel){
+	if(m_MessageState[i]!="STATE_JOINED"){
+	m_uComplete="N"
+	}
+	else{
+	if(m_MessageComplete[i]=="N"){
+	m_uComplete="N"
+	}
+	}
+	}
+	}
+	if(m_MessageCNS[i]==m_nLabel){
+	m_uComplete="N"
+	}
+	if(ableTotrans=="N"){
+	m_uComplete="N"
+	}
+	}
+
+	if(m_MessageLabel[i]<m_nLabel and m_MessageIfRecycle[i]=="Y"){#get a recycle message from random fromer robot in the graph
+	shouldRecycle="Y"
+	}
+
+	var successorlabel=m_MessageLabel[i]
+	if(successorlabel>0){
+	if(m_vecNodes[successorlabel].Pred==m_nLabel){#is a successor
+	map_Successors[cunt_successors]=m_MessageLabel[i]
+	cunt_successors=cunt_successors+1
+	}
+	}
+	#next 
+	i=i+1
+}
+
+#perform function
+#Get ask requests?
+if(cunt_AskRequests!=0){
+	i=1
+	ReqIndex=0
+	while(i<cunt_AskRequests){
+	#compare the distance
+	if(m_MessageRange[map_AskRequests[ReqIndex]]>m_MessageRange[map_AskRequests[i]]){
+		ReqIndex=i
+		}
+		i=i+1
+	}
+}
+
+#Having joining successors?
+if(cunt_JoiningReqests!=0){
+	i=0
+	while(i<cunt_JoiningReqests){
+	var joining_index=map_JoiningRequests[i]
+	var m_messageForJoining={.Label=m_MessageLabel[joining_index],.GlobalBearing=m_MessageBearing[joining_index]-m_bias}
+	neighbors.broadcast("reply",m_messageForJoining)
+	i=i+1
+	}	
+}
+
+#delay protect
+if(m_uComplete=="N"){
+	m_completeProtecttime=30
+	m_uComplete="N"
+}
+else{
+	m_completeProtecttime=m_completeProtecttime-1
+}
+if(m_completeProtecttime==0 and m_uComplete=="Y"){
+	m_uComplete="Y"
+}
+
+#get heal requests?
+if(cunt_HealRequests!=0){
+	i=1
+	HealIndex=0
+	while(i<cunt_HealRequests){
+	#compare the distance
+	if(m_MessageRange[map_HealRequests[HealIndex]]>m_MessageRange[map_HealRequests[i]]){
+	HealIndex=i
+	}
+	i=i+1
+	}
+}
+#check if still have the successor
+if(cunt_successors!=0){
+	i=0
+	while(i<cunt_successors and HealIndex!=-1){
+	#check if still have the required successor
+	if(map_Successors[i]==m_MessageReqLabel[HealIndex])
+	HealIndex=-1
+	}
+}
+
+
+#check if should transist to state heal
+if(m_SeenPred==-1){
+	m_healProtecttime=m_healProtecttime-1
+	if(m_healProtecttime==0 and ableTotrans=="Y" and m_nLabel!=0 and shouldheal==1 and m_uComplete=="Y"){
+	TransitionToheal()
+	return
+	}
+}
+else{
+	m_healProtecttime=60
+}
+
+#check if should transist to sleep
+if(shouldsleep==1 and m_nLabel==1 and ableTotrans=="Y" and m_uComplete=="Y"){
+	if(m_sleepProtecttime!=0){
+	m_sleepProtecttime=m_sleepProtecttime-1
+	}
+	else{
+	log(id,"sleep")
+	TransitionToSleep()
+	return
+	}
+}
+
+#decide if should ask to go up
+if(ableTotrans=="Y" and ableToup==1 and m_SeenPred==1 and shouldRecycle=="N" and m_uComplete=="Y"){
+	if(m_goupProtecttime!=0){
+	m_goupProtecttime=m_goupProtecttime-1
+	}
+	else{
+	TransitionToGoupasking()
+	return
+	}
+}
+
+#decide if should go down
+if(cunt_ChargeRequests!=0){
+	i=1
+	ChargeIndex=0
+	while(i<cunt_ChargeRequests){
+	#compare the energy
+	if(m_MessageEnergy[map_ChargeRequests[ChargeIndex]]>m_MessageEnergy[map_ChargeRequests[i]]){
+	ChargeIndex=i
+	}
+	i=i+1
+	}
+}
+
+
+
+#set communication message
+	m_selfMessage.State=m_eState
+	m_selfMessage.Label=m_nLabel
+	m_selfMessage.IfComplete=m_uComplete
+	m_selfMessage.IfRecycle=shouldRecycle
+#get ask requests
+if(HealIndex!=-1){
+	m_selfMessage.ReqLabel=m_MessageReqLabel[map_HealRequests[HealIndex]]
+	m_selfMessage.ReqID=m_MessageReqID[map_HealRequests[HealIndex]]
+	m_selfMessage.Response="REQ_GRANTED"
+}
+else if(ReqIndex!=-1){
+	m_selfMessage.ReqLabel=m_MessageReqLabel[map_AskRequests[ReqIndex]]
+	m_selfMessage.ReqID=m_MessageReqID[map_AskRequests[ReqIndex]]
+	m_selfMessage.Response="REQ_GRANTED"
+}
+else if(ChargeIndex!=-1){
+	m_selfMessage.ReqLabel=m_MessageReqLabel[map_ChargeRequests[ChargeIndex]]
+	m_selfMessage.ReqID=m_MessageReqID[map_ChargeRequests[ChargeIndex]]
+	if(ableTotrans=="Y" and shouldRecycle=="N"){
+	m_selfMessage.Response="REQ_GRANTED"
+	m_chargesuccessor=m_MessageLabel[map_ChargeRequests[ChargeIndex]]
+	}
+	else{
+	m_selfMessage.Response="REQ_NONE"
+	}
+	}	
+else if(GoDownAskIndex!=-1){
+	m_selfMessage.ReqLabel=m_MessageReqLabel[GoDownAskIndex]
+	m_selfMessage.ReqID=m_MessageReqID[GoDownAskIndex]
+	m_selfMessage.Response="REQ_GRANTED"
+	}
+
+
+
+####heal test
+#if(step_count==1500 and id==1){
+#	TransitionToSleep()
+#}
+###recycle test
+#if(step_count>=1800 and m_nLabel==0){
+#	m_selfMessage.IfRecycle="Y"
+# }
+
+
+
+#navigation 
+	goto(0.0,0.0)
+}
+
+#
+#do heal
+#
+function DoHeal(){
+#gather neighbor information
+var i=0
+var psResponse=-1
+while(i<m_neighbourCunt and psResponse==-1){
+	if(m_MessageState[i]=="STATE_JOINED" and m_MessageLabel[i]==m_vecNodes[m_nReqlabel].Pred and m_MessageReqLabel[i]==m_nReqlabel and m_MessageResponse[i]!="REQ_NONE"){
+	#get a response
+	psResponse=i
+	}
+	i=i+1
+}
+i=0
+while(i<m_neighbourCunt){
+	if(m_MessageLabel[i]==m_vecNodes[m_nReqlabel].Pred and (m_MessageState[i]=="STATE_JOINING" or m_MessageState[i]=="STATE_HEAL")){
+	m_unWaitCount=m_unLabelSearchWaitTime
+	}
+	i=i+1
+}
+
+#analysis the response
+if(psResponse!=-1){
+	if(m_unRequestId==m_MessageReqID[psResponse]){
+	TransitionToJoining()
+	return
+	}
+	else{
+	TransitionToJoined()
+	return
+	}
+}
+else{
+	#wait time set
+	m_unWaitCount=m_unWaitCount-1
+	if(m_unWaitCount==0){
+	TransitionToFree()
+	return
+	}
+}
+#set communication message
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+m_selfMessage.KeepStill=m_vecNodes[m_nReqlabel].Pred
+#
+}
+
+#
+#do goupasking
+#
+function DoGoupasking(){
+#gather neighbor information
+var i=0
+var shouldRecycle="N"
+var psResponse_fromTar=-1#response from the pred
+while(i<m_neighbourCunt){
+	if(m_MessageState[i]=="STATE_JOINED" and m_MessageReqLabel[i]==m_nReqlabel and m_MessageResponse[i]!="REQ_NONE"){
+	psResponse_fromTar=i
+	}
+
+	if(m_MessageLabel[i]==m_vecNodes[m_nLabel].Pred and m_MessageIfRecycle[i]=="Y"){
+	shouldRecycle="Y"
+	}
+
+	i=i+1
+}
+
+#analysis the response
+if(shouldRecycle=="Y"){
+	TransitionToJoined()
+	return
+}
+
+if(psResponse_fromTar!=-1){
+	if(m_unRequestId==m_MessageReqID[psResponse_fromTar]){
+	TransitionTogoup()
+	return
+	}
+	else{
+	TransitionToJoined()
+	return
+	}
+}
+else{
+	#wait time set
+	m_unWaitCount=m_unWaitCount-1
+	if(m_unWaitCount==0){
+	TransitionToJoined()
+	return
+	}
+}
+#set communication message
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+m_selfMessage.KeepStill=m_vecNodes[m_nReqlabel].Pred
+#
+}
+
+#
+#do godown
+#
+function DoGodown(){
+#gather neighbor information
+var i=0
+var psResponse=-1
+var psUprobot=-1
+var seePred=-1
+var shouldRecycle="N"
+while(i<m_neighbourCunt){
+#the respond robot in joined state
+#the request lable be the same as requesed
+#get a respond
+if(m_MessageState[i]=="STATE_JOINED" and m_MessageLabel[i]==m_nLabel and m_MessageReqLabel[i]==m_nReqlabel and m_MessageResponse[i]!="REQ_NONE"){
+psResponse=i
+}
+
+if(m_MessageLabel[i]==m_vecNodes[m_nLabel].Pred and m_MessageIfRecycle[i]=="Y"){
+	shouldRecycle="Y"
+}
+
+i=i+1
+}
+#analyse the response
+if(psResponse!=-1){
+if(m_MessageReqID[psResponse]==m_unRequestId){
+TransitionToJoining()
+return
+}
+}
+#navigation
+goto(0.0,0.0)
+#collision avoidence
+i=0
+var turnAngle=0.0
+var pushAngle=0.0
+var pushdis=0.0
+var needHide=0
+while(i<m_neighbourCunt){
+#if there is a robot within tolerance before, turn 90 degree to hide
+if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=0){
+turnAngle=m_MessageBearing[i]+math.pi/2.0
+pushAngle=m_MessageBearing[i]
+pushdis=(m_MessageRange[i]-ROBOT_SAFETYDIST)*100.0
+needHide=1
+}
+i=i+1
+}
+
+if(needHide==1){
+m_navigation.x=0.0
+m_navigation.y=0.0
+var turnvec=math.vec2.newp(MaxSpeed,turnAngle)
+var pushvec=math.vec2.newp(pushdis,pushAngle)
+m_navigation=math.vec2.add(turnvec,pushvec)
+goto(m_navigation.x,m_navigation.y)
+}
+#set communication message
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+m_selfMessage.KeepStill=m_vecNodes[m_nLabel].Pred
+m_selfMessage.IfRecycle=shouldRecycle
+}
+
+#
+#Do goup
+#
+function DoGoup(){
+#get information of pred
+var i=0
+var IDofPred=-1
+var Uptarget={.tag=-1,.range=0.0,.bearing=0.0}
+#var shouldRecycle="N"
+while(i<m_neighbourCunt){
+if(m_MessageLabel[i]==m_vecNodes[m_nLabel].Pred and m_MessageState[i]=="STATE_JOINED"){
+	IDofPred=i}
+if(m_MessageLabel[i]==m_nLabel and m_MessageState[i]=="STATE_GODOWN"){
+	Uptarget.tag=1
+	Uptarget.range=m_MessageRange[i]
+	Uptarget.bearing=m_MessageBearing[i]
+}
+
+if(m_MessageLabel[i]==m_nLabel and m_MessageIfRecycle[i]=="Y"){
+	shouldRecycle="Y"
+}
+
+i=i+1
+}
+
+#found pred
+if(IDofPred!=-1){
+m_unWaitCount=m_unJoiningLostPeriod#if see pred, reset the timer
+
+var P2Target=math.vec2.newp(m_vecNodes[m_nLabel].distance,m_vecNodes[m_nLabel].bearing)
+m_cMeToPred.Range=m_MessageRange[IDofPred]#the poition of self to pred in local coordinate
+m_cMeToPred.Bearing=m_MessageBearing[IDofPred]
+
+#attention, m_cMeToPred.GlobalBearing is the bearing of self wrt pred in global coordinate
+var S2PGlobalBearing=0
+
+#m_cMeToPred.GlobalBearing=LimitAngle(m_cMeToPred.GlobalBearing)
+
+if(m_cMeToPred.GlobalBearing>math.pi)
+S2PGlobalBearing=m_cMeToPred.GlobalBearing-math.pi
+else
+S2PGlobalBearing=m_cMeToPred.GlobalBearing+math.pi
+
+var S2Pred=math.vec2.newp(m_cMeToPred.Range,S2PGlobalBearing)
+
+#the vector from self to target in global coordinate
+var S2Target=math.vec2.add(S2Pred,P2Target)
+#change the vector to local coordinate of self
+var S2Target_dis=Length(S2Target)
+var S2Target_bearing=Angle(S2Target)
+m_bias=m_cMeToPred.Bearing-S2PGlobalBearing
+S2Target_bearing=S2Target_bearing+m_bias
+m_navigation=math.vec2.newp(S2Target_dis,S2Target_bearing)
+goto(m_navigation.x,m_navigation.y)
+
+#test if is already in desired position
+if(math.abs(S2Target.x)<m_fTargetDistanceTolerance and math.abs(S2Target.y)<m_fTargetDistanceTolerance){
+TransitionToJoined()
+return
+}
+}
+
+#miss pred, but still can see the target goto robot
+if(IDofPred==-1 and Uptarget.tag==1){
+	m_navigation=math.vec2.newp(Uptarget.range,Uptarget.bearing)
+	goto(m_navigation.x,m_navigation.y)
+}
+
+#miss both the pred and the target goto robot
+if(IDofPred==-1 and Uptarget.tag==-1){
+m_unWaitCount=m_unWaitCount-1
+}
+
+#avoide collision
+i=0
+var turnAngle=0.0
+var needHide=0
+while(i<m_neighbourCunt){
+#if there is a robot within tolerance before, turn 90 degree to hide, should not avoid base station
+if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=m_nLabel and m_MessageLabel[i]!=0){
+turnAngle=m_MessageBearing[i]+math.pi/2.0
+needHide=1
+}
+i=i+1
+}
+
+if(needHide==1){
+m_navigation.x=0.0
+m_navigation.y=0.0
+m_navigation=math.vec2.newp(MaxSpeed,turnAngle)
+goto(m_navigation.x,m_navigation.y)
+}
+
+if(m_unWaitCount==0){
+TransitionToFree()
+return
+}
+
+#communication message
+m_selfMessage.State=m_eState
+m_selfMessage.Label=m_nLabel
+m_selfMessage.ReqLabel=m_nReqlabel
+m_selfMessage.ReqID=m_unRequestId
+m_selfMessage.IfComplete=m_uComplete
+m_selfMessage.KeepStill=m_vecNodes[m_nLabel].Pred
+m_selfMessage.IfRecycle=shouldRecycle
+}
+
+#
+#Shut down robot
+#
+function DoSleep(){
+goto(0.0,0.0)
+}
+
+#
+# Executed at init
+#
+function init() {
+	#Adjust parameters here
+	m_unResponseTimeThreshold=15
+	m_unLabelSearchWaitTime=15
+	m_unJoiningLostPeriod=50
+
+	m_fTargetDistanceTolerance=6.0
+	ROBOT_SAFETYDIST=40.0
+	MaxSpeed=100.0
+	Reset()
+}
+
+#
+# Executed every step
+#
+function step(){
+#update the graph
+ UpdateNodeInfo()
+#reset message package to be sent
+m_selfMessage={.State="STATE_FREE",.Label=0,.ReqLabel=0,.ReqID=0,.Response=0,.Energy=0,.IfRecycle="N",.KeepStill=-1,.IfComplete="Y"}
+#
+#act according to current state
+#
+ if(m_eState=="STATE_FREE")
+    DoFree()
+  else if(m_eState=="STATE_ASKING")
+	DoAsking()
+  else if(m_eState=="STATE_JOINING")
+	DoJoining()
+  else if(m_eState=="STATE_JOINED")
+	DoJoined()
+  else if(m_eState=="STATE_GOUPASKING")
+	DoGoupasking()
+  else if(m_eState=="STATE_GOUP")
+	DoGoup()   
+  else if(m_eState=="STATE_GODOWN")
+	DoGodown()
+  else if(m_eState=="STATE_HEAL")
+    DoHeal()
+  else if(m_eState=="STATE_SLEEP")
+    DoSleep()
+
+debug(id,m_eState,m_nLabel,'Energy=',m_energy,'%')
+log(id,m_eState,m_nLabel,'Energy=',m_energy,'%')
+UpdateEnergyInfo() 
+
+
+#broadcast message
+if(m_eState!="STATE_SLEEP"){
+neighbors.broadcast("message",m_selfMessage)
+}
+
+#
+#clean message storage
+m_MessageState={}
+m_MessageLabel={}
+m_MessageReqLabel={}
+m_MessageReqID={}
+m_MessageResponse={}
+m_MessageRange={}
+m_MessageBearing={}
+m_MessageEnergy={}
+m_neighbourCunt=0
+
+#setp count+1
+step_count=step_count+1
+}
+
+#
+# Executed when reset
+#
+function Reset(){
+    m_vecNodes={}
+    m_vecNodes = parse_graph("Graph.graph")#change the .graph file when necessary
+    m_nLabel=-1
+    stop_charging()
+    stop_processing()
+	#start listening
+	start_listen()
+	#
+	#set initial state, only one robot choose [A], while the rest choose [B]
+	#
+	#[A]The robot used to triger the formation process is defined as joined,
+	if(type==89){
+	m_nLabel=0
+	TransitionToJoined()
+	}
+	#[B]Other robots are defined as free.
+	else{
+	TransitionToFree()
+	}
+}
+
+#
+# Executed upon destroy
+#
+function destroy() {
+	goto(0.0,0.0)
+	m_vecNodes={}
+	#stop listening 
+	neighbors.ignore("message")
+}
