@@ -36,7 +36,9 @@ namespace argos {
         m_bChargingState = false;
         m_bProcessingState = false;
         pcRNG = CRandom::CreateRNG("argos"); // default random instance
+        //
         float simulation_thick_factor = 1000 * 60 * 60 * CPhysicsEngine::GetSimulationClockTick();
+
         m_fSOC = 100;
         fNominalCapacity = m_pcBatteryEntity->GetNominalCapacity() * simulation_thick_factor;
         fStartingCapacity = fNominalCapacity;

@@ -28,15 +28,15 @@
           randomize_soc="false"
           discharge_type="non-linear"
           starting_soc="1.0" 
-          c_rating="5000"
+          c_rating="15"
           nominal_voltage="4.2"
           empty_voltage="2.7"
-          nominal_capacity="0.001"
+          nominal_capacity="2"
           jitter_percentage_min="80"
           jitter_percentage_max="150"
-          idle_i="0.4" 
-          drive_i="1.5" 
-          proc_i="1.0"/>
+          idle_i="1" 
+          drive_i="0" 
+          proc_i="0"/>
       </sensors>
       <params bytecode_file="swarmnetwork.bo" debug_file="swarmnetwork.bdb">
         <wheel_turning hard_turn_angle_threshold="90"
@@ -71,7 +71,7 @@
 	<distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="2" max_trials="100">
+      <entity quantity="3" max_trials="100">
         <e-footbot id="fb" rab_data_size="650" rab_range="30">
           <controller config="bcf" />
         </e-footbot>
@@ -82,7 +82,7 @@
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
       <entity quantity="1" max_trials="100">
-        <base-station id="bs" rab_data_size="650" rab_range="30" movable="false">
+        <base-station id="bs" rab_data_size="650" rab_range="30">
           <controller config="bsf" />
         </base-station>
       </entity>

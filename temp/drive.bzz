@@ -46,8 +46,8 @@ function init() {
 
 # Executed every time step
 function step() {
-  if(soc != nil)
-    log("ID: ", id, " SOC: ", soc)
+  #if(soc != nil)
+  log("ID: ", id, " SOC: ", soc, " type: ", type)
   
   if(type == 99){
     start_processing()

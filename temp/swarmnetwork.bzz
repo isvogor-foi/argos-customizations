@@ -210,7 +210,8 @@ function start_listen(){
 neighbors.listen("message",
     function(vid,value,rid){
     #store the received message
-    Get_DisAndAzi(rid)#get the position information of the sender
+    #get the position information of the sender
+    Get_DisAndAzi(rid, value.Type) 
     m_MessageState[m_neighbourCunt]=value.State
     m_MessageLabel[m_neighbourCunt]=value.Label
     m_MessageReqLabel[m_neighbourCunt]=value.ReqLabel
@@ -225,12 +226,14 @@ neighbors.listen("message",
 }
 #
 #Function used to get the position information of the sender
-function Get_DisAndAzi(id){
+function Get_DisAndAzi(id, sent_type){
+# log(id, " -- ", sent_type, " my type: ", type)
 neighbors.foreach(
-  function(rid, data) {
-	if(rid==id){
-    m_MessageRange[m_neighbourCunt]=data.distance
-    m_MessageBearing[m_neighbourCunt]=data.azimuth
+  function(rid, data, sent_type) {
+	if(rid == id){
+		log("Data: ", data)
+    	m_MessageRange[m_neighbourCunt]=data.distance
+    	m_MessageBearing[m_neighbourCunt]=data.azimuth
     }
     })
 }
@@ -614,7 +617,7 @@ var turnAngle=0.0
 var needHide=0
 while(i<m_neighbourCunt){
 #if there is a robot within tolerance before, turn 90 degree to hide
-if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=0){
+if(m_MessageRange[i]<ROBOT_SAFETYDIST){
 turnAngle=m_MessageBearing[i]+math.pi/2.0
 needHide=1
 }
@@ -724,7 +727,7 @@ var turnAngle=0.0
 var needHide=0
 while(i<m_neighbourCunt){
 #if there is a robot within tolerance before, turn 90 degree to hide
-if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=0){
+if(m_MessageRange[i]<ROBOT_SAFETYDIST){
 turnAngle=m_MessageBearing[i]+math.pi/2.0
 needHide=1
 }
@@ -818,9 +821,8 @@ var turnAngle=0.0
 var needHide=0
 while(i<m_neighbourCunt){
 #if there is a robot within tolerance before, turn 90 degree to hide
-if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=0){
+if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]==0){
 turnAngle=m_MessageBearing[i]+math.pi/2.0
-log(m_MessageLabel[i],"hide")
 needHide=1
 }
 i=i+1
@@ -938,7 +940,7 @@ while(i<m_neighbourCunt){
 	if(m_MessageState[i]=="STATE_JOINED" and m_MessageLabel[i]==m_vecNodes[m_nLabel].Pred){
 	#if pred has more energy
 	if(m_MessageEnergy[i]>m_energy){
-	ableToup=1
+	#ableToup=1
 	}
 	}
 
@@ -1318,7 +1320,7 @@ var pushdis=0.0
 var needHide=0
 while(i<m_neighbourCunt){
 #if there is a robot within tolerance before, turn 90 degree to hide
-if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=0){
+if(m_MessageRange[i]<ROBOT_SAFETYDIST){
 turnAngle=m_MessageBearing[i]+math.pi/2.0
 pushAngle=m_MessageBearing[i]
 pushdis=(m_MessageRange[i]-ROBOT_SAFETYDIST)*100.0
@@ -1424,7 +1426,7 @@ var turnAngle=0.0
 var needHide=0
 while(i<m_neighbourCunt){
 #if there is a robot within tolerance before, turn 90 degree to hide, should not avoid base station
-if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=m_nLabel and m_MessageLabel[i]!=0){
+if(m_MessageRange[i]<ROBOT_SAFETYDIST and m_MessageLabel[i]!=m_nLabel){
 turnAngle=m_MessageBearing[i]+math.pi/2.0
 needHide=1
 }
@@ -1478,11 +1480,12 @@ function init() {
 #
 # Executed every step
 #
+
 function step(){
 #update the graph
  UpdateNodeInfo()
 #reset message package to be sent
-m_selfMessage={.State="STATE_FREE",.Label=0,.ReqLabel=0,.ReqID=0,.Response=0,.Energy=0,.IfRecycle="N",.KeepStill=-1,.IfComplete="Y"}
+m_selfMessage={.State="STATE_FREE",.Label=0,.ReqLabel=0,.ReqID=0,.Response=0,.Energy=0,.IfRecycle="N",.KeepStill=-1,.IfComplete="Y",.Type=type}
 #
 #act according to current state
 #
@@ -1506,7 +1509,7 @@ m_selfMessage={.State="STATE_FREE",.Label=0,.ReqLabel=0,.ReqID=0,.Response=0,.En
     DoSleep()
 
 debug(id,m_eState,m_nLabel,'Energy=',m_energy,'%')
-log(id,m_eState,m_nLabel,'Energy=',m_energy,'%')
+#log(id,m_eState,m_nLabel,'Energy=',m_energy,'%')
 UpdateEnergyInfo() 
 
 

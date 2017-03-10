@@ -6,7 +6,7 @@
   <!-- ************************* -->
   <framework>
     <system threads="0" />
-    <experiment length="0"
+    <experiment length="598.2"
                 ticks_per_second="10"
                 random_seed="123" />
   </framework>
@@ -25,18 +25,18 @@
       <sensors>
         <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
         <battery implementation="default"
-          randomize_soc="true"
-          discharge_type="non-linear"
+          randomize_soc="false"
+          discharge_type="linear"
           starting_soc="1.0" 
-          c_rating="5000"
+          c_rating="15"
           nominal_voltage="4.2"
           empty_voltage="2.7"
-          nominal_capacity="0.0001"
-          jitter_percentage_min="80"
-          jitter_percentage_max="150"
-          idle_i="0.4" 
-          drive_i="1.5" 
-          proc_i="1.0"/>
+          nominal_capacity="3"
+          jitter_percentage_min="100"
+          jitter_percentage_max="100"
+          idle_i="3" 
+          drive_i="0.0" 
+          proc_i="0.0"/>
       </sensors>
       <params bytecode_file="drive.bo" debug_file="drive.bdb">
         <wheel_turning hard_turn_angle_threshold="90"
