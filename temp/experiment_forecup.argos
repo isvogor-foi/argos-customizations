@@ -30,7 +30,7 @@
           starting_soc="1.0" 
           c_rating="15"
           nominal_voltage="4.2"
-          empty_voltage="2.7"
+          empty_voltage="2.2"
           nominal_capacity="2"
           jitter_percentage_min="80"
           jitter_percentage_max="150"

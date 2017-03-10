@@ -6,7 +6,7 @@
   <!-- ************************* -->
   <framework>
     <system threads="0" />
-    <experiment length="598.2"
+    <experiment length="75"
                 ticks_per_second="10"
                 random_seed="123" />
   </framework>
@@ -24,17 +24,17 @@
       </actuators>
       <sensors>
         <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
-        <battery implementation="default"
-          randomize_soc="false"
-          discharge_type="linear"
-          starting_soc="1.0" 
-          c_rating="15"
-          nominal_voltage="4.2"
-          empty_voltage="2.7"
-          nominal_capacity="3"
-          jitter_percentage_min="100"
-          jitter_percentage_max="100"
-          idle_i="3" 
+        <battery implementation="default" nominal_voltage="4.2" empty_voltage="2.7"
+          randomize_soc="true"
+          discharge_type="non-linear"
+          starting_capacity_percentage="0.9" 
+          starting_capacity_jitter_min="80"
+          starting_capacity_jitter_max="100"
+          nominal_capacity="0.1"
+          charging_current="1"
+          current_consumption_jitter_min="100"
+          current_consumption_jitter_max="100"
+          idle_i="1" 
           drive_i="0.0" 
           proc_i="0.0"/>
       </sensors>

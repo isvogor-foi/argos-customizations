@@ -64,8 +64,8 @@ namespace argos {
 		    	return m_fChargingRate;
 		    }
 
-		    virtual Real GetCRate() const {
-		    	return m_fCRate;
+		    virtual Real GetChargingCurrent() const {
+		    	return m_fChargingCurrent;
 		    }
 
 		    virtual Real GetEmptyVoltage() const {
@@ -76,12 +76,24 @@ namespace argos {
 		    	return m_bRandomizeInitialSOC;
 		    }
 
+		    virtual Real GetJitterPercentageMin() const {
+		    	return m_fJitterPercentageMin;
+		    }
+
 		    virtual Real GetJitterPercentageMax() const {
 		    	return m_fJitterPercentageMax;
 		    }
 
-		    virtual Real GetJitterPercentageMin() const {
-		    	return m_fJitterPercentageMin;
+		    virtual Real GetStartingCapacityJitterMin() const {
+		    	return m_fJitterStartingCapacityMin;
+		    }
+
+		    virtual Real GetStartingCapacityJitterMax() const {
+		    	return m_fJitterStartingCapacityMax;
+		    }
+
+		    virtual Real GetStartingCapacity() const {
+		    	return m_fStartingCapacity;
 		    }
 
 		protected:
@@ -89,7 +101,7 @@ namespace argos {
 		    Real m_fVoltage;			// in V
 		    Real m_fEmptyVoltage;		// in V
 		    Real m_fNominalCapacity; 	// in Ah
-		    Real m_fCRate;
+		    Real m_fChargingCurrent;
 		    Real m_fChargingRate;		//
 
 		    // battery consumption data, should be moved to a robot
@@ -99,6 +111,9 @@ namespace argos {
 		    bool m_bRandomizeInitialSOC;
 		    Real m_fJitterPercentageMin;
 		    Real m_fJitterPercentageMax;
+		    Real m_fJitterStartingCapacityMin;
+		    Real m_fJitterStartingCapacityMax;
+		    Real m_fStartingCapacity;
 	}; // end class
 
 } // end namespace

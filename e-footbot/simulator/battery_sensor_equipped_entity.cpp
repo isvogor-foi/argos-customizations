@@ -42,10 +42,14 @@ namespace argos {
 			GetNodeAttributeOrDefault(t_tree, "idle_i", m_fIdleCurrent, m_fIdleCurrent);
 			GetNodeAttributeOrDefault(t_tree, "drive_i", m_fDriveCurrent, m_fDriveCurrent);
 			GetNodeAttributeOrDefault(t_tree, "proc_i", m_fProcessingLoadCurrent, m_fProcessingLoadCurrent);
-			GetNodeAttributeOrDefault(t_tree, "c_rating", m_fCRate, m_fCRate);
+			GetNodeAttributeOrDefault(t_tree, "charging_current", m_fChargingCurrent, m_fChargingCurrent);
 			GetNodeAttributeOrDefault(t_tree, "randomize_soc", m_bRandomizeInitialSOC, m_bRandomizeInitialSOC);
-			GetNodeAttributeOrDefault(t_tree, "jitter_percentage_min", m_fJitterPercentageMin, m_fJitterPercentageMin);
-			GetNodeAttributeOrDefault(t_tree, "jitter_percentage_max", m_fJitterPercentageMax, m_fJitterPercentageMax);
+			GetNodeAttributeOrDefault(t_tree, "current_consumption_jitter_min", m_fJitterPercentageMin, m_fJitterPercentageMin);
+			GetNodeAttributeOrDefault(t_tree, "current_consumption_jitter_max", m_fJitterPercentageMax, m_fJitterPercentageMax);
+			GetNodeAttributeOrDefault(t_tree, "starting_capacity_jitter_min", m_fJitterStartingCapacityMin, m_fJitterStartingCapacityMin);
+			GetNodeAttributeOrDefault(t_tree, "starting_capacity_jitter_max", m_fJitterStartingCapacityMax, m_fJitterStartingCapacityMax);
+			GetNodeAttributeOrDefault(t_tree, "starting_capacity_percentage", m_fStartingCapacity, m_fStartingCapacity);
+
 
 		}
 		catch(CARGoSException& ex) {

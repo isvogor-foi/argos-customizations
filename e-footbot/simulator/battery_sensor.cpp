@@ -15,6 +15,7 @@ namespace argos {
 		m_pcEmbodiedEntity(NULL),
 		m_pcLEDs(NULL),
         fStartingCapacity(0),
+        simulation_tick_factor(0),
 		m_cSpace(CSimulator::GetInstance().GetSpace())
 	{ }
 
@@ -33,22 +34,33 @@ namespace argos {
 
 	void CBatterySensor::InitCapacity()
     {
+
+		std::cout << "Tick: " << CPhysicsEngine::GetSimulationClockTick() << " inv: " << CPhysicsEngine::GetInverseSimulationClockTick() << std::endl;
+
         m_bChargingState = false;
         m_bProcessingState = false;
         pcRNG = CRandom::CreateRNG("argos"); // default random instance
-        //
-        float simulation_thick_factor = 1000 * 60 * 60 * CPhysicsEngine::GetSimulationClockTick();
+        // min * sec * simulation tick to convert from Ah to Atick
+        simulation_tick_factor = 60 * 60 * CPhysicsEngine::GetInverseSimulationClockTick();
 
-        m_fSOC = 100;
-        fNominalCapacity = m_pcBatteryEntity->GetNominalCapacity() * simulation_thick_factor;
-        fStartingCapacity = fNominalCapacity;
-        fConsumedCapacity = 0;
+        // for linear doesn't matter (only fConsumedCapacity matters)
+        m_fSOC = m_pcBatteryEntity->GetStartingCapacity();
+
+        fNominalCapacity = m_pcBatteryEntity->GetNominalCapacity() * simulation_tick_factor;
+        std::cout << "Capacity: " << fNominalCapacity << std::endl;
+
+        // for linear ok
+        fStartingCapacity = fNominalCapacity * m_pcBatteryEntity->GetStartingCapacity();
+        fConsumedCapacity = fNominalCapacity - fStartingCapacity;
+
         if(m_pcBatteryEntity->GetRandomizeInitialSOC()){
-            float random = (float)(GetRandomInteger(50, 100, pcRNG)) / 100.0f;
-            fStartingCapacity = (m_pcBatteryEntity->GetNominalCapacity() * random) * simulation_thick_factor;
+            float random = (float)(GetRandomInteger(m_pcBatteryEntity->GetStartingCapacityJitterMin(), m_pcBatteryEntity->GetStartingCapacityJitterMax(), pcRNG)) / 100.0f;
+            std::cout<<"Random: " << random <<std::endl;
+            fStartingCapacity = (m_pcBatteryEntity->GetNominalCapacity() * random) * simulation_tick_factor;
             fConsumedCapacity = fNominalCapacity - fStartingCapacity;
         }
 
+        // add random jitter to battery consumption elements (idle, driving, processing)
         m_pcBatteryEntity->SetIdleCurrent(m_pcBatteryEntity->GetIdleCurrent() *
         		(float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(), m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f);
 
@@ -57,16 +69,6 @@ namespace argos {
 
         m_pcBatteryEntity->SetProcessingCurrent(m_pcBatteryEntity->GetProcessingCurrent() *
                 		(float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(), m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f);
-
-        /*
-        m_pcBatteryEntity->GetDriveCurrent() *= (float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(),
-        		m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f;
-        m_pcBatteryEntity->GetIdleCurrent() *= (float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(),
-        		m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f;
-        m_pcBatteryEntity->GetProcessingCurrent() *= (float)(GetRandomInteger(m_pcBatteryEntity->GetJitterPercentageMin(),
-        		m_pcBatteryEntity->GetJitterPercentageMax(), pcRNG)) / 100.0f;
-        		*/
-        // randomize current consumption
 
     }
 
@@ -87,19 +89,20 @@ namespace argos {
 			if(m_sDischargeType.compare("non-linear") == 0){
 				m_bConvertCharge = true;
 			}
-
+			// parameter cheatsheet (hardcoded voltages -> 1cell battery)
+			// https://www.desmos.com/calculator/hycpcbwtbq
 			std::vector<double> Xd(4), Yd(4);
 			// normalize Ah to [0,1] range
-			Xd[0]= 0.0 * fNominalCapacity;	Yd[0]=4.2;
-			Xd[1]= 0.1 * fNominalCapacity;	Yd[1]=3.75;
-			Xd[2]= 0.8 * fNominalCapacity;	Yd[2]=3.0;
-			Xd[3]= 1.0 * fNominalCapacity;	Yd[3]=2.7;
+			Xd[0]= 0.0 *  fNominalCapacity;	Yd[0]=4.2;
+			Xd[1]= 0.25 * fNominalCapacity;	Yd[1]=3.7;
+			Xd[2]= 0.75 * fNominalCapacity;	Yd[2]=3.2;
+			Xd[3]= 1.0 *  fNominalCapacity;	Yd[3]=2.2;
 			dischargeSplineFunction.set_points(Xd, Yd);
 
 		   std::vector<double> Xc(4), Yc(4);
 			Xc[0]= 0.0 * fNominalCapacity;	Yc[0]=4.2;
-			Xc[1]= 0.05 * fNominalCapacity;	Yc[1]=4.1;
-			Xc[2]= 0.5 * fNominalCapacity;	Yc[2]=2.5;
+			Xc[1]= 0.1 * fNominalCapacity;	Yc[1]=4.15;
+			Xc[2]= 0.4 * fNominalCapacity;	Yc[2]=3.8;
 			Xc[3]= 1.0 * fNominalCapacity;	Yc[3]=2.2;
 		   chargeSplineFunction.set_points(Xc,Yc);
 
@@ -128,14 +131,13 @@ namespace argos {
 	 */
     void CBatterySensor::UpdateLEDs()
     {
-        if(m_bProcessingState){
-            m_pcLEDs->SetAllLEDsColors(CColor::BLUE);
-        }else
-            if(m_bChargingState){
-                m_pcLEDs->SetAllLEDsColors(CColor::YELLOW);
-            }else{
-                m_pcLEDs->SetAllLEDsColors(CColor::WHITE);
-            }
+        if(m_bChargingState){
+            m_pcLEDs->SetAllLEDsColors(CColor::YELLOW);
+        } else if (m_bProcessingState){
+			m_pcLEDs->SetAllLEDsColors(CColor::BLUE);
+		} else {
+			m_pcLEDs->SetAllLEDsColors(CColor::WHITE);
+		}
 
         int accent_parameter = 0;
         if(m_fSOC >= 80){
@@ -158,15 +160,12 @@ namespace argos {
 
     void CBatterySensor::Charging()
     {
-        float charging_current = m_pcBatteryEntity->GetNominalCapacity() * m_pcBatteryEntity->GetCRate();
         if(m_sDischargeType.compare("linear") == 0){
-            fConsumedCapacity -= charging_current * 1000 / 60 / 60 / CPhysicsEngine::GetInverseSimulationClockTick();
-            m_fSOC = (1 - fConsumedCapacity / fStartingCapacity) * 100;
+            //fConsumedCapacity -= charging_current / 60 / 60 / CPhysicsEngine::GetInverseSimulationClockTick();
+        	fConsumedCapacity -= m_pcBatteryEntity->GetChargingCurrent();
+            m_fSOC = (1 - fConsumedCapacity / fNominalCapacity) * 100;
         }else{
-            // starting capacity based on non-linear discharge, for linear charging
-            // do this only in the first pass
-            fConsumedCapacity -= charging_current * 1000 / 60 / 60 / CPhysicsEngine::GetInverseSimulationClockTick();
-
+        	fConsumedCapacity -= m_pcBatteryEntity->GetChargingCurrent();
             if(m_bConvertCharge){
             	fConsumedCapacity = CBatterySensor::FindCapacity(fConsumedCapacity);
             	m_bConvertCharge = false;
@@ -182,7 +181,8 @@ namespace argos {
     }
 
     Real CBatterySensor::FindCapacity(Real capacity){
-    	float TOLERANCE = 0.01;
+    	float TOLERANCE = 0.001;
+    	std::cout<<"nominal: " << fNominalCapacity << std::endl;
     	for(float i = 0.0; i <= fNominalCapacity; i+= 0.1){
     		float diff = 0;
     		if(m_bConvertCharge){
@@ -199,7 +199,6 @@ namespace argos {
 
     void CBatterySensor::Discharging()
     {
-    	//std::cout << "i: " << m_pcBatteryEntity->GetIdleCurrent() << ", d: " << m_pcBatteryEntity->GetDriveCurrent() << ", p: " << m_pcBatteryEntity->GetProcessingCurrent() << std::endl;
     	float totalCurrent = 0;
         Real driveCurrent = m_pcBatteryEntity->GetDriveCurrent();
         // if wheels are spinning, add driving current consumption
@@ -216,12 +215,13 @@ namespace argos {
         }else{
             totalCurrent = driveCurrent + m_pcBatteryEntity->GetIdleCurrent();
         }
+
         // calculate SOC based on one of two methods available (linear / non-linear)
         // this should be reprogrammed to use voltage only
         if(m_fSOC > 0){
-            fConsumedCapacity += totalCurrent * 1000 / 60 / 60 / CPhysicsEngine::GetInverseSimulationClockTick();
+        	fConsumedCapacity += totalCurrent;
             if(m_sDischargeType.compare("linear") == 0){
-                m_fSOC = (1 - fConsumedCapacity / fStartingCapacity) * 100;
+                m_fSOC = (1 - fConsumedCapacity / fNominalCapacity) * 100;
             }else{
                 if(m_bConvertDischarge){
                 	fConsumedCapacity = CBatterySensor::FindCapacity(fConsumedCapacity);
@@ -307,7 +307,7 @@ namespace argos {
 	REGISTER_SENSOR(CBatterySensor,
 			"battery", "default",
 			"Ivan Svogor",
-			"0.2",
+			"0.3",
 			"Battery sensor for e-footbot (footbot copy with battery extensions)",
 			"Currently some concerns are not separated, e.g. sensor enables setting state of charge and processing."
 			"TODO: discharge and charge concerns should be moved to a customized entity, which sensor only reads",

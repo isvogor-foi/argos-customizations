@@ -118,6 +118,7 @@ private:
 	CRandom::CRNG* pcRNG;
 	int GetRandomInteger(int min, int max, CRandom::CRNG* pcRNG); // function for generating randoms (to clean up code a bit)
 	Real FindCapacity(Real capacity);
+	float simulation_tick_factor;
 
 
 }; // end CBatterySensor

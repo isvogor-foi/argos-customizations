@@ -6,6 +6,7 @@ TARGET     = 283.0
 EPSILON    = 150.0
 ROBOTS     = 100
 CHARGING   = 0 
+SIM_STEP   = 0
 
 # Lennard-Jones interaction magnitude
 function lj_magnitude(dist, target, epsilon) {
@@ -35,6 +36,7 @@ function hexagon() {
 
 # Executed at init time
 function init() {
+  SIM_STEP = 0
   # start_charging()
   # stop_charging()
   # start_processing()
@@ -46,28 +48,18 @@ function init() {
 
 # Executed every time step
 function step() {
-  #if(soc != nil)
-  log("ID: ", id, " SOC: ", soc, " type: ", type)
+  if(soc != nil)
+    log("ID: ", id, " SOC: ", soc)
   
-  if(type == 99){
-    start_processing()
-  }
-  else{
-    debug(" SOC: ", soc)
-  }
-  if(soc != 0 and soc > 15 and CHARGING == 0) { 
-    statef() 
-  }
-  else {
+  if(type == 99 and SIM_STEP < 330){
+    statef()
+  } else if (type == 99) {
     goto(0.0, 0.0)
     start_charging()
-    CHARGING = 1
-    if(soc > 95){
-      CHARGING = 0
-      stop_charging()
-    }
   }
 
+
+  SIM_STEP = SIM_STEP + 1;
 }
 
 # Execute at exit
