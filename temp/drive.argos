@@ -6,7 +6,7 @@
   <!-- ************************* -->
   <framework>
     <system threads="0" />
-    <experiment length="75"
+    <experiment length="0"
                 ticks_per_second="10"
                 random_seed="123" />
   </framework>
@@ -28,15 +28,15 @@
           randomize_soc="true"
           discharge_type="non-linear"
           starting_capacity_percentage="0.9" 
-          starting_capacity_jitter_min="80"
-          starting_capacity_jitter_max="100"
+          starting_capacity_jitter_min="40"
+          starting_capacity_jitter_max="60"
           nominal_capacity="0.1"
-          charging_current="1"
+          charging_current="5"
           current_consumption_jitter_min="100"
           current_consumption_jitter_max="100"
-          idle_i="1" 
-          drive_i="0.0" 
-          proc_i="0.0"/>
+          idle_i="0.5" 
+          drive_i="1.5" 
+          proc_i="1.0"/>
       </sensors>
       <params bytecode_file="drive.bo" debug_file="drive.bdb">
         <wheel_turning hard_turn_angle_threshold="90"

@@ -35,8 +35,6 @@ namespace argos {
 	void CBatterySensor::InitCapacity()
     {
 
-		std::cout << "Tick: " << CPhysicsEngine::GetSimulationClockTick() << " inv: " << CPhysicsEngine::GetInverseSimulationClockTick() << std::endl;
-
         m_bChargingState = false;
         m_bProcessingState = false;
         pcRNG = CRandom::CreateRNG("argos"); // default random instance
@@ -47,7 +45,6 @@ namespace argos {
         m_fSOC = m_pcBatteryEntity->GetStartingCapacity();
 
         fNominalCapacity = m_pcBatteryEntity->GetNominalCapacity() * simulation_tick_factor;
-        std::cout << "Capacity: " << fNominalCapacity << std::endl;
 
         // for linear ok
         fStartingCapacity = fNominalCapacity * m_pcBatteryEntity->GetStartingCapacity();
@@ -55,7 +52,6 @@ namespace argos {
 
         if(m_pcBatteryEntity->GetRandomizeInitialSOC()){
             float random = (float)(GetRandomInteger(m_pcBatteryEntity->GetStartingCapacityJitterMin(), m_pcBatteryEntity->GetStartingCapacityJitterMax(), pcRNG)) / 100.0f;
-            std::cout<<"Random: " << random <<std::endl;
             fStartingCapacity = (m_pcBatteryEntity->GetNominalCapacity() * random) * simulation_tick_factor;
             fConsumedCapacity = fNominalCapacity - fStartingCapacity;
         }
@@ -174,15 +170,16 @@ namespace argos {
             m_fSOC = (chargeSplineFunction(fConsumedCapacity) - m_pcBatteryEntity->GetEmptyVoltage()) /
             		 (m_pcBatteryEntity->GetVoltage() - m_pcBatteryEntity->GetEmptyVoltage()) * 100;
         }
-        if(m_fSOC > 100){
+
+        if(m_fSOC >= 100){
             m_fSOC = 100;
+            fConsumedCapacity = 0;
         }
 
     }
 
     Real CBatterySensor::FindCapacity(Real capacity){
     	float TOLERANCE = 0.001;
-    	std::cout<<"nominal: " << fNominalCapacity << std::endl;
     	for(float i = 0.0; i <= fNominalCapacity; i+= 0.1){
     		float diff = 0;
     		if(m_bConvertCharge){
@@ -302,7 +299,8 @@ namespace argos {
 		return random;
 	}
 
-	void CBatterySensor::Reset() { }
+	void CBatterySensor::Reset() {
+	}
 
 	REGISTER_SENSOR(CBatterySensor,
 			"battery", "default",
@@ -310,7 +308,7 @@ namespace argos {
 			"0.3",
 			"Battery sensor for e-footbot (footbot copy with battery extensions)",
 			"Currently some concerns are not separated, e.g. sensor enables setting state of charge and processing."
-			"TODO: discharge and charge concerns should be moved to a customized entity, which sensor only reads",
+			"parameters should be in amp-hours (Ah) for capacity, and amps (A) for current",
 			"Under development"
 	);
 
