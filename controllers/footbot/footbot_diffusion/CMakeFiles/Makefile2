@@ -54,45 +54,45 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test
+CMAKE_SOURCE_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test
+CMAKE_BINARY_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion
 
 #=============================================================================
-# Target rules for target CMakeFiles/efootbot_diffusion.dir
+# Target rules for target CMakeFiles/footbot_diffusion.dir
 
 # All Build rule for target.
-CMakeFiles/efootbot_diffusion.dir/all:
-	$(MAKE) -f CMakeFiles/efootbot_diffusion.dir/build.make CMakeFiles/efootbot_diffusion.dir/depend
-	$(MAKE) -f CMakeFiles/efootbot_diffusion.dir/build.make CMakeFiles/efootbot_diffusion.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/CMakeFiles --progress-num=1,2 "Built target efootbot_diffusion"
-.PHONY : CMakeFiles/efootbot_diffusion.dir/all
+CMakeFiles/footbot_diffusion.dir/all:
+	$(MAKE) -f CMakeFiles/footbot_diffusion.dir/build.make CMakeFiles/footbot_diffusion.dir/depend
+	$(MAKE) -f CMakeFiles/footbot_diffusion.dir/build.make CMakeFiles/footbot_diffusion.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion/CMakeFiles --progress-num=1,2 "Built target footbot_diffusion"
+.PHONY : CMakeFiles/footbot_diffusion.dir/all
 
 # Include target in all.
-all: CMakeFiles/efootbot_diffusion.dir/all
+all: CMakeFiles/footbot_diffusion.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/efootbot_diffusion.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/efootbot_diffusion.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/CMakeFiles 0
-.PHONY : CMakeFiles/efootbot_diffusion.dir/rule
+CMakeFiles/footbot_diffusion.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/footbot_diffusion.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion/CMakeFiles 0
+.PHONY : CMakeFiles/footbot_diffusion.dir/rule
 
 # Convenience name for target.
-efootbot_diffusion: CMakeFiles/efootbot_diffusion.dir/rule
+footbot_diffusion: CMakeFiles/footbot_diffusion.dir/rule
 
-.PHONY : efootbot_diffusion
-
-# clean rule for target.
-CMakeFiles/efootbot_diffusion.dir/clean:
-	$(MAKE) -f CMakeFiles/efootbot_diffusion.dir/build.make CMakeFiles/efootbot_diffusion.dir/clean
-.PHONY : CMakeFiles/efootbot_diffusion.dir/clean
+.PHONY : footbot_diffusion
 
 # clean rule for target.
-clean: CMakeFiles/efootbot_diffusion.dir/clean
+CMakeFiles/footbot_diffusion.dir/clean:
+	$(MAKE) -f CMakeFiles/footbot_diffusion.dir/build.make CMakeFiles/footbot_diffusion.dir/clean
+.PHONY : CMakeFiles/footbot_diffusion.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/footbot_diffusion.dir/clean
 
 .PHONY : clean
 

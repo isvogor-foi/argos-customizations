@@ -1,21 +1,16 @@
 /* Include the controller definition */
-#include "efootbot_diffusion.h"
+#include "footbot_diffusion.h"
 /* Function definitions for XML parsing */
 #include <argos3/core/utility/configuration/argos_configuration.h>
 /* 2D vector definition */
 #include <argos3/core/utility/math/vector2.h>
-#include <argos3/core/utility/logging/argos_log.h>
-#include <string>
+
 /****************************************/
 /****************************************/
 
-CEFootBotDiffusion::CEFootBotDiffusion() :
+CFootBotDiffusion::CFootBotDiffusion() :
    m_pcWheels(NULL),
    m_pcProximity(NULL),
-   m_batterySensor(NULL),
-   m_pcRABS(NULL),
-   m_pcLEDs(NULL),
-   c_entity(NULL),
    m_cAlpha(10.0f),
    m_fDelta(0.5f),
    m_fWheelVelocity(2.5f),
@@ -25,7 +20,7 @@ CEFootBotDiffusion::CEFootBotDiffusion() :
 /****************************************/
 /****************************************/
 
-void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
+void CFootBotDiffusion::Init(TConfigurationNode& t_node) {
    /*
     * Get sensor/actuator handles
     *
@@ -48,20 +43,8 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
     * list a device in the XML and then you request it here, an error
     * occurs.
     */
-   m_pcWheels    = GetActuator<CCI_DifferentialSteeringActuator >("differential_steering");
-   m_pcProximity = GetSensor  <CCI_EFootBotProximitySensor      >("efootbot_proximity"    );
-   m_batterySensor = GetSensor<CCI_BatterySensor                >("battery");
-   m_pcLEDs        = GetActuator <CCI_LEDsActuator              >("leds");
-   //m_pcIdSensor = GetSensor  <CCI_IdSensor                      >("range_and_bearing"    );
-   m_pcRABS      = GetSensor  <CCI_RangeAndBearingSensor        >("range_and_bearing"    );
-   m_pcRABA       = GetActuator  <CCI_RangeAndBearingActuator        >("range_and_bearing"    );
-   m_pcDistanceSensor   = GetSensor <CCI_EFootBotDistanceScannerSensor>("efootbot_distance_scanner"    );
-   m_pcDistanceActuator   = GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner"    );
-
-   m_pcDistanceActuator->Enable();
-   m_pcDistanceActuator->SetRPM(30);
-
-   //c_entity = GetEntity<CEntity>("e-footbot");
+   m_pcWheels    = GetActuator<CCI_DifferentialSteeringActuator>("differential_steering");
+   m_pcProximity = GetSensor  <CCI_FootBotProximitySensor      >("footbot_proximity"    );
    /*
     * Parse the configuration file
     *
@@ -73,49 +56,14 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_cGoStraightAngleRange.Set(-ToRadians(m_cAlpha), ToRadians(m_cAlpha));
    GetNodeAttributeOrDefault(t_node, "delta", m_fDelta, m_fDelta);
    GetNodeAttributeOrDefault(t_node, "velocity", m_fWheelVelocity, m_fWheelVelocity);
-   //GetNodeAttributeOrDefault(t_node, "id", m_id, m_id);
-   m_id = FromString<UInt16>(GetId().substr(2));
-
 }
 
 /****************************************/
 /****************************************/
 
-void CEFootBotDiffusion::ControlStep() {
-    int intensityCompensation = 0;
-    if(m_batterySensor->GetSoc() > 80)
-      intensityCompensation = 20;
-    if(m_batterySensor->GetSoc() <= 45)
-      intensityCompensation = -15;
-    m_pcIdSensor = new CCI_IdSensor(m_pcRABS, m_pcRABA, m_id);
-    
-    //m_pcRABA->ClearData();
-    //m_pcRABA->SetData(0, m_id);
-    //<m_pcRABS->Update();
-
-//m_pcIdSensor
-    std::vector<Real> result = m_pcIdSensor->GetData();
-    std::string text = "";
-    for(int i = 0; i < int(result.size()); i++){
-      std::ostringstream strs;
-      strs << result[i];
-      text += " " + strs.str();
-    }
-
-    // getting id-s from sensor array
-    // RLOG << "ID: " << m_id << " data: " << text << std::endl;
-
-    CCI_EFootBotDistanceScannerSensor::TReadingsMap datamap = m_pcDistanceSensor->GetReadingsMap();
-    std::map<CRadians,Real>::iterator it = datamap.begin();
-
-    for(; it != datamap.end(); ++it){
-      RLOG << m_id << ". Readings: " << it->second << std::endl;
-    }
-
-
-
+void CFootBotDiffusion::ControlStep() {
    /* Get readings from proximity sensor */
-   const CCI_EFootBotProximitySensor::TReadings& tProxReads = m_pcProximity->GetReadings();
+   const CCI_FootBotProximitySensor::TReadings& tProxReads = m_pcProximity->GetReadings();
    /* Sum them together */
    CVector2 cAccumulator;
    for(size_t i = 0; i < tProxReads.size(); ++i) {
@@ -140,8 +88,6 @@ void CEFootBotDiffusion::ControlStep() {
          m_pcWheels->SetLinearVelocity(0.0f, m_fWheelVelocity);
       }
    }
-    // RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << value.R <<":"<< value.G <<":"<< value.B << std::endl;
-
 }
 
 /****************************************/
@@ -157,4 +103,4 @@ void CEFootBotDiffusion::ControlStep() {
  * controller class to instantiate.
  * See also the configuration files for an example of how this is used.
  */
-REGISTER_CONTROLLER(CEFootBotDiffusion, "efootbot_diffusion_controller")
+REGISTER_CONTROLLER(CFootBotDiffusion, "footbot_diffusion_controller")

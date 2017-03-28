@@ -16,8 +16,8 @@
  *    experiments/diffusion_10.argos
  */
 
-#ifndef EFOOTBOT_DIFFUSION_H
-#define EFOOTBOT_DIFFUSION_H
+#ifndef FOOTBOT_DIFFUSION_H
+#define FOOTBOT_DIFFUSION_H
 
 /*
  * Include some necessary headers.
@@ -27,17 +27,7 @@
 /* Definition of the differential steering actuator */
 #include <argos3/plugins/robots/generic/control_interface/ci_differential_steering_actuator.h>
 /* Definition of the foot-bot proximity sensor */
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_sensor.h"
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_actuator.h"
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h"
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_battery_sensor.h"
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_id_sensor.h"
-#include <argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_sensor.h>
-#include <argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_actuator.h>
-#include <argos3/plugins/robots/generic/control_interface/ci_leds_actuator.h>
-#include <argos3/core/simulator/entity/entity.h>
-
-
+#include <argos3/plugins/robots/foot-bot/control_interface/ci_footbot_proximity_sensor.h>
 
 /*
  * All the ARGoS stuff in the 'argos' namespace.
@@ -48,15 +38,15 @@ using namespace argos;
 /*
  * A controller is simply an implementation of the CCI_Controller class.
  */
-class CEFootBotDiffusion : public CCI_Controller {
+class CFootBotDiffusion : public CCI_Controller {
 
-  public:
+public:
 
    /* Class constructor. */
-   CEFootBotDiffusion();
+   CFootBotDiffusion();
 
    /* Class destructor. */
-   virtual ~CEFootBotDiffusion() {}
+   virtual ~CFootBotDiffusion() {}
 
    /*
     * This function initializes the controller.
@@ -94,13 +84,8 @@ private:
    /* Pointer to the differential steering actuator */
    CCI_DifferentialSteeringActuator* m_pcWheels;
    /* Pointer to the foot-bot proximity sensor */
-   CCI_EFootBotProximitySensor* m_pcProximity;
-   CCI_IdSensor* m_pcIdSensor;
-   CCI_RangeAndBearingSensor* m_pcRABS;
-   CCI_RangeAndBearingActuator* m_pcRABA;
+   CCI_FootBotProximitySensor* m_pcProximity;
 
-   CCI_EFootBotDistanceScannerSensor* m_pcDistanceSensor;
-   CCI_EFootBotDistanceScannerActuator* m_pcDistanceActuator;
    /*
     * The following variables are used as parameters for the
     * algorithm. You can set their value in the <parameters> section
@@ -118,19 +103,12 @@ private:
     * and grows exponentially to 1 when the obstacle is
     * touching the robot.
     */
-   CCI_BatterySensor* m_batterySensor;
-   
-   Real m_id;
    Real m_fDelta;
    /* Wheel speed. */
    Real m_fWheelVelocity;
    /* Angle tolerance range to go straight.
     * It is set to [-alpha,alpha]. */
    CRange<CRadians> m_cGoStraightAngleRange;
-
-    // testing the LEDs
-  CCI_LEDsActuator* m_pcLEDs;
-  CEntity* c_entity;
 
 };
 

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test
+CMAKE_SOURCE_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test
+CMAKE_BINARY_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/CMakeFiles /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion/CMakeFiles /home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named efootbot_diffusion
+# Target rules for targets named footbot_diffusion
 
 # Build rule for target.
-efootbot_diffusion: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 efootbot_diffusion
-.PHONY : efootbot_diffusion
+footbot_diffusion: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 footbot_diffusion
+.PHONY : footbot_diffusion
 
 # fast build rule for target.
-efootbot_diffusion/fast:
-	$(MAKE) -f CMakeFiles/efootbot_diffusion.dir/build.make CMakeFiles/efootbot_diffusion.dir/build
-.PHONY : efootbot_diffusion/fast
+footbot_diffusion/fast:
+	$(MAKE) -f CMakeFiles/footbot_diffusion.dir/build.make CMakeFiles/footbot_diffusion.dir/build
+.PHONY : footbot_diffusion/fast
 
-efootbot_diffusion.o: efootbot_diffusion.cpp.o
+footbot_diffusion.o: footbot_diffusion.cpp.o
 
-.PHONY : efootbot_diffusion.o
+.PHONY : footbot_diffusion.o
 
 # target to build an object file
-efootbot_diffusion.cpp.o:
-	$(MAKE) -f CMakeFiles/efootbot_diffusion.dir/build.make CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.o
-.PHONY : efootbot_diffusion.cpp.o
+footbot_diffusion.cpp.o:
+	$(MAKE) -f CMakeFiles/footbot_diffusion.dir/build.make CMakeFiles/footbot_diffusion.dir/footbot_diffusion.cpp.o
+.PHONY : footbot_diffusion.cpp.o
 
-efootbot_diffusion.i: efootbot_diffusion.cpp.i
+footbot_diffusion.i: footbot_diffusion.cpp.i
 
-.PHONY : efootbot_diffusion.i
+.PHONY : footbot_diffusion.i
 
 # target to preprocess a source file
-efootbot_diffusion.cpp.i:
-	$(MAKE) -f CMakeFiles/efootbot_diffusion.dir/build.make CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.i
-.PHONY : efootbot_diffusion.cpp.i
+footbot_diffusion.cpp.i:
+	$(MAKE) -f CMakeFiles/footbot_diffusion.dir/build.make CMakeFiles/footbot_diffusion.dir/footbot_diffusion.cpp.i
+.PHONY : footbot_diffusion.cpp.i
 
-efootbot_diffusion.s: efootbot_diffusion.cpp.s
+footbot_diffusion.s: footbot_diffusion.cpp.s
 
-.PHONY : efootbot_diffusion.s
+.PHONY : footbot_diffusion.s
 
 # target to generate assembly for a file
-efootbot_diffusion.cpp.s:
-	$(MAKE) -f CMakeFiles/efootbot_diffusion.dir/build.make CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.s
-.PHONY : efootbot_diffusion.cpp.s
+footbot_diffusion.cpp.s:
+	$(MAKE) -f CMakeFiles/footbot_diffusion.dir/build.make CMakeFiles/footbot_diffusion.dir/footbot_diffusion.cpp.s
+.PHONY : footbot_diffusion.cpp.s
 
 # Help Target
 help:
@@ -158,10 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... efootbot_diffusion"
-	@echo "... efootbot_diffusion.o"
-	@echo "... efootbot_diffusion.i"
-	@echo "... efootbot_diffusion.s"
+	@echo "... footbot_diffusion"
+	@echo "... footbot_diffusion.o"
+	@echo "... footbot_diffusion.i"
+	@echo "... footbot_diffusion.s"
 .PHONY : help
 
 

@@ -6,16 +6,36 @@
 
 #IncludeRegexTransform: 
 
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_battery_sensor.h
+argos3/core/control_interface/ci_sensor.h
+-
+argos3/core/utility/math/rng.h
+-
+
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_actuator.h
+argos3/core/control_interface/ci_actuator.h
+-
+argos3/core/utility/math/angles.h
+-
+
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_sensor.h
+argos3/core/control_interface/ci_sensor.h
+-
+argos3/core/utility/math/angles.h
+-
+vector
+-
+
 /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h
 argos3/core/control_interface/ci_sensor.h
 -
 argos3/core/utility/math/angles.h
 -
 
-/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h
-argos3/core/control_interface/ci_sensor.h
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_id_sensor.h
+argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_sensor.h
 -
-argos3/core/utility/math/rng.h
+argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_actuator.h
 -
 
 /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion/efootbot_diffusion.cpp
@@ -27,16 +47,30 @@ argos3/core/utility/math/vector2.h
 -
 argos3/core/utility/logging/argos_log.h
 -
+string
+-
 
 /home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion/efootbot_diffusion.h
 argos3/core/control_interface/ci_controller.h
 -
 argos3/plugins/robots/generic/control_interface/ci_differential_steering_actuator.h
 -
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_sensor.h
+-
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_actuator.h
+-
 /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h
 -
-/home/ivan/dev/argos-custom/argos3/plugins/robots/e-pucky/control_interface/ci_battery_sensor.h
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_battery_sensor.h
+-
+/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_id_sensor.h
+-
+argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_sensor.h
+-
+argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_actuator.h
 -
 argos3/plugins/robots/generic/control_interface/ci_leds_actuator.h
+-
+argos3/core/simulator/entity/entity.h
 -
 

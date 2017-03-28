@@ -10,6 +10,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_actuator.cpp.o"
   "CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.o"
   "CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_battery_sensor.cpp.o"
+  "CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_id_sensor.cpp.o"
   "CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/dynamics2d_efootbot_model.cpp.o"
   "CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_base_ground_rotzonly_sensor.cpp.o"
   "CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_distance_scanner_default_actuator.cpp.o"

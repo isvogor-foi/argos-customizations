@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/efootbot_diffusion.cpp" "/home/ivan/dev/argos-custom/argos3/plugins/robots/temp/footbot_diffusion_test/CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.o"
+  "/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion/footbot_diffusion.cpp" "/home/ivan/dev/argos-custom/argos3/plugins/robots/controllers/footbot/footbot_diffusion/CMakeFiles/footbot_diffusion.dir/footbot_diffusion.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

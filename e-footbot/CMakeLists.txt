@@ -18,7 +18,9 @@ set(ARGOS3_HEADERS_PLUGINS_ROBOTS_EFOOTBOT_CONTROLINTERFACE
   control_interface/ci_efootbot_turret_actuator.h
   control_interface/ci_efootbot_turret_encoder_sensor.h
   # battery
-  control_interface/ci_battery_sensor.h)
+  control_interface/ci_battery_sensor.h
+  # id
+  control_interface/ci_id_sensor.h)
 # argos3/plugins/robots/foot-bot/simulator
 
 
@@ -57,7 +59,9 @@ set(ARGOS3_SOURCES_PLUGINS_ROBOTS_EFOOTBOT
   control_interface/ci_efootbot_turret_actuator.cpp
   control_interface/ci_efootbot_turret_encoder_sensor.cpp
   #battery
-  control_interface/ci_battery_sensor.cpp)
+  control_interface/ci_battery_sensor.cpp
+  #id
+  control_interface/ci_id_sensor.cpp)
 
   set(ARGOS3_SOURCES_PLUGINS_ROBOTS_EFOOTBOT
     ${ARGOS3_SOURCES_PLUGINS_ROBOTS_EFOOTBOT}

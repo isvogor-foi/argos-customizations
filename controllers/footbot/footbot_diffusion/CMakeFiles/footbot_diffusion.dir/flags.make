@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS = -fPIC  
 
-CXX_DEFINES = -Defootbot_diffusion_EXPORTS
+CXX_DEFINES = -Dfootbot_diffusion_EXPORTS
 
 CXX_INCLUDES = 
 

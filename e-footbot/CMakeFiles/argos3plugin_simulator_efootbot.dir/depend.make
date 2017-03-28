@@ -34,6 +34,9 @@ CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_tur
 CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.o: control_interface/ci_efootbot_turret_encoder_sensor.cpp
 CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_turret_encoder_sensor.cpp.o: control_interface/ci_efootbot_turret_encoder_sensor.h
 
+CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_id_sensor.cpp.o: control_interface/ci_id_sensor.cpp
+CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_id_sensor.cpp.o: control_interface/ci_id_sensor.h
+
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o: control_interface/ci_battery_sensor.h
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o: simulator/battery_sensor.cpp
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o: simulator/battery_sensor.h
