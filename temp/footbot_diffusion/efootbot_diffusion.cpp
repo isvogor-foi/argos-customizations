@@ -59,7 +59,7 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_pcDistanceActuator   = GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner"    );
 
    m_pcDistanceActuator->Enable();
-   m_pcDistanceActuator->SetRPM(15);
+   //m_pcDistanceActuator->SetRPM(15);
 
    //c_entity = GetEntity<CEntity>("e-footbot");
    /*
@@ -103,7 +103,7 @@ void CEFootBotDiffusion::ControlStep() {
     }
 
     // getting id-s from sensor array
-    // RLOG << "ID: " << m_id << " data: " << text << std::endl;
+     RLOG << "ID: " << m_id << " data: " << text << std::endl;
 
     CCI_EFootBotDistanceScannerSensor::TReadingsMap datamap = m_pcDistanceSensor->GetReadingsMap();
     std::map<CRadians,Real>::iterator it = datamap.begin();
