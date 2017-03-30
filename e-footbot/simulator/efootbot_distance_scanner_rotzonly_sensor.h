@@ -74,8 +74,12 @@ namespace argos {
 
       CRay3 m_cShortRangeRays0[6];
       CRay3 m_cShortRangeRays2[6];
+
       CRay3 m_cLongRangeRays1[6];
       CRay3 m_cLongRangeRays3[6];
+
+      CRay3 m_cLongRangeRays4[6];
+      CRay3 m_cLongRangeRays5[6];
 
       /* Internally used to speed up ray calculations */
       CVector3 m_cDirection;

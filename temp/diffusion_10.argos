@@ -24,7 +24,7 @@
         <efootbot_distance_scanner implementation="default" />
       </actuators>
       <sensors>
-        <efootbot_distance_scanner implementation="rot_z_only" show_rays="true"/>
+        <efootbot_distance_scanner implementation="rot_z_only" show_rays="true" noise_std_dev="0"/>
         <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
         <efootbot_proximity implementation="default" show_rays="false" />
         <battery implementation="default" 
@@ -71,9 +71,9 @@
         standard deviation is 360 degrees.
     -->
     <distribute>
-      <position method="uniform" min="-2,-2,0" max="2,2,0" />
+      <position method="uniform" min="-1,-1,0" max="1,1,0" />
       <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="2" max_trials="100">
+      <entity quantity="5" max_trials="100">
         <e-footbot id="fb" rab_data_size="2" rab_range="5">
           <controller config="fdc" />
         </e-footbot>
@@ -86,7 +86,7 @@
     <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="uniform" min="0,0,0" max="360,0,0" />
-      <entity quantity="1" max_trials="100">
+      <entity quantity="0" max_trials="100">
         <box id="b" size="0.3,0.3,0.5" movable="false" />
       </entity>
     </distribute>
@@ -99,7 +99,7 @@
     <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="constant" values="0,0,0" />
-      <entity quantity="1" max_trials="100">
+      <entity quantity="0" max_trials="100">
         <cylinder id="c" height="0.5" radius="0.15" movable="false" />
       </entity>
     </distribute>

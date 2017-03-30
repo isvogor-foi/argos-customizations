@@ -15,7 +15,7 @@ namespace argos {
    /****************************************/
    /****************************************/
 
-   static const Real EFOOTBOT_RADIUS           = 0.085036758f;
+   static const Real EFOOTBOT_RADIUS          = 0.085036758f;
 
    static const Real SHORT_RANGE_MIN_DISTANCE = 0.0f;
    static const Real SHORT_RANGE_RAY_START    = EFOOTBOT_RADIUS;
@@ -23,7 +23,8 @@ namespace argos {
 
    static const Real LONG_RANGE_MIN_DISTANCE  = 0.12f;
    static const Real LONG_RANGE_RAY_START     = EFOOTBOT_RADIUS;
-   static const Real LONG_RANGE_RAY_END       = EFOOTBOT_RADIUS + 1.42f;
+   //static const Real LONG_RANGE_RAY_END       = EFOOTBOT_RADIUS + 1.42f;
+   static const Real LONG_RANGE_RAY_END       = EFOOTBOT_RADIUS + 4.92f; 	//5m range
 
    static const Real SENSOR_ELEVATION         = 0.123199866f;
 
@@ -126,6 +127,7 @@ namespace argos {
       fReading = CalculateReadingForRay(m_cLongRangeRays1[0], LONG_RANGE_MIN_DISTANCE);
       m_tLongReadingsMap[cAngle] = fReading;
       m_tReadingsMap[cAngle] = fReading;
+      // pair
       /* Short range [2] */
       cAngle += CRadians::PI_OVER_TWO;
       cAngle.SignedNormalize();
@@ -133,11 +135,27 @@ namespace argos {
       m_tShortReadingsMap[cAngle] = fReading;
       m_tReadingsMap[cAngle] = fReading;
       /* Long range [3] */
-      cAngle += CRadians::PI_OVER_TWO;
+      cAngle += CRadians::PI_OVER_TWO; // todo: setting the angle (I need this)
       cAngle.SignedNormalize();
       fReading = CalculateReadingForRay(m_cLongRangeRays3[0], LONG_RANGE_MIN_DISTANCE);
       m_tLongReadingsMap[cAngle] = fReading;
       m_tReadingsMap[cAngle] = fReading;
+
+      /* pair
+      cAngle += CRadians::PI_OVER_THREE;
+      cAngle.SignedNormalize();
+      fReading = CalculateReadingForRay(m_cLongRangeRays4[0], SHORT_RANGE_MIN_DISTANCE);
+      m_tLongReadingsMap[cAngle] = fReading;
+      m_tReadingsMap[cAngle] = fReading;
+      */
+      // this is to set angle as index! -- not really related to calculations
+      cAngle += CRadians::PI_OVER_TWO; // todo: setting the angle (I need this)
+      cAngle.SignedNormalize();
+      fReading = CalculateReadingForRay(m_cLongRangeRays5[0], LONG_RANGE_MIN_DISTANCE);
+      m_tLongReadingsMap[cAngle] = fReading;
+      m_tReadingsMap[cAngle] = fReading;
+
+
    }
 
    /****************************************/
@@ -188,6 +206,22 @@ namespace argos {
       m_tLongReadingsMap[cAngle] = fReading;
       m_tReadingsMap[cAngle] = fReading;
       ADD_READINGS(m_cLongRangeRays3, m_tLongReadingsMap, LONG_RANGE_MIN_DISTANCE);
+
+      /*
+      cAngle = cStartAngle + CRadians::PI_OVER_THREE + CRadians::PI;
+		cAngle.SignedNormalize();
+		fReading = CalculateReadingForRay(m_cLongRangeRays4[0], LONG_RANGE_MIN_DISTANCE);
+		m_tLongReadingsMap[cAngle] = fReading;
+		m_tReadingsMap[cAngle] = fReading;
+		ADD_READINGS(m_cLongRangeRays4, m_tLongReadingsMap, LONG_RANGE_MIN_DISTANCE);
+*/
+      cAngle = cStartAngle + CRadians::PI_OVER_THREE + CRadians::PI;
+		cAngle.SignedNormalize();
+		fReading = CalculateReadingForRay(m_cLongRangeRays5[0], LONG_RANGE_MIN_DISTANCE);
+		m_tLongReadingsMap[cAngle] = fReading;
+		m_tReadingsMap[cAngle] = fReading;
+		ADD_READINGS(m_cLongRangeRays5, m_tLongReadingsMap, LONG_RANGE_MIN_DISTANCE);
+
    }
 
    /****************************************/
@@ -246,6 +280,7 @@ namespace argos {
    m_cRayEnd.SetZ(m_cRayEnd.GetZ() + SENSOR_ELEVATION);     \
    m_cShortRangeRays2[INDEX].Set(m_cRayStart, m_cRayEnd);   \
                                                             \
+// changing here changes visualization, not data reading?
 /* Highly reuse the vectors to speed up the computation */
 #define CALCULATE_LONG_RANGE_RAY(ANGLE,INDEX)               \
    m_cDirection.RotateZ(ANGLE);                             \
@@ -266,8 +301,50 @@ namespace argos {
    m_cRayEnd = m_pcEmbodiedEntity->GetOriginAnchor().Position;  \
    m_cRayEnd -= m_cOriginRayEnd;                            \
    m_cRayEnd.SetZ(m_cRayEnd.GetZ() + SENSOR_ELEVATION);     \
-   m_cLongRangeRays3[INDEX].Set(m_cRayStart, m_cRayEnd);
+   m_cLongRangeRays3[INDEX].Set(m_cRayStart, m_cRayEnd);	\
+   // changing here changes visualization, not data reading?
+   /* Highly reuse the vectors to speed up the computation */
+ #define CALCULATE_LONG_RANGE_RAY3(ANGLE,INDEX)               \
+	m_cDirection.RotateZ(ANGLE);                             \
+	m_cOriginRayStart = m_cDirection;                        \
+	m_cOriginRayEnd = m_cDirection;                          \
+	m_cOriginRayStart *= LONG_RANGE_RAY_START;               \
+	m_cOriginRayEnd *= LONG_RANGE_RAY_END;                   \
+	m_cRayStart = m_pcEmbodiedEntity->GetOriginAnchor().Position;;                        \
+	m_cRayStart += m_cOriginRayStart; \
+	m_cRayStart.SetZ(m_cRayStart.GetZ() + SENSOR_ELEVATION); \
+	m_cRayEnd = m_pcEmbodiedEntity->GetOriginAnchor().Position;  \
+	m_cRayEnd += m_cOriginRayEnd;                \
+	m_cRayEnd.SetZ(m_cRayEnd.GetZ() + SENSOR_ELEVATION);     \
+	m_cLongRangeRays5[INDEX].Set(m_cRayStart, m_cRayEnd); \
 
+#define CALCULATE_LONG_RANGE_RAY1(ANGLE,INDEX)               \
+	m_cDirection.RotateZ(ANGLE);                             \
+	m_cOriginRayStart = m_cDirection;                        \
+	m_cOriginRayEnd = m_cDirection;                          \
+	m_cOriginRayStart *= LONG_RANGE_RAY_START;               \
+	m_cOriginRayEnd *= LONG_RANGE_RAY_END;                   \
+	m_cRayStart = m_pcEmbodiedEntity->GetOriginAnchor().Position;  \
+	m_cRayStart += m_cOriginRayStart;                        \
+	m_cRayStart.SetZ(m_cRayStart.GetZ() + SENSOR_ELEVATION); \
+	m_cRayEnd = m_pcEmbodiedEntity->GetOriginAnchor().Position;  \
+	m_cRayEnd += m_cOriginRayEnd;                            \
+	m_cRayEnd.SetZ(m_cRayEnd.GetZ() + SENSOR_ELEVATION);     \
+	m_cLongRangeRays1[INDEX].Set(m_cRayStart, m_cRayEnd);    \
+
+#define CALCULATE_LONG_RANGE_RAY2(ANGLE,INDEX)               \
+   m_cDirection.RotateZ(ANGLE);                             \
+   m_cOriginRayStart = m_cDirection;                        \
+   m_cOriginRayEnd = m_cDirection;                          \
+   m_cOriginRayStart *= LONG_RANGE_RAY_START;               \
+   m_cOriginRayEnd *= LONG_RANGE_RAY_END;                   \
+   m_cRayStart = m_pcEmbodiedEntity->GetOriginAnchor().Position;  \
+   m_cRayStart += m_cOriginRayStart;                        \
+   m_cRayStart.SetZ(m_cRayStart.GetZ() + SENSOR_ELEVATION); \
+   m_cRayEnd = m_pcEmbodiedEntity->GetOriginAnchor().Position;  \
+   m_cRayEnd += m_cOriginRayEnd;                            \
+   m_cRayEnd.SetZ(m_cRayEnd.GetZ() + SENSOR_ELEVATION);     \
+   m_cLongRangeRays3[INDEX].Set(m_cRayStart, m_cRayEnd);	\
    /****************************************/
    /****************************************/
 
@@ -284,8 +361,15 @@ namespace argos {
       m_cDirection = CVector3::X;
       CALCULATE_SHORT_RANGE_RAY(cAbsoluteOrientation, 0);
       /* The short range sensors are oriented along the foot-bot local Y */
-      m_cDirection = CVector3::Y;
-      CALCULATE_LONG_RANGE_RAY(cAbsoluteOrientation, 0);
+      m_cDirection = CVector3::X;
+      //m_cDirection.RotateZ(CRadians::TWO_PI / 3);
+      CALCULATE_LONG_RANGE_RAY1(cAbsoluteOrientation, 0);
+      m_cDirection = CVector3::X;
+      m_cDirection.RotateZ(CRadians::TWO_PI / 3);
+      CALCULATE_LONG_RANGE_RAY2(cAbsoluteOrientation, 0);
+      m_cDirection = CVector3::X;
+      m_cDirection.RotateZ((CRadians::TWO_PI / 3) * 2);
+      CALCULATE_LONG_RANGE_RAY3(cAbsoluteOrientation, 0);
    }
 
    /****************************************/
@@ -311,6 +395,10 @@ namespace argos {
       CALCULATE_SHORT_RANGE_RAY(cInterSensorSpan, 4);
       CALCULATE_SHORT_RANGE_RAY(cInterSensorSpan, 5);
       /* The long range sensors are oriented along the foot-bot local Y */
+      //m_cDirection = CVector3(0.5, 0.5, 0);
+      // control number of rays (here we have 6)
+      // influences visualization
+      /* old -- working
       m_cDirection = CVector3::Y;
       CALCULATE_LONG_RANGE_RAY(cAbsoluteOrientation, 0);
       CALCULATE_LONG_RANGE_RAY(cInterSensorSpan, 1);
@@ -318,6 +406,31 @@ namespace argos {
       CALCULATE_LONG_RANGE_RAY(cInterSensorSpan, 3);
       CALCULATE_LONG_RANGE_RAY(cInterSensorSpan, 4);
       CALCULATE_LONG_RANGE_RAY(cInterSensorSpan, 5);
+      */
+      m_cDirection = CVector3::X;
+      //m_cDirection.RotateZ(CRadians::TWO_PI / 3);
+      CALCULATE_LONG_RANGE_RAY1(cAbsoluteOrientation, 0);
+      CALCULATE_LONG_RANGE_RAY1(cInterSensorSpan, 1);
+      CALCULATE_LONG_RANGE_RAY1(cInterSensorSpan, 2);
+      CALCULATE_LONG_RANGE_RAY1(cInterSensorSpan, 3);
+      CALCULATE_LONG_RANGE_RAY1(cInterSensorSpan, 4);
+      CALCULATE_LONG_RANGE_RAY1(cInterSensorSpan, 5);
+      m_cDirection = CVector3::X;
+      m_cDirection.RotateZ(CRadians::TWO_PI / 3);
+      CALCULATE_LONG_RANGE_RAY2(cAbsoluteOrientation, 0);
+      CALCULATE_LONG_RANGE_RAY2(cInterSensorSpan, 1);
+      CALCULATE_LONG_RANGE_RAY2(cInterSensorSpan, 2);
+      CALCULATE_LONG_RANGE_RAY2(cInterSensorSpan, 3);
+      CALCULATE_LONG_RANGE_RAY2(cInterSensorSpan, 4);
+      CALCULATE_LONG_RANGE_RAY2(cInterSensorSpan, 5);
+      m_cDirection = CVector3::X;
+      m_cDirection.RotateZ((CRadians::TWO_PI / 3) * 2);
+      CALCULATE_LONG_RANGE_RAY3(cAbsoluteOrientation, 0);
+      CALCULATE_LONG_RANGE_RAY3(cInterSensorSpan, 1);
+      CALCULATE_LONG_RANGE_RAY3(cInterSensorSpan, 2);
+      CALCULATE_LONG_RANGE_RAY3(cInterSensorSpan, 3);
+      CALCULATE_LONG_RANGE_RAY3(cInterSensorSpan, 4);
+      CALCULATE_LONG_RANGE_RAY3(cInterSensorSpan, 5);
    }
 
    /****************************************/

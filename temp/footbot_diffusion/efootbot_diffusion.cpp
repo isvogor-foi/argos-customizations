@@ -59,7 +59,7 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_pcDistanceActuator   = GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner"    );
 
    m_pcDistanceActuator->Enable();
-   m_pcDistanceActuator->SetRPM(30);
+   m_pcDistanceActuator->SetRPM(15);
 
    //c_entity = GetEntity<CEntity>("e-footbot");
    /*
