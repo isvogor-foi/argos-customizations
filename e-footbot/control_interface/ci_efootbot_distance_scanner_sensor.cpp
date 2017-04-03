@@ -22,6 +22,13 @@ namespace argos {
   /****************************************/
   /****************************************/
 
+  void CCI_EFootBotDistanceScannerSensor::SetRotationDirection(int direction){
+	  m_ciRotationDirection = direction;
+  }
+
+  /****************************************/
+  /****************************************/
+
   const CCI_EFootBotDistanceScannerSensor::TReadingsMap& CCI_EFootBotDistanceScannerSensor::GetShortReadingsMap(){
     return m_tShortReadingsMap;
   }
@@ -31,6 +38,10 @@ namespace argos {
 
   const CCI_EFootBotDistanceScannerSensor::TReadingsMap& CCI_EFootBotDistanceScannerSensor::GetLongReadingsMap(){
     return m_tLongReadingsMap;
+  }
+
+  CRadians CCI_EFootBotDistanceScannerSensor::GetAngle(){
+	  return m_currentAngle;
   }
 
    

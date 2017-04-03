@@ -70,7 +70,6 @@ namespace argos {
       UInt32 m_unMode;
       CRadians m_cRotation;
       Real m_fRotationSpeed;
-
    };
 }
 

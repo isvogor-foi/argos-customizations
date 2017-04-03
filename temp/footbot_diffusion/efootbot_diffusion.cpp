@@ -6,6 +6,8 @@
 #include <argos3/core/utility/math/vector2.h>
 #include <argos3/core/utility/logging/argos_log.h>
 #include <string>
+#include <argos3/core/utility/math/angles.h>
+
 /****************************************/
 /****************************************/
 
@@ -59,7 +61,13 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_pcDistanceActuator   = GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner"    );
 
    m_pcDistanceActuator->Enable();
-   //m_pcDistanceActuator->SetRPM(15);
+   angle = CRadians(0);      
+   
+   m_pcIdSensor = new CCI_IdSensor(m_pcRABS, m_pcRABA, m_id);
+   m_trilaserSensor = new CCI_TriLaserSensor(m_pcDistanceActuator, m_pcDistanceSensor);
+
+
+   //
 
    //c_entity = GetEntity<CEntity>("e-footbot");
    /*
@@ -75,6 +83,7 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    GetNodeAttributeOrDefault(t_node, "velocity", m_fWheelVelocity, m_fWheelVelocity);
    //GetNodeAttributeOrDefault(t_node, "id", m_id, m_id);
    m_id = FromString<UInt16>(GetId().substr(2));
+   simulationTime = 0;
 
 }
 
@@ -87,7 +96,6 @@ void CEFootBotDiffusion::ControlStep() {
       intensityCompensation = 20;
     if(m_batterySensor->GetSoc() <= 45)
       intensityCompensation = -15;
-    m_pcIdSensor = new CCI_IdSensor(m_pcRABS, m_pcRABA, m_id);
     
     //m_pcRABA->ClearData();
     //m_pcRABA->SetData(0, m_id);
@@ -103,7 +111,9 @@ void CEFootBotDiffusion::ControlStep() {
     }
 
     // getting id-s from sensor array
-     RLOG << "ID: " << m_id << " data: " << text << std::endl;
+    // RLOG << "ID: " << m_id << " data: " << text << std::endl;
+    // RLOG << " angle: " << m_pcDistanceSensor->GetAngle()<< std::endl;
+
 
     CCI_EFootBotDistanceScannerSensor::TReadingsMap datamap = m_pcDistanceSensor->GetReadingsMap();
     std::map<CRadians,Real>::iterator it = datamap.begin();
@@ -141,6 +151,21 @@ void CEFootBotDiffusion::ControlStep() {
       }
    }
     // RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << value.R <<":"<< value.G <<":"<< value.B << std::endl;
+    simulationTime++;
+
+    if(simulationTime >= 15){
+      angle = CRadians(0.5);      
+      rotation = 1;
+    } 
+    if (simulationTime >= 40){
+      angle = CRadians(0.3);
+      rotation = 0;      
+    } 
+    if (simulationTime >= 240){
+      angle = CRadians(0.5);  
+    }
+
+    m_trilaserSensor->SetAngle(angle, rotation);
 
 }
 

@@ -22,7 +22,7 @@ namespace argos {
 namespace argos {
 
    class CEFootBotDistanceScannerDefaultActuator : public CSimulatedActuator,
-                                                  public CCI_EFootBotDistanceScannerActuator {
+                                                   public CCI_EFootBotDistanceScannerActuator {
 
    public:
 
@@ -45,11 +45,9 @@ namespace argos {
    private:
 
       CEFootBotDistanceScannerEquippedEntity* m_pcDistanceScannerEquippedEntity;
-
       CRadians m_cDesiredRotation;
       Real     m_fDesiredRotationSpeed;
       UInt8    m_unDesiredMode;
-
    };
 
 }

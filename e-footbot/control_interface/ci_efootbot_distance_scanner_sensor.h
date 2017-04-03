@@ -55,7 +55,7 @@
 namespace argos {
    class CCI_EFootBotDistanceScannerSensor;
 }
-
+#include "ci_efootbot_distance_scanner_actuator.h"
 #include <argos3/core/control_interface/ci_sensor.h>
 #include <argos3/core/utility/math/angles.h>
 #include <vector>
@@ -145,6 +145,12 @@ namespace argos {
        */
       const TReadingsMap& GetLongReadingsMap();
 
+      CRadians GetAngle();
+
+      void SetRotationDirection(int direction);
+
+      int m_ciRotationDirection;
+
 #ifdef ARGOS_WITH_LUA
       virtual void CreateLuaState(lua_State* pt_lua_state);
 
@@ -167,6 +173,8 @@ namespace argos {
 
       /** Map storing the last received packets from the long distance sensors. */
       TReadingsMap m_tLongReadingsMap;
+
+      CRadians m_currentAngle;
 
    };
 

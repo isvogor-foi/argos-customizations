@@ -11,6 +11,7 @@ CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_dis
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_actuator.cpp
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_actuator.h
 CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_distance_scanner_sensor.cpp.o
+ /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_actuator.h
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_sensor.cpp
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_sensor.h
 CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_encoder_sensor.cpp.o
@@ -37,6 +38,11 @@ CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_efootbot_tur
 CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_id_sensor.cpp.o
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_id_sensor.cpp
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_id_sensor.h
+CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_trilaser_sensor.cpp.o
+ /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_actuator.h
+ /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_sensor.h
+ /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_trilaser_sensor.cpp
+ /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_trilaser_sensor.h
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/battery_sensor.cpp.o
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_battery_sensor.h
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/battery_sensor.cpp
@@ -66,6 +72,7 @@ CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_distance_scann
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/efootbot_distance_scanner_equipped_entity.cpp
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/efootbot_distance_scanner_equipped_entity.h
 CMakeFiles/argos3plugin_simulator_efootbot.dir/simulator/efootbot_distance_scanner_rotzonly_sensor.cpp.o
+ /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_actuator.h
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_sensor.h
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/efootbot_distance_scanner_equipped_entity.h
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/efootbot_distance_scanner_rotzonly_sensor.cpp

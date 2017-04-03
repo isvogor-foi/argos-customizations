@@ -32,6 +32,7 @@
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h"
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_battery_sensor.h"
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_id_sensor.h"
+#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_trilaser_sensor.h"
 #include <argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_sensor.h>
 #include <argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_actuator.h>
 #include <argos3/plugins/robots/generic/control_interface/ci_leds_actuator.h>
@@ -96,6 +97,8 @@ private:
    /* Pointer to the foot-bot proximity sensor */
    CCI_EFootBotProximitySensor* m_pcProximity;
    CCI_IdSensor* m_pcIdSensor;
+   CCI_TriLaserSensor* m_trilaserSensor;
+
    CCI_RangeAndBearingSensor* m_pcRABS;
    CCI_RangeAndBearingActuator* m_pcRABA;
 
@@ -119,6 +122,8 @@ private:
     * touching the robot.
     */
    CCI_BatterySensor* m_batterySensor;
+
+   //void UpdateAngle(CRadians angle);
    
    Real m_id;
    Real m_fDelta;
@@ -131,6 +136,9 @@ private:
     // testing the LEDs
   CCI_LEDsActuator* m_pcLEDs;
   CEntity* c_entity;
+  CRadians angle;    
+  int rotation;  
+  Real simulationTime;
 
 };
 

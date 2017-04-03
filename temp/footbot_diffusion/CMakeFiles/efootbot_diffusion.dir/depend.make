@@ -6,6 +6,7 @@ CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.o: /home/ivan/dev/argos
 CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_sensor.h
 CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h
 CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_id_sensor.h
+CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.o: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_trilaser_sensor.h
 CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.o: efootbot_diffusion.cpp
 CMakeFiles/efootbot_diffusion.dir/efootbot_diffusion.cpp.o: efootbot_diffusion.h
 

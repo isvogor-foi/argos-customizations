@@ -46,7 +46,7 @@ namespace argos {
    void CEFootBotDistanceScannerEquippedEntity::Update() {
       if(m_unMode == MODE_SPEED_CONTROL &&
          m_fRotationSpeed != 0.0f) {
-         m_cRotation += CRadians(m_fRotationSpeed * CPhysicsEngine::GetSimulationClockTick());
+    	 m_cRotation += CRadians(m_fRotationSpeed * CPhysicsEngine::GetSimulationClockTick());
          m_cRotation.UnsignedNormalize();
       }
    }

@@ -447,6 +447,33 @@ control_interface/ci_id_sensor.cpp.s:
 	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_id_sensor.cpp.s
 .PHONY : control_interface/ci_id_sensor.cpp.s
 
+control_interface/ci_trilaser_sensor.o: control_interface/ci_trilaser_sensor.cpp.o
+
+.PHONY : control_interface/ci_trilaser_sensor.o
+
+# target to build an object file
+control_interface/ci_trilaser_sensor.cpp.o:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_trilaser_sensor.cpp.o
+.PHONY : control_interface/ci_trilaser_sensor.cpp.o
+
+control_interface/ci_trilaser_sensor.i: control_interface/ci_trilaser_sensor.cpp.i
+
+.PHONY : control_interface/ci_trilaser_sensor.i
+
+# target to preprocess a source file
+control_interface/ci_trilaser_sensor.cpp.i:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_trilaser_sensor.cpp.i
+.PHONY : control_interface/ci_trilaser_sensor.cpp.i
+
+control_interface/ci_trilaser_sensor.s: control_interface/ci_trilaser_sensor.cpp.s
+
+.PHONY : control_interface/ci_trilaser_sensor.s
+
+# target to generate assembly for a file
+control_interface/ci_trilaser_sensor.cpp.s:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_efootbot.dir/build.make CMakeFiles/argos3plugin_simulator_efootbot.dir/control_interface/ci_trilaser_sensor.cpp.s
+.PHONY : control_interface/ci_trilaser_sensor.cpp.s
+
 simulator/battery_sensor.o: simulator/battery_sensor.cpp.o
 
 .PHONY : simulator/battery_sensor.o
@@ -924,6 +951,9 @@ help:
 	@echo "... control_interface/ci_id_sensor.o"
 	@echo "... control_interface/ci_id_sensor.i"
 	@echo "... control_interface/ci_id_sensor.s"
+	@echo "... control_interface/ci_trilaser_sensor.o"
+	@echo "... control_interface/ci_trilaser_sensor.i"
+	@echo "... control_interface/ci_trilaser_sensor.s"
 	@echo "... simulator/battery_sensor.o"
 	@echo "... simulator/battery_sensor.i"
 	@echo "... simulator/battery_sensor.s"
