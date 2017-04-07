@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ivan/dev/argos3/argos3-examples
+CMAKE_SOURCE_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ivan/dev/argos3/argos3-examples
+CMAKE_BINARY_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/ivan/dev/argos3/argos3-examples && $(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos3/argos3-examples/CMakeFiles /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions/CMakeFiles/progress.marks
-	cd /home/ivan/dev/argos3/argos3-examples && $(MAKE) -f CMakeFiles/Makefile2 loop_functions/id_loop_functions/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos3/argos3-examples/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/CMakeFiles /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/CMakeFiles/progress.marks
+	$(MAKE) -f CMakeFiles/Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ivan/dev/argos3/argos3-examples && $(MAKE) -f CMakeFiles/Makefile2 loop_functions/id_loop_functions/clean
+	$(MAKE) -f CMakeFiles/Makefile2 clean
 .PHONY : clean
 
 # The main clean target
@@ -97,32 +97,30 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ivan/dev/argos3/argos3-examples && $(MAKE) -f CMakeFiles/Makefile2 loop_functions/id_loop_functions/preinstall
+	$(MAKE) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ivan/dev/argos3/argos3-examples && $(MAKE) -f CMakeFiles/Makefile2 loop_functions/id_loop_functions/preinstall
+	$(MAKE) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ivan/dev/argos3/argos3-examples && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/rule:
-	cd /home/ivan/dev/argos3/argos3-examples && $(MAKE) -f CMakeFiles/Makefile2 loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/rule
-.PHONY : loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/rule
+#=============================================================================
+# Target rules for targets named id_loop_functions
 
-# Convenience name for target.
-id_loop_functions: loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/rule
-
+# Build rule for target.
+id_loop_functions: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 id_loop_functions
 .PHONY : id_loop_functions
 
 # fast build rule for target.
 id_loop_functions/fast:
-	cd /home/ivan/dev/argos3/argos3-examples && $(MAKE) -f loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/build.make loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/build
+	$(MAKE) -f CMakeFiles/id_loop_functions.dir/build.make CMakeFiles/id_loop_functions.dir/build
 .PHONY : id_loop_functions/fast
 
 id_qtuser_functions.o: id_qtuser_functions.cpp.o
@@ -131,7 +129,7 @@ id_qtuser_functions.o: id_qtuser_functions.cpp.o
 
 # target to build an object file
 id_qtuser_functions.cpp.o:
-	cd /home/ivan/dev/argos3/argos3-examples && $(MAKE) -f loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/build.make loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o
+	$(MAKE) -f CMakeFiles/id_loop_functions.dir/build.make CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o
 .PHONY : id_qtuser_functions.cpp.o
 
 id_qtuser_functions.i: id_qtuser_functions.cpp.i
@@ -140,7 +138,7 @@ id_qtuser_functions.i: id_qtuser_functions.cpp.i
 
 # target to preprocess a source file
 id_qtuser_functions.cpp.i:
-	cd /home/ivan/dev/argos3/argos3-examples && $(MAKE) -f loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/build.make loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.i
+	$(MAKE) -f CMakeFiles/id_loop_functions.dir/build.make CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.i
 .PHONY : id_qtuser_functions.cpp.i
 
 id_qtuser_functions.s: id_qtuser_functions.cpp.s
@@ -149,7 +147,7 @@ id_qtuser_functions.s: id_qtuser_functions.cpp.s
 
 # target to generate assembly for a file
 id_qtuser_functions.cpp.s:
-	cd /home/ivan/dev/argos3/argos3-examples && $(MAKE) -f loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/build.make loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.s
+	$(MAKE) -f CMakeFiles/id_loop_functions.dir/build.make CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.s
 .PHONY : id_qtuser_functions.cpp.s
 
 # Help Target
@@ -175,6 +173,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ivan/dev/argos3/argos3-examples && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

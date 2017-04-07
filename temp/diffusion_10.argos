@@ -126,7 +126,10 @@
   <!-- * Visualization * -->
   <!-- ****************** -->
   <visualization>
-    <qt-opengl />
+    <qt-opengl>
+        <user_functions library="/home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/libid_loop_functions.so"
+                label="id_qtuser_functions2" />
+    </qt-opengl>
   </visualization>
 
 </argos-configuration>

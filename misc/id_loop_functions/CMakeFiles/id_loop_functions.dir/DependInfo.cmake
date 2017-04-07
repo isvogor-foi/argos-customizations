@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions/id_qtuser_functions.cpp" "/home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o"
+  "/home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/id_qtuser_functions.cpp" "/home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -22,8 +22,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/qt4/QtOpenGL"
   "/usr/include/qt4/QtGui"
   "/usr/include/qt4/QtCore"
-  "."
-  "/usr/local/include"
   )
 
 # Targets to which this target links.

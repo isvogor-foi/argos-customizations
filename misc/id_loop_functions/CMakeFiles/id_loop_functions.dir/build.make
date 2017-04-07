@@ -43,42 +43,42 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ivan/dev/argos3/argos3-examples
+CMAKE_SOURCE_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ivan/dev/argos3/argos3-examples
+CMAKE_BINARY_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions
 
 # Include any dependencies generated for this target.
-include loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/depend.make
+include CMakeFiles/id_loop_functions.dir/depend.make
 
 # Include the progress variables for this target.
-include loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/progress.make
+include CMakeFiles/id_loop_functions.dir/progress.make
 
 # Include the compile flags for this target's objects.
-include loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/flags.make
+include CMakeFiles/id_loop_functions.dir/flags.make
 
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o: loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/flags.make
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o: loop_functions/id_loop_functions/id_qtuser_functions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos3/argos3-examples/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o"
-	cd /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o -c /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions/id_qtuser_functions.cpp
+CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o: CMakeFiles/id_loop_functions.dir/flags.make
+CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o: id_qtuser_functions.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/id_qtuser_functions.cpp
 
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.i: cmake_force
+CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.i"
-	cd /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions/id_qtuser_functions.cpp > CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/id_qtuser_functions.cpp > CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.i
 
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.s: cmake_force
+CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.s"
-	cd /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions/id_qtuser_functions.cpp -o CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/id_qtuser_functions.cpp -o CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.s
 
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.requires:
+CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.requires:
 
-.PHONY : loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.requires
+.PHONY : CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.requires
 
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.provides: loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.requires
-	$(MAKE) -f loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/build.make loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.provides.build
-.PHONY : loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.provides
+CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.provides: CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.requires
+	$(MAKE) -f CMakeFiles/id_loop_functions.dir/build.make CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.provides.build
+.PHONY : CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.provides
 
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.provides.build: loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o
+CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.provides.build: CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o
 
 
 # Object files for target id_loop_functions
@@ -88,34 +88,38 @@ id_loop_functions_OBJECTS = \
 # External object files for target id_loop_functions
 id_loop_functions_EXTERNAL_OBJECTS =
 
-loop_functions/id_loop_functions/libid_loop_functions.so: loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o
-loop_functions/id_loop_functions/libid_loop_functions.so: loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/build.make
-loop_functions/id_loop_functions/libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libQtOpenGL.so
-loop_functions/id_loop_functions/libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libQtGui.so
-loop_functions/id_loop_functions/libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libQtCore.so
-loop_functions/id_loop_functions/libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libglut.so
-loop_functions/id_loop_functions/libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libXmu.so
-loop_functions/id_loop_functions/libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libXi.so
-loop_functions/id_loop_functions/libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libGLU.so
-loop_functions/id_loop_functions/libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libGL.so
-loop_functions/id_loop_functions/libid_loop_functions.so: loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ivan/dev/argos3/argos3-examples/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module libid_loop_functions.so"
-	cd /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/id_loop_functions.dir/link.txt --verbose=$(VERBOSE)
+libid_loop_functions.so: CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o
+libid_loop_functions.so: CMakeFiles/id_loop_functions.dir/build.make
+libid_loop_functions.so: /home/ivan/dev/argos3/core/libargos3core_simulator.so
+libid_loop_functions.so: /home/ivan/dev/argos3/plugins/simulator/entities/libargos3plugin_simulator_entities.so
+libid_loop_functions.so: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/libargos3plugin_simulator_efootbot.so
+libid_loop_functions.so: /home/ivan/dev/argos3/plugins/simulator/visualizations/qt-opengl/libargos3plugin_simulator_qtopengl.so
+libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libQtOpenGL.so
+libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libQtGui.so
+libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libQtCore.so
+libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libglut.so
+libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libXmu.so
+libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libXi.so
+libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libGLU.so
+libid_loop_functions.so: /usr/lib/x86_64-linux-gnu/libGL.so
+libid_loop_functions.so: CMakeFiles/id_loop_functions.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module libid_loop_functions.so"
+	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/id_loop_functions.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/build: loop_functions/id_loop_functions/libid_loop_functions.so
+CMakeFiles/id_loop_functions.dir/build: libid_loop_functions.so
 
-.PHONY : loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/build
+.PHONY : CMakeFiles/id_loop_functions.dir/build
 
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/requires: loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.requires
+CMakeFiles/id_loop_functions.dir/requires: CMakeFiles/id_loop_functions.dir/id_qtuser_functions.cpp.o.requires
 
-.PHONY : loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/requires
+.PHONY : CMakeFiles/id_loop_functions.dir/requires
 
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/clean:
-	cd /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions && $(CMAKE_COMMAND) -P CMakeFiles/id_loop_functions.dir/cmake_clean.cmake
-.PHONY : loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/clean
+CMakeFiles/id_loop_functions.dir/clean:
+	$(CMAKE_COMMAND) -P CMakeFiles/id_loop_functions.dir/cmake_clean.cmake
+.PHONY : CMakeFiles/id_loop_functions.dir/clean
 
-loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/depend:
-	cd /home/ivan/dev/argos3/argos3-examples && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ivan/dev/argos3/argos3-examples /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions /home/ivan/dev/argos3/argos3-examples /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions /home/ivan/dev/argos3/argos3-examples/loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/DependInfo.cmake --color=$(COLOR)
-.PHONY : loop_functions/id_loop_functions/CMakeFiles/id_loop_functions.dir/depend
+CMakeFiles/id_loop_functions.dir/depend:
+	cd /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions /home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/CMakeFiles/id_loop_functions.dir/DependInfo.cmake --color=$(COLOR)
+.PHONY : CMakeFiles/id_loop_functions.dir/depend
 
