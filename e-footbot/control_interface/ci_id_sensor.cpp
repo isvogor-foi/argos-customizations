@@ -34,11 +34,11 @@ namespace argos{
 				angle = 360 + angle;
 			}
 			int pos = fmod(round(angle / 30), 12.0f);
-			//std::cout<<"ID: "<<m_id <<" - pos: "<< pos * 30 << ":" <<(angle)<<std::endl;
 			int sensor_angle = pos * 30;
+			// std::cout << m_id << " I see: " << data[i].Data[0] << " at: " << angle << " --> " << pos << ", " << sensor_angle <<std::endl;
 			// if robot is not in the gap, add it to array; todo: currently one robot per sensor?
 			if(sensor_angle - 15 + gap < angle && angle < sensor_angle + 15 - gap){
-				sensor_array.insert(sensor_array.begin() + pos, data[i].Data[0]);
+				sensor_array[pos] = data[i].Data[0];
 			}
 		}
 		return sensor_array;

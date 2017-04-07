@@ -63,9 +63,6 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_pcDistanceActuator->Enable();
    angle = CRadians(0);      
    
-   m_pcIdSensor = new CCI_IdSensor(m_pcRABS, m_pcRABA, m_id);
-   m_trilaserSensor = new CCI_TriLaserSensor(m_pcDistanceActuator, m_pcDistanceSensor);
-
 
    //
 
@@ -83,6 +80,12 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    GetNodeAttributeOrDefault(t_node, "velocity", m_fWheelVelocity, m_fWheelVelocity);
    //GetNodeAttributeOrDefault(t_node, "id", m_id, m_id);
    m_id = FromString<UInt16>(GetId().substr(2));
+
+   m_pcIdSensor = new CCI_IdSensor(m_pcRABS, m_pcRABA, m_id);
+   m_trilaserSensor = new CCI_TriLaserSensor(m_pcDistanceActuator, m_pcDistanceSensor);
+
+
+
    simulationTime = 0;
 
 }
@@ -111,7 +114,7 @@ void CEFootBotDiffusion::ControlStep() {
     }
 
     // getting id-s from sensor array
-    // RLOG << "ID: " << m_id << " data: " << text << std::endl;
+    RLOG << int(result.size()) << " ID: " << m_id << " data: " << text << std::endl;
     // RLOG << " angle: " << m_pcDistanceSensor->GetAngle()<< std::endl;
 
 
