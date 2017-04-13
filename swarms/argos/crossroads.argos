@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<argos-configuration>
+
+  <!-- ************************* -->
+  <!-- * General configuration * -->
+  <!-- ************************* -->
+  <framework>
+    <system threads="0" />
+    <experiment length="800"
+                ticks_per_second="10"
+                random_seed="5489" />
+  </framework>
+
+  <!-- *************** -->
+  <!-- * Controllers * -->
+  <!-- *************** -->
+<controllers>
+
+    <buzz_controller_efootbot id="bcf">
+      <actuators>
+        <differential_steering implementation="default" />
+        <leds                  implementation="default" medium="leds" />
+        <range_and_bearing  implementation="default" />
+      </actuators>
+      <sensors>
+        <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
+        <battery implementation="default" nominal_voltage="4.2" empty_voltage="2.7"
+          randomize_soc="false"
+          discharge_type="non-linear"
+          starting_capacity_percentage="1" 
+          starting_capacity_jitter_min="60"
+          starting_capacity_jitter_max="100"
+          nominal_capacity="0.2"
+          charging_current="15"
+          current_consumption_jitter_min="80"
+          current_consumption_jitter_max="120"
+          idle_i="0.2" 
+          drive_i="1.2" 
+          proc_i="0.8"/>
+      </sensors>
+      <params bytecode_file="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/buzz/swarmnetwork.bo" debug_file="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/buzz/swarmnetwork.bdb">
+        <wheel_turning hard_turn_angle_threshold="90"
+                       soft_turn_angle_threshold="70"
+                       no_turn_angle_threshold="10"
+                       max_speed="25" />
+      </params>
+    </buzz_controller_efootbot>
+
+        <buzz_controller_base_station id="bsf">
+      <actuators>
+        <differential_steering implementation="default" />
+        <range_and_bearing implementation="default" />
+      </actuators>
+      <sensors>
+        <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
+      </sensors>
+      <params bytecode_file="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/buzz/swarmnetwork.bo" debug_file="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/buzz/swarmnetwork.bdb">
+        <wheel_turning hard_turn_angle_threshold="90"
+                       soft_turn_angle_threshold="70"
+                       no_turn_angle_threshold="10"
+                       max_speed="10" />
+      </params>
+    </buzz_controller_base_station>
+
+  </controllers>
+  <!-- *********************** -->
+  <!-- * Arena configuration * -->
+  <!-- *********************** -->
+  <arena size="50, 50, 1" center="0,0,0">
+
+  <distribute>
+      <position method="uniform" min="-0.5,-0.5,0" max="0.5,0.5,0" />
+      <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
+      <entity quantity="9" max_trials="100">
+        <e-footbot id="fb" rab_data_size="1000" rab_range="30">
+          <controller config="bcf" />
+        </e-footbot>
+      </entity>
+    </distribute>
+
+     <distribute>
+      <position method="uniform" min="-2,-2,0" max="2,2,0" />
+      <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
+      <entity quantity="1" max_trials="100">
+        <base-station id="fb1" rab_data_size="1000" rab_range="30">
+          <controller config="bsf" />
+        </base-station>
+      </entity>
+    </distribute>
+
+  </arena>
+
+  <!-- ******************* -->
+  <!-- * Physics engines * -->
+  <!-- ******************* -->
+
+  <physics_engines>
+   <dynamics2d id="dyn2d" />
+  </physics_engines>
+
+  <!-- ********* -->
+  <!-- * Media * -->
+  <!-- ********* -->
+  <media>
+    <range_and_bearing id="rab" />
+    <led id="leds" />
+  </media>
+
+  <!-- ****************** -->
+  <!-- * Visualization * -->
+  <!-- ****************** -->
+<visualization>
+  <qt-opengl>
+    <user_functions label="buzz_qt" />
+  </qt-opengl>
+</visualization>
+
+</argos-configuration>

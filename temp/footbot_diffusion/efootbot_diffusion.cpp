@@ -156,16 +156,17 @@ void CEFootBotDiffusion::ControlStep() {
     // RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << value.R <<":"<< value.G <<":"<< value.B << std::endl;
     simulationTime++;
 
-    if(simulationTime >= 15){
-      angle = CRadians(0.5);      
-      rotation = 1;
+    if(simulationTime >= 20){
+      angle = CRadians(0.2);      
+      rotation = 0;
     } 
     if (simulationTime >= 40){
-      angle = CRadians(0.3);
+      angle = CRadians(0.4);
       rotation = 0;      
     } 
-    if (simulationTime >= 240){
-      angle = CRadians(0.5);  
+    if (simulationTime >= 80){
+      angle = CRadians(1.0);
+      rotation = 0;  
     }
 
     m_trilaserSensor->SetAngle(angle, rotation);

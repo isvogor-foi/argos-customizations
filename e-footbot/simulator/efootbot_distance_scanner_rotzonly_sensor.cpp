@@ -379,14 +379,25 @@ namespace argos {
       CRadians cTmp1, cTmp2, cOrientationZ;
       m_pcEmbodiedEntity->GetOriginAnchor().Orientation.ToEulerAngles(cOrientationZ, cTmp1, cTmp2);
       /* Sum the distance scanner orientation */
-      cOrientationZ += m_cLastDistScanRotation;
       /* Calculate the 2D vector representing this rotation */
+      // 1 cw, 0 ccw
       if(m_ciRotationDirection == 0){
-    	   cOrientationZ = -cOrientationZ;
+          cOrientationZ -= m_cLastDistScanRotation;
+      } else {
+          cOrientationZ += m_cLastDistScanRotation;
       }
-      CVector2 cAbsoluteOrientation(1.0, cOrientationZ);
+
+      CVector2 cAbsoluteOrientation;
       /* The sensor is rotating, so calculate the span between each successive ray */
-      CVector2 cInterSensorSpan(1.0f, (m_pcDistScanEntity->GetRotation() - m_cLastDistScanRotation).UnsignedNormalize() / 6.0f);
+      CVector2 cInterSensorSpan;
+      if(m_ciRotationDirection == 0){
+          cAbsoluteOrientation = CVector2(1.0, cOrientationZ);
+    	  cInterSensorSpan = CVector2(1.0f, (m_pcDistScanEntity->GetRotation() - m_cLastDistScanRotation).UnsignedNormalize() / 6.0f);
+      } else {
+          cAbsoluteOrientation = CVector2(1.0, cOrientationZ);
+    	  cInterSensorSpan = CVector2(1.0f, (m_pcDistScanEntity->GetRotation() - m_cLastDistScanRotation).UnsignedNormalize() / 6.0f);
+      }
+
       /* The short range sensors are oriented along the foot-bot local X */
       m_cDirection = CVector3::X;
       CALCULATE_SHORT_RANGE_RAY(cAbsoluteOrientation, 0);
