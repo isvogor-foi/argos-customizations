@@ -156,16 +156,16 @@ void CEFootBotDiffusion::ControlStep() {
     // RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << value.R <<":"<< value.G <<":"<< value.B << std::endl;
     simulationTime++;
 
-    if(simulationTime >= 20){
+    if(simulationTime >= 10){
       angle = CRadians(0.2);      
       rotation = 0;
     } 
-    if (simulationTime >= 40){
+    if (simulationTime >= 25){
       angle = CRadians(0.4);
-      rotation = 0;      
+      rotation = 1;      
     } 
-    if (simulationTime >= 80){
-      angle = CRadians(1.0);
+    if (simulationTime >= 40){
+      angle = CRadians(0.6);
       rotation = 0;  
     }
 

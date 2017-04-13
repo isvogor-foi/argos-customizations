@@ -46,21 +46,20 @@
   <!-- *********************** -->
   <!-- * Arena configuration * -->
   <!-- *********************** -->
-  <arena size="10, 10, 1" center="0,0,0.5">
+  <arena size="5, 5, 1" center="0,0,0.5">
 
     <box id="wall_north" size="4,0.1,0.5" movable="false">
-      <body position="0,5,0" orientation="0,0,0" />
+      <body position="0,2,0" orientation="0,0,0" />
     </box>
     <box id="wall_south" size="4,0.1,0.5" movable="false">
-      <body position="0,-5,0" orientation="0,0,0" />
+      <body position="0,-2,0" orientation="0,0,0" />
     </box>
     <box id="wall_east" size="0.1,4,0.5" movable="false">
-      <body position="5,0,0" orientation="0,0,0" />
+      <body position="2,0,0" orientation="0,0,0" />
     </box>
     <box id="wall_west" size="0.1,4,0.5" movable="false">
-      <body position="-5,0,0" orientation="0,0,0" />
+      <body position="-2,0,0" orientation="0,0,0" />
     </box>
-
 
     <!--
         You can distribute entities randomly. Here, we distribute
@@ -72,8 +71,8 @@
         standard deviation is 360 degrees.
     -->
     <distribute>
-      <position method="uniform" min="-1,-1,0" max="1,1,0" />
-      <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
+      <position method="uniform" min="0,0,0" max="0,0,0" />
+      <orientation method="gaussian" mean="0,0,0" std_dev="0,0,0" />
       <entity quantity="1" max_trials="100">
         <e-footbot id="fb" rab_data_size="2" rab_range="5">
           <controller config="fdc" />

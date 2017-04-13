@@ -87,6 +87,7 @@ namespace argos {
       CVector3 m_cOriginRayEnd;
       CVector3 m_cRayStart;
       CVector3 m_cRayEnd;
+      int m_lastRotation;
    };
 
 }
