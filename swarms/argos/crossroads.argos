@@ -6,85 +6,137 @@
   <!-- ************************* -->
   <framework>
     <system threads="0" />
-    <experiment length="800"
+    <experiment length="0"
                 ticks_per_second="10"
-                random_seed="5489" />
+                random_seed="124" />
   </framework>
 
   <!-- *************** -->
   <!-- * Controllers * -->
   <!-- *************** -->
-<controllers>
+  <controllers>
 
-    <buzz_controller_efootbot id="bcf">
+    <efootbot_diffusion_controller id="fdc" library="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/footbot_diffusion/libefootbot_diffusion.so">
       <actuators>
         <differential_steering implementation="default" />
-        <leds                  implementation="default" medium="leds" />
+        <leds implementation="default" medium="leds" />
         <range_and_bearing  implementation="default" />
+        <efootbot_distance_scanner implementation="default" />
       </actuators>
       <sensors>
+        <positioning implementation="default" />
+        <efootbot_distance_scanner implementation="rot_z_only" show_rays="true" noise_std_dev="0"/>
         <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
-        <battery implementation="default" nominal_voltage="4.2" empty_voltage="2.7"
-          randomize_soc="false"
+        <efootbot_proximity implementation="default" show_rays="true" />
+        <battery implementation="default" 
           discharge_type="non-linear"
-          starting_capacity_percentage="1" 
-          starting_capacity_jitter_min="60"
-          starting_capacity_jitter_max="100"
-          nominal_capacity="0.2"
-          charging_current="15"
-          current_consumption_jitter_min="80"
-          current_consumption_jitter_max="120"
-          idle_i="0.2" 
-          drive_i="1.2" 
-          proc_i="0.8"/>
+          starting_soc="1.0" 
+          c_rating="50000"
+          nominal_voltage="4.2"
+          empty_voltage="2.7"
+          nominal_capacity="0.0001"
+          idle_i="0.4" 
+          drive_i="1.5" 
+          proc_i="1.0"/>
       </sensors>
-      <params bytecode_file="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/buzz/swarmnetwork.bo" debug_file="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/buzz/swarmnetwork.bdb">
-        <wheel_turning hard_turn_angle_threshold="90"
-                       soft_turn_angle_threshold="70"
-                       no_turn_angle_threshold="10"
-                       max_speed="25" />
-      </params>
-    </buzz_controller_efootbot>
-
-        <buzz_controller_base_station id="bsf">
-      <actuators>
-        <differential_steering implementation="default" />
-        <range_and_bearing implementation="default" />
-      </actuators>
-      <sensors>
-        <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
-      </sensors>
-      <params bytecode_file="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/buzz/swarmnetwork.bo" debug_file="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/buzz/swarmnetwork.bdb">
-        <wheel_turning hard_turn_angle_threshold="90"
-                       soft_turn_angle_threshold="70"
-                       no_turn_angle_threshold="10"
-                       max_speed="10" />
-      </params>
-    </buzz_controller_base_station>
+      <params alpha="7.5" delta="0.1" velocity="15" />
+    </efootbot_diffusion_controller>
 
   </controllers>
+
+  <!-- ****************** -->
+  <!-- * Loop functions * -->
+  <!-- ****************** -->
+  <loop_functions library="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/crossroad_loops/libid_loop_functions.so" label="crossroad_functions">
+  </loop_functions>
+
   <!-- *********************** -->
   <!-- * Arena configuration * -->
   <!-- *********************** -->
-  <arena size="50, 50, 1" center="0,0,0">
+  <arena size="10, 10, 1" center="0,0,0.5">
 
-  <distribute>
-      <position method="uniform" min="-0.5,-0.5,0" max="0.5,0.5,0" />
-      <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="9" max_trials="100">
-        <e-footbot id="fb" rab_data_size="1000" rab_range="30">
-          <controller config="bcf" />
+
+    <floor id="floor" source="loop_functions" pixels_per_meter="50" />
+
+    <box id="wall_north" size="10,0.1,0.5" movable="false">
+      <body position="0,5,0" orientation="0,0,0" />
+    </box>
+    <box id="wall_south" size="10,0.1,0.5" movable="false">
+      <body position="0,-5,0" orientation="0,0,0" />
+    </box>
+    <box id="wall_east" size="0.1,10,0.5" movable="false">
+      <body position="5,0,0" orientation="0,0,0" />
+    </box>
+    <box id="wall_west" size="0.1,10,0.5" movable="false">
+      <body position="-5,0,0" orientation="0,0,0" />
+    </box>
+
+    <box id="w1" size="4, 0.1, 0.2" movable="false">
+      <body position="3, 1, 0" orientation="0,0,0" />
+    </box>
+    <box id="w2" size="4, 0.1, 0.2" movable="false">
+      <body position="3, -1, 0" orientation="0,0,0" />
+    </box>
+    <box id="w3" size="4, 0.1, 0.2" movable="false">
+      <body position="-3, 1, 0" orientation="0,0,0" />
+    </box>
+    <box id="w4" size="4, 0.1, 0.2" movable="false">
+      <body position="-3, -1, 0" orientation="0,0,0" />
+    </box>
+
+    <box id="w5" size="0.1, 4, 0.2" movable="false">
+      <body position="1, 3, 0" orientation="0,0,0" />
+    </box>
+      <box id="w6" size="0.1, 4, 0.2" movable="false">
+      <body position="-1, 3, 0" orientation="0,0,0" />
+    </box>
+    <box id="w7" size="0.1, 4, 0.2" movable="false">
+      <body position="1, -3, 0" orientation="0,0,0" />
+    </box>
+      <box id="w8" size="0.1, 4, 0.2" movable="false">
+      <body position="-1, -3, 0" orientation="0,0,0" />
+    </box>
+
+    <!--
+        You can distribute entities randomly. Here, we distribute
+        10 foot-bots in this way:
+        - the position is uniformly distributed
+        on the ground, in the square whose corners are (-2,-2) and (2,2)
+        - the orientations are non-zero only when rotating around Z and chosen
+        from a gaussian distribution, whose mean is zero degrees and
+        standard deviation is 360 degrees.
+    -->
+    <distribute>
+      <position method="uniform" min="-1,-1,0" max="1,1,0" />
+      <orientation method="gaussian" mean="0,0,0" std_dev="0,0,0" />
+      <entity quantity="1" max_trials="100">
+        <e-footbot id="fb" rab_data_size="2" rab_range="5">
+          <controller config="fdc" />
         </e-footbot>
       </entity>
     </distribute>
 
-     <distribute>
+    <!--
+        We distribute 5 boxes uniformly in position and rotation around Z.
+    -->
+    <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
-      <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="1" max_trials="100">
-        <base-station id="fb1" rab_data_size="1000" rab_range="30">
-          <controller config="bsf" />
-        </base-station>
+      <orientation method="uniform" min="0,0,0" max="360,0,0" />
+      <entity quantity="0" max_trials="100">
+        <box id="b" size="0.3,0.3,0.5" movable="false" />
+      </entity>
+    </distribute>
+
+    <!--
+        We distribute cylinders uniformly in position and with
+        constant rotation (rotating a cylinder around Z does not
+        matter)
+    -->
+    <distribute>
+      <position method="uniform" min="-2,-2,0" max="2,2,0" />
+      <orientation method="constant" values="0,0,0" />
+      <entity quantity="0" max_trials="100">
+        <cylinder id="c" height="0.5" radius="0.15" movable="false" />
       </entity>
     </distribute>
 
@@ -93,14 +145,14 @@
   <!-- ******************* -->
   <!-- * Physics engines * -->
   <!-- ******************* -->
-
   <physics_engines>
-   <dynamics2d id="dyn2d" />
+    <dynamics2d id="dyn2d" />
   </physics_engines>
 
   <!-- ********* -->
   <!-- * Media * -->
   <!-- ********* -->
+
   <media>
     <range_and_bearing id="rab" />
     <led id="leds" />
@@ -109,10 +161,11 @@
   <!-- ****************** -->
   <!-- * Visualization * -->
   <!-- ****************** -->
-<visualization>
-  <qt-opengl>
-    <user_functions label="buzz_qt" />
-  </qt-opengl>
-</visualization>
+  <visualization>
+    <qt-opengl>crossroad_functions
+        <user_functions library="/home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/libid_loop_functions.so"
+                label="id_qtuser_functions2" />
+    </qt-opengl>
+  </visualization>
 
 </argos-configuration>
