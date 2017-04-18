@@ -14,8 +14,9 @@ namespace argos{
 		m_Sensor = sensor;
 	}
 
-	void CCI_TriLaserSensor::SetAngle(CRadians angle, int clockwise){
+	bool CCI_TriLaserSensor::SetAngle(CRadians angle, int clockwise){
 	    float dif = 2; // tolerance
+
 	    double targetAngle = angle.GetValue() * CRadians::RADIANS_TO_DEGREES;
 	    double currentAngle = m_Sensor->GetAngle().GetValue() * CRadians::RADIANS_TO_DEGREES;
 	    m_Sensor->SetRotationDirection(clockwise);
@@ -24,8 +25,10 @@ namespace argos{
 
 	    if(currentAngle - dif < targetAngle && targetAngle < currentAngle + dif){
 	    	m_Actuator->SetRPM(0);
+	    	return false;
 	    } else {
 	    	m_Actuator->SetRPM(5);
+	    	return true;
 	    }
 	}
 

@@ -86,7 +86,7 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
 
 
 
-   simulationTime = 0;
+   simulationTime = 1;
 
 }
 
@@ -94,6 +94,7 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
 /****************************************/
 
 void CEFootBotDiffusion::ControlStep() {
+  simulationTime++;
     int intensityCompensation = 0;
     if(m_batterySensor->GetSoc() > 80)
       intensityCompensation = 20;
@@ -120,10 +121,15 @@ void CEFootBotDiffusion::ControlStep() {
 
     CCI_EFootBotDistanceScannerSensor::TReadingsMap datamap = m_pcDistanceSensor->GetReadingsMap();
     std::map<CRadians,Real>::iterator it = datamap.begin();
-
-    for(; it != datamap.end(); ++it){
-      RLOG << m_id << ". Readings: " << it->second << std::endl;
+    
+    if(!m_trilaserSensor->SetAngle(angle, rotation)){
+        
+      for(; it != datamap.end(); ++it){
+        RLOG << m_id << ". Readings: " << it->second << std::endl;
+      }
     }
+
+
 
 
 
@@ -154,22 +160,28 @@ void CEFootBotDiffusion::ControlStep() {
       }
    }
     // RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << value.R <<":"<< value.G <<":"<< value.B << std::endl;
-    simulationTime++;
+    
 
     if(simulationTime >= 10){
       angle = CRadians(0.2);      
       rotation = 0;
+
     } 
     if (simulationTime >= 25){
       angle = CRadians(0.4);
       rotation = 1;      
+
     } 
     if (simulationTime >= 40){
       angle = CRadians(0.6);
       rotation = 0;  
+
     }
 
-    m_trilaserSensor->SetAngle(angle, rotation);
+    std::cout<<"Moving: " << m_trilaserSensor->SetAngle(angle, rotation) <<std::endl;
+
+
+
 
 }
 

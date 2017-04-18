@@ -23,7 +23,7 @@ public:
 	#endif
 public:
     CCI_TriLaserSensor(CCI_EFootBotDistanceScannerActuator* actuator, CCI_EFootBotDistanceScannerSensor* sensor);
-    void SetAngle(CRadians angle, int clockwise);
+    bool SetAngle(CRadians angle, int clockwise);
 private:
 
     CCI_EFootBotDistanceScannerActuator* m_Actuator;

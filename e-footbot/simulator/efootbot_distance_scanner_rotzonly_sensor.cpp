@@ -96,7 +96,6 @@ namespace argos {
             	m_pcDistScanEntity->SetRotation(-m_cLastDistScanRotation);
             	m_cLastDistScanRotation = m_pcDistScanEntity->GetRotation();
             }
-
             /* Rotating sensor */
             /* Recalculate the rays */
             CalculateRaysRotating();
