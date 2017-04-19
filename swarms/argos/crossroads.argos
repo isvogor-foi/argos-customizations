@@ -56,7 +56,7 @@
   <arena size="10, 10, 1" center="0,0,0.5">
 
 
-    <floor id="floor" source="loop_functions" pixels_per_meter="50" />
+    <floor id="floor" source="image" pixels_per_meter="50" path="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/misc/crossroad.png"/>
 
     <box id="wall_north" size="10,0.1,0.5" movable="false">
       <body position="0,5,0" orientation="0,0,0" />
@@ -106,19 +106,45 @@
         from a gaussian distribution, whose mean is zero degrees and
         standard deviation is 360 degrees.
     -->
-    <distribute>
-      <position method="uniform" min="-1,-1,0" max="1,1,0" />
-      <orientation method="gaussian" mean="0,0,0" std_dev="0,0,0" />
-      <entity quantity="1" max_trials="100">
-        <e-footbot id="fb" rab_data_size="2" rab_range="5">
-          <controller config="fdc" />
-        </e-footbot>
-      </entity>
-    </distribute>
 
-    <!--
-        We distribute 5 boxes uniformly in position and rotation around Z.
-    -->
+    <!-- footboot up (id: fu0, fu1) -->
+    <e-footbot id="fu0" rab_data_size="2" rab_range="5">
+      <body position="-2.0,-0.3,0.0" orientation="0,0,0" />
+      <controller config="fdc" />
+    </e-footbot>
+    <e-footbot id="fu1" rab_data_size="2" rab_range="5">
+      <body position="-2.4,-0.7,0.0" orientation="0,0,0" />
+      <controller config="fdc" />
+    </e-footbot>
+    <!-- footboot down (id: fd0, fd1) -->
+    <e-footbot id="fd0" rab_data_size="2" rab_range="5">
+      <body position="2.0,0.3,0.0" orientation="180,0,0" />
+      <controller config="fdc" />
+    </e-footbot>
+    <e-footbot id="fd1" rab_data_size="2" rab_range="5">
+      <body position="2.4,0.7,0.0" orientation="180,0,0" />
+      <controller config="fdc" />
+    </e-footbot>
+        <!-- footboot right (id: fr0, fr1) -->
+    <e-footbot id="fr0" rab_data_size="2" rab_range="5">
+      <body position="-0.3,2.0,0.0" orientation="270,0,0" />
+      <controller config="fdc" />
+    </e-footbot>
+    <e-footbot id="fr1" rab_data_size="2" rab_range="5">
+      <body position="-0.7,2.4,0.0" orientation="270,0,0" />
+      <controller config="fdc" />
+    </e-footbot>
+    <!-- footboot left (id: fl0, fl1) -->
+    <e-footbot id="fl0" rab_data_size="2" rab_range="5">
+      <body position="0.3,-2.0,0.0" orientation="90,0,0" />
+      <controller config="fdc" />
+    </e-footbot>
+    <e-footbot id="fl1" rab_data_size="2" rab_range="5">
+      <body position="0.7,-2.4,0.0" orientation="90,0,0" />
+      <controller config="fdc" />
+    </e-footbot>
+
+    <!-- We distribute 5 boxes uniformly in position and rotation around Z. -->
     <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="uniform" min="0,0,0" max="360,0,0" />
@@ -165,7 +191,13 @@
     <qt-opengl>crossroad_functions
         <user_functions library="/home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/libid_loop_functions.so"
                 label="id_qtuser_functions2" />
+
+      <camera>
+        <placement idx="0" position="-5,0,2" look_at="0,0,0" lens_focal_length="20" />
+        <placement idx="1" position="0.884183,0.359128,0.40269" look_at="0.924486,-0.486744,-0.0415919" lens_focal_length="20" />
+      </camera>
     </qt-opengl>
+
   </visualization>
 
 </argos-configuration>

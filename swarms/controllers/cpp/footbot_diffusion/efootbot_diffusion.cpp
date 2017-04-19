@@ -54,15 +54,7 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_pcProximity = GetSensor  <CCI_EFootBotProximitySensor      >("efootbot_proximity"    );
    m_batterySensor = GetSensor<CCI_BatterySensor                >("battery");
    m_pcLEDs        = GetActuator <CCI_LEDsActuator              >("leds");
-   //m_pcIdSensor = GetSensor  <CCI_IdSensor                      >("range_and_bearing"    );
-   m_pcRABS      = GetSensor  <CCI_RangeAndBearingSensor        >("range_and_bearing"    );
-   m_pcRABA       = GetActuator  <CCI_RangeAndBearingActuator        >("range_and_bearing"    );
-   m_pcDistanceSensor   = GetSensor <CCI_EFootBotDistanceScannerSensor>("efootbot_distance_scanner"    );
-   m_pcDistanceActuator   = GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner"    );
    m_positioningSensor = GetSensor<CCI_PositioningSensor>("positioning");
-   m_pcDistanceActuator->Enable();
-   angle = CRadians(0);      
-   
 
    //
 
@@ -81,9 +73,6 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    //GetNodeAttributeOrDefault(t_node, "id", m_id, m_id);
    m_id = FromString<UInt16>(GetId().substr(2));
 
-   m_pcIdSensor = new CCI_IdSensor(m_pcRABS, m_pcRABA, m_id);
-   m_trilaserSensor = new CCI_TriLaserSensor(m_pcDistanceActuator, m_pcDistanceSensor);
-
    simulationTime = 0;
 
 }
@@ -92,12 +81,7 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
 /****************************************/
 
 void CEFootBotDiffusion::ControlStep() {
-    int intensityCompensation = 0;
-    if(m_batterySensor->GetSoc() > 80)
-      intensityCompensation = 20;
-    if(m_batterySensor->GetSoc() <= 45)
-      intensityCompensation = -15;
-
+  
    /* Get readings from proximity sensor */
    const CCI_EFootBotProximitySensor::TReadings& tProxReads = m_pcProximity->GetReadings();
    /* Sum them together */
@@ -124,10 +108,8 @@ void CEFootBotDiffusion::ControlStep() {
          m_pcWheels->SetLinearVelocity(0.0f, m_fWheelVelocity);
       }
    }
-    // RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << value.R <<":"<< value.G <<":"<< value.B << std::endl;
-    simulationTime++;
-    RLOG << "Position: " << m_positioningSensor->GetReading().Position << std::endl;
 
+  RLOG << "Position: " << m_positioningSensor->GetReading().Position << std::endl;
 
 
 }
