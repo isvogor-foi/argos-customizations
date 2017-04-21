@@ -55,6 +55,10 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_batterySensor = GetSensor<CCI_BatterySensor                >("battery");
    m_pcLEDs        = GetActuator <CCI_LEDsActuator              >("leds");
    m_positioningSensor = GetSensor<CCI_PositioningSensor>("positioning");
+     m_pcRABS      = GetSensor  <CCI_RangeAndBearingSensor        >("range_and_bearing"    );
+   m_pcRABA       = GetActuator  <CCI_RangeAndBearingActuator        >("range_and_bearing"    );
+   GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner")->Enable();
+
 
    //
 

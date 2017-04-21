@@ -25,9 +25,9 @@
       </actuators>
       <sensors>
         <positioning implementation="default" />
-        <efootbot_distance_scanner implementation="rot_z_only" show_rays="true" noise_std_dev="0"/>
-        <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
-        <efootbot_proximity implementation="default" show_rays="true" />
+        <efootbot_distance_scanner implementation="rot_z_only" show_rays="false" noise_std_dev="0"/>
+        <range_and_bearing implementation="medium" medium="rab" show_rays="false" noise_std_dev="0" />
+        <efootbot_proximity implementation="default" show_rays="false" />
         <battery implementation="default" 
           discharge_type="non-linear"
           starting_soc="1.0" 
@@ -109,7 +109,7 @@
 
     <!-- footboot up (id: fu0, fu1) -->
     <e-footbot id="fu0" rab_data_size="2" rab_range="5">
-      <body position="-2.0,-0.3,0.0" orientation="0,0,0" />
+      <body position="-2.0,-0.3,0.0" orientation="15,0,0" />
       <controller config="fdc" />
     </e-footbot>
     <e-footbot id="fu1" rab_data_size="2" rab_range="5">
@@ -128,6 +128,7 @@
         <!-- footboot right (id: fr0, fr1) -->
     <e-footbot id="fr0" rab_data_size="2" rab_range="5">
       <body position="-0.3,2.0,0.0" orientation="270,0,0" />
+      <!--body position="-0.3,1.5,0.0" orientation="270,0,0" / -->
       <controller config="fdc" />
     </e-footbot>
     <e-footbot id="fr1" rab_data_size="2" rab_range="5">
@@ -194,7 +195,6 @@
 
       <camera>
         <placement idx="0" position="-5,0,2" look_at="0,0,0" lens_focal_length="20" />
-        <placement idx="1" position="0.884183,0.359128,0.40269" look_at="0.924486,-0.486744,-0.0415919" lens_focal_length="20" />
       </camera>
     </qt-opengl>
 
