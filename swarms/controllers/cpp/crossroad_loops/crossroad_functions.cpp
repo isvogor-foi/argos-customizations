@@ -73,7 +73,7 @@ void CCrossroadFunctions::ResetPosition(){
 		CVector3 vPosition = cFootBot.GetEmbodiedEntity().GetOriginAnchor().Position;
 
 		// check up/down robots
-		if(vPosition.GetX() >= 4.7 || vPosition.GetX() <= -4.7){
+		if(vPosition.GetX() >= 4.7 || vPosition.GetX() <= -4.7){ // map edge
 			vPosition.SetX(vPosition.GetX() - (vPosition.GetX() * 2));
 		}
 		// check left/right robots
