@@ -70,15 +70,15 @@
         from a gaussian distribution, whose mean is zero degrees and
         standard deviation is 360 degrees.
     -->
-    <distribute>
-      <position method="uniform" min="-2,-2,0" max="2,2,0" />
-      <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="3" max_trials="100">
-        <e-footbot id="fb" rab_data_size="2" rab_range="5">
-          <controller config="fdc" />
-        </e-footbot>
-      </entity>
-    </distribute>
+    <e-footbot id="fu0" rab_data_size="2" rab_range="5">
+      <body position="0, -1, 0" orientation="0,0,0" />
+      <controller config="fdc" />
+    </e-footbot>
+
+    <e-footbot id="fu1" rab_data_size="2" rab_range="5">
+      <body position="0, 0, 0" orientation="0,0,0" />
+      <controller config="fdc" />
+    </e-footbot>
 
     <!--
         We distribute 5 boxes uniformly in position and rotation around Z.

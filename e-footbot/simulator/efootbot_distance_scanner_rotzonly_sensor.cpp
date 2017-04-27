@@ -133,47 +133,33 @@ namespace argos {
    /****************************************/
 
    void CEFootBotDistanceScannerRotZOnlySensor::UpdateNotRotating() {
-      /* Short range [0] */
-      CRadians cAngle = m_cLastDistScanRotation;
-      cAngle.SignedNormalize();
-      Real fReading = CalculateReadingForRay(m_cShortRangeRays0[0], SHORT_RANGE_MIN_DISTANCE);
-      m_tShortReadingsMap[cAngle] = fReading;
-      m_tReadingsMap[cAngle] = fReading;
-      /* Long range [1] */
-      cAngle += CRadians::PI_OVER_TWO;
-      cAngle.SignedNormalize();
-      fReading = CalculateReadingForRay(m_cLongRangeRays1[0], LONG_RANGE_MIN_DISTANCE);
-      m_tLongReadingsMap[cAngle] = fReading;
-      m_tReadingsMap[cAngle] = fReading;
-      // pair
-      /* Short range [2] */
-      cAngle += CRadians::PI_OVER_TWO;
-      cAngle.SignedNormalize();
-      fReading = CalculateReadingForRay(m_cShortRangeRays2[0], SHORT_RANGE_MIN_DISTANCE);
-      m_tShortReadingsMap[cAngle] = fReading;
-      m_tReadingsMap[cAngle] = fReading;
-      /* Long range [3] */
-      cAngle += CRadians::PI_OVER_TWO; // todo: setting the angle (I need this)
-      cAngle.SignedNormalize();
-      fReading = CalculateReadingForRay(m_cLongRangeRays3[0], LONG_RANGE_MIN_DISTANCE);
-      m_tLongReadingsMap[cAngle] = fReading;
-      m_tReadingsMap[cAngle] = fReading;
+		CRadians cStartAngle = m_cLastDistScanRotation;
 
-      /* pair
-      cAngle += CRadians::PI_OVER_THREE;
-      cAngle.SignedNormalize();
-      fReading = CalculateReadingForRay(m_cLongRangeRays4[0], SHORT_RANGE_MIN_DISTANCE);
-      m_tLongReadingsMap[cAngle] = fReading;
-      m_tReadingsMap[cAngle] = fReading;
-      */
-      // this is to set angle as index! -- not really related to calculations
-      cAngle += CRadians::PI_OVER_TWO; // todo: setting the angle (I need this)
-      cAngle.SignedNormalize();
-      fReading = CalculateReadingForRay(m_cLongRangeRays5[0], LONG_RANGE_MIN_DISTANCE);
-      m_tLongReadingsMap[cAngle] = fReading;
-      m_tReadingsMap[cAngle] = fReading;
+		if(m_ciRotationDirection == 0){
+			cStartAngle = CRadians::TWO_PI - cStartAngle;
+		}
 
+		CRadians cAngle = cStartAngle;
+		cAngle.UnsignedNormalize();
 
+		// beam 1
+		/*
+		Real fReading = CalculateReadingForRay(m_cLongRangeRays1[0], LONG_RANGE_MIN_DISTANCE);
+		m_tLongReadingsMap[cAngle] = fReading;
+		m_tReadingsMap[cAngle] = fReading;
+
+		// beam 2
+		cAngle += (CRadians::PI * 2.0f / 3.0f);
+		fReading = CalculateReadingForRay(m_cLongRangeRays5[0], LONG_RANGE_MIN_DISTANCE);
+		m_tLongReadingsMap[cAngle] = fReading;
+		m_tReadingsMap[cAngle] = fReading;
+
+		// beam 3
+		cAngle += (CRadians::PI * 2.0f / 3.0f);
+		fReading = CalculateReadingForRay(m_cLongRangeRays3[0], LONG_RANGE_MIN_DISTANCE);
+		m_tLongReadingsMap[cAngle] = fReading;
+		m_tReadingsMap[cAngle] = fReading;
+		*/
    }
 
    /****************************************/
@@ -196,47 +182,33 @@ namespace argos {
    void CEFootBotDistanceScannerRotZOnlySensor::UpdateRotating() {
       CRadians cInterSensorSpan = (m_pcDistScanEntity->GetRotation() - m_cLastDistScanRotation).UnsignedNormalize() / 6.0f;
       CRadians cStartAngle = m_cLastDistScanRotation;
-      /* Short range [0] */
-      /*
+
+      if(m_ciRotationDirection == 0){
+    	  cStartAngle = CRadians::TWO_PI - cStartAngle;
+      }
+
       CRadians cAngle = cStartAngle;
-      cAngle.SignedNormalize();
-      Real fReading = CalculateReadingForRay(m_cShortRangeRays0[0], SHORT_RANGE_MIN_DISTANCE);
-      m_tShortReadingsMap[cAngle] = fReading;
-      m_tReadingsMap[cAngle] = fReading;
-      ADD_READINGS(m_cShortRangeRays0, m_tShortReadingsMap, SHORT_RANGE_MIN_DISTANCE);
-      */
-      /* Short range [2] */
-      /*
-      cAngle = cStartAngle + CRadians::PI;
-      cAngle.SignedNormalize();
-      fReading = CalculateReadingForRay(m_cShortRangeRays2[0], SHORT_RANGE_MIN_DISTANCE);
-      m_tShortReadingsMap[cAngle] = fReading;
-      m_tReadingsMap[cAngle] = fReading;
-      ADD_READINGS(m_cShortRangeRays2, m_tShortReadingsMap, SHORT_RANGE_MIN_DISTANCE);
-       */
-      // todo: read proper angle reading !! - check this
-      /* Long range [1] */
-      CRadians cAngle = cStartAngle;
-      cAngle.SignedNormalize();
+      cAngle.UnsignedNormalize();
+
+      //cAngle.();
       Real fReading = CalculateReadingForRay(m_cLongRangeRays1[0], LONG_RANGE_MIN_DISTANCE);
       m_tLongReadingsMap[cAngle] = fReading;
       m_tReadingsMap[cAngle] = fReading;
       ADD_READINGS(m_cLongRangeRays1, m_tLongReadingsMap, LONG_RANGE_MIN_DISTANCE);
-      /* Long range [3] */
-      cAngle = cStartAngle + (CRadians::PI * 2.0f / 3.0f);
-      cAngle.SignedNormalize();
-      fReading = CalculateReadingForRay(m_cLongRangeRays3[0], LONG_RANGE_MIN_DISTANCE);
-      m_tLongReadingsMap[cAngle] = fReading;
-      m_tReadingsMap[cAngle] = fReading;
-      ADD_READINGS(m_cLongRangeRays3, m_tLongReadingsMap, LONG_RANGE_MIN_DISTANCE);
 
-      //cAngle = cStartAngle + CRadians::PI_OVER_THREE + CRadians::PI;
-      cAngle = cStartAngle + (CRadians::PI * 4.0f / 3.0f);
-	  cAngle.SignedNormalize();
+      // beam 2
+      cAngle += (CRadians::PI * 2.0f / 3.0f);
 	  fReading = CalculateReadingForRay(m_cLongRangeRays5[0], LONG_RANGE_MIN_DISTANCE);
 	  m_tLongReadingsMap[cAngle] = fReading;
 	  m_tReadingsMap[cAngle] = fReading;
 	  ADD_READINGS(m_cLongRangeRays5, m_tLongReadingsMap, LONG_RANGE_MIN_DISTANCE);
+
+	  // beam 3
+	  cAngle += (CRadians::PI * 2.0f / 3.0f);
+	  fReading = CalculateReadingForRay(m_cLongRangeRays3[0], LONG_RANGE_MIN_DISTANCE);
+	  m_tLongReadingsMap[cAngle] = fReading;
+	  m_tReadingsMap[cAngle] = fReading;
+	  ADD_READINGS(m_cLongRangeRays3, m_tLongReadingsMap, LONG_RANGE_MIN_DISTANCE);
 
    }
 
@@ -375,8 +347,8 @@ namespace argos {
 
       CVector2 cAbsoluteOrientation(1.0, cOrientationZ);
       /* The short range sensors are oriented along the foot-bot local X */
-      m_cDirection = CVector3::X;
-      CALCULATE_SHORT_RANGE_RAY(cAbsoluteOrientation, 0);
+      //m_cDirection = CVector3::X;
+      //CALCULATE_SHORT_RANGE_RAY(cAbsoluteOrientation, 0);
       /* The short range sensors are oriented along the foot-bot local Y */
       m_cDirection = CVector3::X;
       //m_cDirection.RotateZ(CRadians::TWO_PI / 3);
@@ -409,7 +381,7 @@ namespace argos {
   	  	  //cInterSensorSpan = CVector2(1.0f, (m_pcDistScanEntity->GetRotation() - m_cLastDistScanRotation).UnsignedNormalize() / 6.0f);
       }
 
-      std::cout<< "Cur: " << m_currentAngle << " Last " << m_cLastDistScanRotation<<std::endl;
+      //std::cout<< "Cur: " << m_currentAngle << " Last " << m_cLastDistScanRotation<<std::endl;
 
       CVector2 cAbsoluteOrientation;
       /* The sensor is rotating, so calculate the span between each successive ray */

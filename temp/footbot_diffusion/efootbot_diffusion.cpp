@@ -60,8 +60,7 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_pcDistanceSensor   = GetSensor <CCI_EFootBotDistanceScannerSensor>("efootbot_distance_scanner"    );
    m_pcDistanceActuator   = GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner"    );
 
-   m_pcDistanceActuator->Enable();
-   angle = CRadians(0);      
+   m_pcDistanceActuator->Enable(); angle = CRadians(0);
    
 
    //
@@ -119,18 +118,15 @@ void CEFootBotDiffusion::ControlStep() {
     // RLOG << " angle: " << m_pcDistanceSensor->GetAngle()<< std::endl;
 
 
+
     CCI_EFootBotDistanceScannerSensor::TReadingsMap datamap = m_pcDistanceSensor->GetReadingsMap();
     std::map<CRadians,Real>::iterator it = datamap.begin();
     
-    if(!m_trilaserSensor->SetAngle(angle, rotation)){
-        
+    //if(!m_trilaserSensor->SetAngle(angle, rotation)){ 
       for(; it != datamap.end(); ++it){
-        RLOG << m_id << ". Readings: " << it->second << std::endl;
+        RLOG << it->first << ". Readings: " << it->second << std::endl;
       }
-    }
-
-
-
+    //}
 
 
    /* Get readings from proximity sensor */
@@ -144,14 +140,13 @@ void CEFootBotDiffusion::ControlStep() {
    /* If the angle of the vector is small enough and the closest obstacle
     * is far enough, continue going straight, otherwise curve a little
     */
+   /*
    CRadians cAngle = cAccumulator.Angle();
    if(m_cGoStraightAngleRange.WithinMinBoundIncludedMaxBoundIncluded(cAngle) &&
       cAccumulator.Length() < m_fDelta ) {
-      /* Go straight */
       m_pcWheels->SetLinearVelocity(m_fWheelVelocity, m_fWheelVelocity);
    }
    else {
-      /* Turn, depending on the sign of the angle */
       if(cAngle.GetValue() > 0.0f) {
          m_pcWheels->SetLinearVelocity(m_fWheelVelocity, 0.0f);
       }
@@ -159,21 +154,28 @@ void CEFootBotDiffusion::ControlStep() {
          m_pcWheels->SetLinearVelocity(0.0f, m_fWheelVelocity);
       }
    }
+   */
     // RLOG << "SOC: " << m_batterySensor->GetSoc() << "  " << "t: " << value.R <<":"<< value.G <<":"<< value.B << std::endl;
     
 
     if(simulationTime >= 10){
-      angle = CRadians(0.2);      
-      rotation = 0;
+      angle = CRadians(1.57);      
+      rotation = 1;
 
     } 
-    if (simulationTime >= 25){
-      angle = CRadians(0.4);
-      rotation = 1;      
+    if (simulationTime >= 50){
+      angle = CRadians(0.0);
+      rotation = 0;      
 
     } 
-    if (simulationTime >= 40){
-      angle = CRadians(0.6);
+    if (simulationTime >= 90){
+      angle = CRadians(1.57);
+      rotation = 0;  
+
+    }
+
+    if (simulationTime >= 130){
+      angle = CRadians(3.14);
       rotation = 0;  
 
     }
