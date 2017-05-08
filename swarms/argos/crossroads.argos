@@ -26,7 +26,7 @@
       <sensors>
         <positioning implementation="default" />
         <efootbot_distance_scanner implementation="rot_z_only" show_rays="false" noise_std_dev="0"/>
-        <range_and_bearing implementation="medium" medium="rab" show_rays="false" noise_std_dev="0" />
+        <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
         <efootbot_proximity implementation="default" show_rays="false" />
         <battery implementation="default" 
           discharge_type="non-linear"

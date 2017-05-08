@@ -423,6 +423,7 @@ namespace argos {
       CALCULATE_LONG_RANGE_RAY1(cInterSensorSpan, 4);
       CALCULATE_LONG_RANGE_RAY1(cInterSensorSpan, 5);
       m_cDirection = CVector3::X;
+
       m_cDirection.RotateZ(CRadians::TWO_PI / 3);
       CALCULATE_LONG_RANGE_RAY2(cAbsoluteOrientation, 0);
       CALCULATE_LONG_RANGE_RAY2(cInterSensorSpan, 1);
@@ -433,6 +434,7 @@ namespace argos {
       m_cDirection = CVector3::X;
       m_cDirection.RotateZ((CRadians::TWO_PI / 3) * 2);
       CALCULATE_LONG_RANGE_RAY3(cAbsoluteOrientation, 0);
+
       CALCULATE_LONG_RANGE_RAY3(cInterSensorSpan, 1);
       CALCULATE_LONG_RANGE_RAY3(cInterSensorSpan, 2);
       CALCULATE_LONG_RANGE_RAY3(cInterSensorSpan, 3);

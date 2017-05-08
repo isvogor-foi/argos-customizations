@@ -8,6 +8,19 @@
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_render.h>
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_camera.h>
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_user_functions.h>
+
+
+#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/footbot_diffusion/efootbot_diffusion.h"
+
+#include <QGLWidget>
+#include <QElapsedTimer>
+
+#ifdef __APPLE__
+#include <glu.h>
+#else
+#include <GL/glu.h>
+#endif
+
 using namespace argos;
 
 class CCrossroadFunctions : public CLoopFunctions {
@@ -26,10 +39,14 @@ private:
 
 	CSimulator* m_Simulator;
 
-	CQTOpenGLRender *m_Renderer;
-	CQTOpenGLCamera *m_Camera;
-	CQTOpenGLCamera::SSettings *m_CameraSettings;
-	CEFootBotEntity *m_SelectedEntity;
+	CQTOpenGLRender* m_Renderer;
+	CQTOpenGLCamera* m_Camera;
+	CQTOpenGLCamera::SSettings* m_CameraSettings;
+	CEFootBotEntity* m_SelectedEntity;
+	CEFootBotEntity* m_pcEFootBot;
+	CEFootBotDiffusion* m_pcController;
+
+
 };
 
 #endif

@@ -7,6 +7,7 @@
 #include <argos3/core/utility/logging/argos_log.h>
 #include <string>
 #include <argos3/core/utility/math/angles.h>
+#include <QImage>
 
 /****************************************/
 /****************************************/
@@ -20,9 +21,10 @@ CEFootBotDiffusion::CEFootBotDiffusion() :
    c_entity(NULL),
    m_cAlpha(10.0f),
    m_fDelta(0.5f),
+   img_bits(NULL),
+   //possitions_all(NULL),
    m_fWheelVelocity(2.5f),
-   m_cGoStraightAngleRange(-ToRadians(m_cAlpha),
-                           ToRadians(m_cAlpha)) {}
+   m_cGoStraightAngleRange(-ToRadians(m_cAlpha), ToRadians(m_cAlpha)) {}
 
 /****************************************/
 /****************************************/
@@ -54,13 +56,12 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_pcProximity = GetSensor  <CCI_EFootBotProximitySensor      >("efootbot_proximity"    );
    m_batterySensor = GetSensor<CCI_BatterySensor                >("battery");
    m_pcLEDs        = GetActuator <CCI_LEDsActuator              >("leds");
-   m_positioningSensor = GetSensor<CCI_PositioningSensor>("positioning");
-     m_pcRABS      = GetSensor  <CCI_RangeAndBearingSensor        >("range_and_bearing"    );
-   m_pcRABA       = GetActuator  <CCI_RangeAndBearingActuator        >("range_and_bearing"    );
+   m_positioningSensor = GetSensor<CCI_PositioningSensor		>("positioning");
+   m_pcRABS      = GetSensor  <CCI_RangeAndBearingSensor        >("range_and_bearing");
+   m_pcRABA       = GetActuator  <CCI_RangeAndBearingActuator  	>("range_and_bearing");
+
    GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner")->Enable();
 
-
-   //
 
    //c_entity = GetEntity<CEntity>("e-footbot");
    /*
@@ -113,7 +114,17 @@ void CEFootBotDiffusion::ControlStep() {
       }
    }
 
-  RLOG << "Position: " << m_positioningSensor->GetReading().Position << std::endl;
+   RLOG << "Position: " << m_positioningSensor->GetReading().Position << std::endl;
+   if(img_bits != NULL){
+	   RLOG << "Img bits: " << img_bits << std::endl;
+	   RLOG << "Bytes count: " << bytesCount << std::endl;
+	   RLOG << "Bytes per line: " << bytesPerLine << std::endl;
+   }
+
+	std::map<std::string, CVector3>::iterator it = positions_all.begin();
+	for(; it != positions_all.end(); ++it){
+		RLOG << it->first << ". Readings: " << it->second << std::endl;
+	}
 
 
 }

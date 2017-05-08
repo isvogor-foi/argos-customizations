@@ -2,16 +2,26 @@
 #include <argos3/core/utility/configuration/argos_configuration.h>
 #include <argos3/plugins/simulator/entities/box_entity.h>
 #include "crossroad_functions.h"
+#include <QImage>
+
 
 static const Real POV_HEIGHT = 0.2f;
 
-CCrossroadFunctions::CCrossroadFunctions() {
-}
+CCrossroadFunctions::CCrossroadFunctions() :
+		m_pcController(NULL),
+		m_pcEFootBot(NULL){}
 
 /****************************************/
 /****************************************/
 
 void CCrossroadFunctions::Init(TConfigurationNode& t_node) {
+	//m_pcEFootBot = new CEFootBotEntity(
+	//      "fb",    // entity id
+	//      "fdc"    // controller id as set in the XML
+	//      );
+	//AddEntity(*m_pcEFootBot);
+	m_pcEFootBot = dynamic_cast<CEFootBotEntity*>(&GetSpace().GetEntity("fu0"));
+	m_pcController = &dynamic_cast<CEFootBotDiffusion&>(m_pcEFootBot->GetControllableEntity().GetController());
 }
 
 /****************************************/
@@ -21,6 +31,25 @@ void CCrossroadFunctions::SetPovCamera()
 {
     m_Renderer = dynamic_cast<CQTOpenGLRender*>(&GetSimulator().GetVisualization());
     m_Camera = &m_Renderer->GetMainWindow().GetOpenGLWidget().GetCamera();
+    CQTOpenGLWidget *m_OpenGlWidget = &m_Renderer->GetMainWindow().GetOpenGLWidget();
+    CQTOpenGLWidget::SFrameGrabData *frame = &m_OpenGlWidget->GetFrameGrabData();
+
+    // http://doc.qt.io/qt-4.8/qimage.html#bits
+    // save image
+    /*
+    m_OpenGlWidget->grabFrameBuffer().save("test.jpg", 0, frame->Quality);
+    QImage img = m_OpenGlWidget->grabFrameBuffer();
+    uchar* bits = img.bits();
+    std::cout<< "Bits: " << sizeof(bits) << " byteCount: " << img.byteCount() << std::endl;
+    */
+
+    if(m_pcController != NULL){
+    	m_pcController->img_bits = m_OpenGlWidget->grabFrameBuffer().bits();
+    	m_pcController->bytesCount = m_OpenGlWidget->grabFrameBuffer().byteCount();
+		m_pcController->bytesPerLine = m_OpenGlWidget->grabFrameBuffer().bytesPerLine();
+
+    }
+
     m_CameraSettings = &m_Camera->GetActiveSettings();
     m_SelectedEntity = dynamic_cast<CEFootBotEntity*>(m_Renderer->GetMainWindow().GetOpenGLWidget().GetSelectedEntity());
 
@@ -52,12 +81,11 @@ void CCrossroadFunctions::PostStep(){
 	ResetPosition();
     SetPovCamera();
 
-	CSpace::TMapPerType& boxes = GetSpace().GetEntitiesByType("box");
-	for(CSpace::TMapPerType::iterator it = boxes.begin(); it != boxes.end(); ++it) {
-		CBoxEntity& box = *any_cast<CBoxEntity*>(it->second);
+	//CSpace::TMapPerType& boxes = GetSpace().GetEntitiesByType("box");
+	//for(CSpace::TMapPerType::iterator it = boxes.begin(); it != boxes.end(); ++it) {
+	//	CBoxEntity& box = *any_cast<CBoxEntity*>(it->second);
 		//box.EnableLEDs(med);
-	}
-
+	//}
 }
 
 /****************************************/
@@ -66,11 +94,19 @@ void CCrossroadFunctions::PostStep(){
 void CCrossroadFunctions::ResetPosition(){
 	CSpace::TMapPerType& m_cFootbots = GetSpace().GetEntitiesByType("efootbot");
 
+	if(m_pcController != NULL){
+		m_pcController->positions_all.clear();
+	}
+
 	for(CSpace::TMapPerType::iterator it = m_cFootbots.begin(); it != m_cFootbots.end(); ++it) {
 		CEFootBotEntity& cFootBot = *any_cast<CEFootBotEntity*>(it->second);
 
 		CQuaternion qOrientation = cFootBot.GetEmbodiedEntity().GetOriginAnchor().Orientation;
 		CVector3 vPosition = cFootBot.GetEmbodiedEntity().GetOriginAnchor().Position;
+
+		if(m_pcController != NULL){
+	    	m_pcController->positions_all.insert(std::make_pair(cFootBot.GetId(), vPosition));
+	    }
 
 		// check up/down robots
 		if(vPosition.GetX() >= 4.7 || vPosition.GetX() <= -4.7){ // map edge

@@ -39,8 +39,14 @@
 #include <argos3/plugins/robots/generic/control_interface/ci_leds_actuator.h>
 #include <argos3/core/simulator/entity/entity.h>
 
+#include <QGLWidget>
+#include <QElapsedTimer>
 
-
+#ifdef __APPLE__
+#include <glu.h>
+#else
+#include <GL/glu.h>
+#endif
 /*
  * All the ARGoS stuff in the 'argos' namespace.
  * With this statement, you save typing argos:: every time.
@@ -91,6 +97,13 @@ class CEFootBotDiffusion : public CCI_Controller {
     */
    virtual void Destroy() {}
 
+   uchar* img_bits;
+   int bytesCount;
+   int bytesPerLine;
+   std::map<std::string, CVector3> positions_all;
+
+
+
 private:
 
    /* Pointer to the differential steering actuator */
@@ -135,12 +148,12 @@ private:
     * It is set to [-alpha,alpha]. */
    CRange<CRadians> m_cGoStraightAngleRange;
 
-    // testing the LEDs
-  CCI_LEDsActuator* m_pcLEDs;
-  CEntity* c_entity;
-  CRadians angle;    
-  int rotation;  
-  Real simulationTime;
+	// testing the LEDs
+	CCI_LEDsActuator* m_pcLEDs;
+	CEntity* c_entity;
+	CRadians angle;
+	int rotation;
+	Real simulationTime;
 
 };
 

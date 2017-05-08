@@ -2,8 +2,8 @@ PROJECT(charging_station)
 cmake_minimum_required(VERSION 3.5)
 
  include(./ARGoSCheckQTOpenGL.cmake)
-
-add_library(id_loop_functions MODULE 
+ 
+add_library(id_loop_functions MODULE
   crossroad_functions.h
   crossroad_functions.cpp)
 
@@ -14,4 +14,6 @@ target_link_libraries(id_loop_functions
   /home/ivan/dev/argos3/plugins/simulator/visualizations/qt-opengl/libargos3plugin_simulator_qtopengl.so
   ${QT_LIBRARIES} ${GLUT_LIBRARY} ${OPENGL_LIBRARY})
 
-
+MESSAGE( STATUS "QT_LIBRARIES -> : " ${QT_LIBRARIES} )
+MESSAGE( STATUS "GLUT_LIBRARY -> : " ${GLUT_LIBRARY} )
+MESSAGE( STATUS "OPENGL_LIBRARY -> : " ${OPENGL_LIBRARY} )

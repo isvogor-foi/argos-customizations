@@ -112,20 +112,20 @@
     <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="9" max_trials="100">
-        <e-footbot id="fb" rab_data_size="1000" rab_range="5">
+      <entity quantity="1" max_trials="100">
+        <base-station id="fb0" rab_data_size="1000" rab_range="15">
           <controller config="fdc" />
-        </e-footbot>
+        </base-station>
       </entity>
     </distribute>
 
     <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="1" max_trials="100">
-        <base-station id="fb1" rab_data_size="1000" rab_range="5">
+      <entity quantity="9" max_trials="100">
+        <e-footbot id="fb" rab_data_size="1000" rab_range="15">
           <controller config="fdc" />
-        </base-station>
+        </e-footbot>
       </entity>
     </distribute>
 

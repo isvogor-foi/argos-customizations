@@ -4,6 +4,9 @@ include "../include/vec2.bzz"
 # Lennard-Jones parameters
 TARGET     = 330.0
 EPSILON    = 250.0
+STOP_THRESHOLD = 5
+CURSTATE = "init"
+ROBOTS = 9
 
 # Lennard-Jones interaction magnitude
 function lj_magnitude(dist, target, epsilon) {
@@ -20,25 +23,90 @@ function lj_sum(rid, data, accum) {
   return math.vec2.add(data, accum)
 }
 
+# print neighbor position
+function my_neigbors(){
+  if(id == 0){ # base station
+    cart = neighbors.map(
+    function(rid, data) {
+      var c = {}
+      c.x = data.distance * math.cos(data.elevation) * math.cos(data.azimuth)
+      c.y = data.distance * math.cos(data.elevation) * math.sin(data.azimuth)
+      c.z = data.distance * math.sin(data.elevation)
+      return c
+    });
+
+
+    foreach(cart.data, function(i){
+      log("At (rel from BS): ", cart.data[i].x, ", ", cart.data[i].y, ", ", cart.data[i].z)
+    })
+  }
+}
+
+function stop(){
+  state = stop
+  goto(0, 0)
+}
+
 # Calculates and actuates the flocking interaction
 function hexagon() {
   # Calculate accumulator
   var accum = neighbors.map(lj_vector).reduce(lj_sum, math.vec2.new(0.0, 0.0))
   if(neighbors.count() > 0)
     math.vec2.scale(accum, 1.0 / neighbors.count())
-  # Move according to vector
-  goto(accum.x, accum.y)
+
+  if(math.abs(accum.x) <= STOP_THRESHOLD and math.abs(accum.y) <= STOP_THRESHOLD){
+    barrier_set(ROBOTS, stop)
+    barrier_ready()
+  } else {
+    # Move according to vector
+    goto(accum.x, accum.y)
+  }
+
+
 }
+
+# ---------------------- Main ----------------------
+
 
 # Executed at init time
 function init() {
+  state=hexagon
+  #state=stop
 }
 
 # Executed every time step
 function step() {
-  hexagon()
+  state()
+  my_neigbors()
 }
 
 # Execute at exit
 function destroy() {
+}
+
+
+# ---------------------- Barrier ----------------------
+
+BARRIER_VSTIG = 1
+# Create barrier
+function barrier_set(threshold, transf) {
+  state = function(){
+    barrier_wait(threshold, transf);
+  }
+  barrier = stigmergy.create(BARRIER_VSTIG)
+}
+
+# Make yourself ready
+function barrier_ready() {
+  barrier.put(id, 1)
+}
+
+
+function barrier_wait(threshold, transf) {
+  barrier.get(id)
+  if(barrier.size() >= threshold){
+    barrier = nil
+    transf()
+    state=stop
+  } 
 }

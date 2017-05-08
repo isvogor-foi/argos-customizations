@@ -52,7 +52,6 @@ void CFloorPowerFunctions::SetPovCamera()
 void CFloorPowerFunctions::PostStep(){
 	ResetPosition();
     SetPovCamera();
-
 }
 
 /****************************************/
@@ -89,7 +88,7 @@ void CFloorPowerFunctions::ResetPosition(){
 		}
 		cFootBot.GetEmbodiedEntity().MoveTo(vPosition, qOrientation, false);
 
-		std::cout<<"Current floor color: " << m_pcFloor->GetColorAtPoint(vPosition.GetX(), vPosition.GetY());
+		//LOG<<"Current floor color: " << m_pcFloor->GetColorAtPoint(vPosition.GetX(), vPosition.GetY())<<std::endl;
 	}
 }
 

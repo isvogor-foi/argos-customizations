@@ -94,6 +94,14 @@ libefootbot_diffusion.so: /usr/local/lib/argos3/libargos3core_simulator.so
 libefootbot_diffusion.so: /usr/local/lib/argos3/libargos3plugin_simulator_footbot.so
 libefootbot_diffusion.so: /usr/local/lib/argos3/libargos3plugin_simulator_genericrobot.so
 libefootbot_diffusion.so: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/libargos3plugin_simulator_efootbot.so
+libefootbot_diffusion.so: /usr/lib/x86_64-linux-gnu/libQtOpenGL.so
+libefootbot_diffusion.so: /usr/lib/x86_64-linux-gnu/libQtGui.so
+libefootbot_diffusion.so: /usr/lib/x86_64-linux-gnu/libQtCore.so
+libefootbot_diffusion.so: /usr/lib/x86_64-linux-gnu/libglut.so
+libefootbot_diffusion.so: /usr/lib/x86_64-linux-gnu/libXmu.so
+libefootbot_diffusion.so: /usr/lib/x86_64-linux-gnu/libXi.so
+libefootbot_diffusion.so: /usr/lib/x86_64-linux-gnu/libGLU.so
+libefootbot_diffusion.so: /usr/lib/x86_64-linux-gnu/libGL.so
 libefootbot_diffusion.so: CMakeFiles/efootbot_diffusion.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/footbot_diffusion/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module libefootbot_diffusion.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/efootbot_diffusion.dir/link.txt --verbose=$(VERBOSE)

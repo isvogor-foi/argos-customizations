@@ -160,23 +160,23 @@ void CEFootBotDiffusion::ControlStep() {
 
     if(simulationTime >= 10){
       angle = CRadians(1.57);      
-      rotation = 1;
+      rotation = 0;
 
     } 
     if (simulationTime >= 50){
-      angle = CRadians(0.0);
-      rotation = 0;      
+      angle = CRadians(5.28);
+      rotation = 1;      
 
     } 
-    if (simulationTime >= 90){
-      angle = CRadians(1.57);
-      rotation = 0;  
+    if (simulationTime >= 150){
+      angle = CRadians(0);
+      rotation = 1;  
 
     }
 
-    if (simulationTime >= 130){
+    if (simulationTime >= 190){
       angle = CRadians(3.14);
-      rotation = 0;  
+      rotation = 1;  
 
     }
 
