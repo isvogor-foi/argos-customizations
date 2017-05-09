@@ -1,5 +1,5 @@
 /* Include the controller definition */
-#include "efootbot_diffusion.h"
+#include "crossroad_footbot_controller.h"
 /* Function definitions for XML parsing */
 #include <argos3/core/utility/configuration/argos_configuration.h>
 /* 2D vector definition */
@@ -12,24 +12,20 @@
 /****************************************/
 /****************************************/
 
-CEFootBotDiffusion::CEFootBotDiffusion() :
+CFootBotCrossroadController::CFootBotCrossroadController() :
+   img_bits(NULL),
    m_pcWheels(NULL),
    m_pcProximity(NULL),
-   m_batterySensor(NULL),
-   m_pcRABS(NULL),
-   m_pcLEDs(NULL),
-   c_entity(NULL),
    m_cAlpha(10.0f),
    m_fDelta(0.5f),
-   img_bits(NULL),
-   //possitions_all(NULL),
    m_fWheelVelocity(2.5f),
-   m_cGoStraightAngleRange(-ToRadians(m_cAlpha), ToRadians(m_cAlpha)) {}
+   m_cGoStraightAngleRange(-ToRadians(m_cAlpha),
+                           ToRadians(m_cAlpha)) {}
 
 /****************************************/
 /****************************************/
 
-void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
+void CFootBotCrossroadController::Init(TConfigurationNode& t_node) {
    /*
     * Get sensor/actuator handles
     *
@@ -52,18 +48,8 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
     * list a device in the XML and then you request it here, an error
     * occurs.
     */
-   m_pcWheels    = GetActuator<CCI_DifferentialSteeringActuator >("differential_steering");
-   m_pcProximity = GetSensor  <CCI_EFootBotProximitySensor      >("efootbot_proximity"    );
-   m_batterySensor = GetSensor<CCI_BatterySensor                >("battery");
-   m_pcLEDs        = GetActuator <CCI_LEDsActuator              >("leds");
-   m_positioningSensor = GetSensor<CCI_PositioningSensor		>("positioning");
-   m_pcRABS      = GetSensor  <CCI_RangeAndBearingSensor        >("range_and_bearing");
-   m_pcRABA       = GetActuator  <CCI_RangeAndBearingActuator  	>("range_and_bearing");
-
-   GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner")->Enable();
-
-
-   //c_entity = GetEntity<CEntity>("e-footbot");
+   m_pcWheels    = GetActuator<CCI_DifferentialSteeringActuator>("differential_steering");
+   m_pcProximity = GetSensor  <CCI_FootBotProximitySensor      >("footbot_proximity"    );
    /*
     * Parse the configuration file
     *
@@ -75,20 +61,16 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_cGoStraightAngleRange.Set(-ToRadians(m_cAlpha), ToRadians(m_cAlpha));
    GetNodeAttributeOrDefault(t_node, "delta", m_fDelta, m_fDelta);
    GetNodeAttributeOrDefault(t_node, "velocity", m_fWheelVelocity, m_fWheelVelocity);
-   //GetNodeAttributeOrDefault(t_node, "id", m_id, m_id);
-   m_id = FromString<UInt16>(GetId().substr(2));
-
-   simulationTime = 0;
 
 }
 
 /****************************************/
 /****************************************/
 
-void CEFootBotDiffusion::ControlStep() {
+void CFootBotCrossroadController::ControlStep() {
   
-   /* Get readings from proximity sensor */
-   const CCI_EFootBotProximitySensor::TReadings& tProxReads = m_pcProximity->GetReadings();
+/* Get readings from proximity sensor */
+   const CCI_FootBotProximitySensor::TReadings& tProxReads = m_pcProximity->GetReadings();
    /* Sum them together */
    CVector2 cAccumulator;
    for(size_t i = 0; i < tProxReads.size(); ++i) {
@@ -114,7 +96,7 @@ void CEFootBotDiffusion::ControlStep() {
       }
    }
 
-   RLOG << "Position: " << m_positioningSensor->GetReading().Position << std::endl;
+   //RLOG << "Position: " << m_positioningSensor->GetReading().Position << std::endl;
    if(img_bits != NULL){
 	   RLOG << "Img bits: " << img_bits << std::endl;
 	   RLOG << "Bytes count: " << bytesCount << std::endl;
@@ -144,4 +126,4 @@ void CEFootBotDiffusion::ControlStep() {
  * controller class to instantiate.
  * See also the configuration files for an example of how this is used.
  */
-REGISTER_CONTROLLER(CEFootBotDiffusion, "efootbot_diffusion_controller")
+REGISTER_CONTROLLER(CFootBotCrossroadController, "crossroad_footbot_controller")

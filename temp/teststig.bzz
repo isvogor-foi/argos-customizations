@@ -1,0 +1,11 @@
+function init(){
+c = stigmergy.create(5)
+c.put("p",1)
+}
+function step() {
+     t = c.get("p")
+     log(t)
+     if(id==1)
+        c.put("p",2)
+}
+

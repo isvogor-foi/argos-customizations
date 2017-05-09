@@ -16,8 +16,8 @@
  *    experiments/diffusion_10.argos
  */
 
-#ifndef EFOOTBOT_DIFFUSION_H
-#define EFOOTBOT_DIFFUSION_H
+#ifndef CROSSROAD_FOOTBOT_CONTROLLER_H
+#define CROSSROAD_FOOTBOT_CONTROLLER_H
 
 /*
  * Include some necessary headers.
@@ -27,16 +27,12 @@
 /* Definition of the differential steering actuator */
 #include <argos3/plugins/robots/generic/control_interface/ci_differential_steering_actuator.h>
 /* Definition of the foot-bot proximity sensor */
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_sensor.h"
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_distance_scanner_actuator.h"
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h"
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_battery_sensor.h"
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_id_sensor.h"
-#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_trilaser_sensor.h"
+#include <argos3/plugins/robots/generic/control_interface/ci_proximity_sensor.h>
 #include <argos3/plugins/robots/generic/control_interface/ci_positioning_sensor.h>
 #include <argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_sensor.h>
 #include <argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_actuator.h>
 #include <argos3/plugins/robots/generic/control_interface/ci_leds_actuator.h>
+#include <argos3/plugins/robots/foot-bot/control_interface/ci_footbot_proximity_sensor.h>
 #include <argos3/core/simulator/entity/entity.h>
 
 #include <QGLWidget>
@@ -56,15 +52,15 @@ using namespace argos;
 /*
  * A controller is simply an implementation of the CCI_Controller class.
  */
-class CEFootBotDiffusion : public CCI_Controller {
+class CFootBotCrossroadController : public CCI_Controller {
 
   public:
 
    /* Class constructor. */
-   CEFootBotDiffusion();
+   CFootBotCrossroadController();
 
    /* Class destructor. */
-   virtual ~CEFootBotDiffusion() {}
+   virtual ~CFootBotCrossroadController() {}
 
    /*
     * This function initializes the controller.
@@ -103,28 +99,20 @@ class CEFootBotDiffusion : public CCI_Controller {
    std::map<std::string, CVector3> positions_all;
 
 
-
 private:
 
-   /* Pointer to the differential steering actuator */
+/* Pointer to the differential steering actuator */
    CCI_DifferentialSteeringActuator* m_pcWheels;
    /* Pointer to the foot-bot proximity sensor */
-   CCI_EFootBotProximitySensor* m_pcProximity;
-   CCI_IdSensor* m_pcIdSensor;
-   CCI_TriLaserSensor* m_trilaserSensor;
-
-   CCI_RangeAndBearingSensor* m_pcRABS;
-   CCI_RangeAndBearingActuator* m_pcRABA;
-
-   CCI_EFootBotDistanceScannerSensor* m_pcDistanceSensor;
-   CCI_EFootBotDistanceScannerActuator* m_pcDistanceActuator;
+   CCI_FootBotProximitySensor* m_pcProximity;
+ 
    /*
     * The following variables are used as parameters for the
     * algorithm. You can set their value in the <parameters> section
     * of the XML configuration file, under the
     * <controllers><footbot_diffusion_controller> section.
     */
-
+ 
    /* Maximum tolerance for the angle between
     * the robot heading direction and
     * the closest obstacle detected. */
@@ -135,26 +123,12 @@ private:
     * and grows exponentially to 1 when the obstacle is
     * touching the robot.
     */
-   CCI_BatterySensor* m_batterySensor;
-   CCI_PositioningSensor *m_positioningSensor;
-
-   //void UpdateAngle(CRadians angle);
-   
-   Real m_id;
    Real m_fDelta;
    /* Wheel speed. */
    Real m_fWheelVelocity;
    /* Angle tolerance range to go straight.
     * It is set to [-alpha,alpha]. */
    CRange<CRadians> m_cGoStraightAngleRange;
-
-	// testing the LEDs
-	CCI_LEDsActuator* m_pcLEDs;
-	CEntity* c_entity;
-	CRadians angle;
-	int rotation;
-	Real simulationTime;
-	std::string active_robot;
 
 };
 

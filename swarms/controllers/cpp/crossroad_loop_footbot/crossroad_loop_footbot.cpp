@@ -1,33 +1,27 @@
 #include <argos3/core/utility/logging/argos_log.h>
 #include <argos3/core/utility/configuration/argos_configuration.h>
 #include <argos3/plugins/simulator/entities/box_entity.h>
-#include "crossroad_functions.h"
 #include <QImage>
-
+#include "crossroad_loop_footbot.h"
 
 static const Real POV_HEIGHT = 0.2f;
 
-CCrossroadFunctions::CCrossroadFunctions() :
+CCrossroadFunctionsFb::CCrossroadFunctionsFb() :
 		m_pcController(NULL),
 		m_pcEFootBot(NULL){}
 
 /****************************************/
 /****************************************/
 
-void CCrossroadFunctions::Init(TConfigurationNode& t_node) {
-	//m_pcEFootBot = new CEFootBotEntity(
-	//      "fb",    // entity id
-	//      "fdc"    // controller id as set in the XML
-	//      );
-	//AddEntity(*m_pcEFootBot);
-	m_pcEFootBot = dynamic_cast<CEFootBotEntity*>(&GetSpace().GetEntity("fu0"));
-	m_pcController = &dynamic_cast<CEFootBotDiffusion&>(m_pcEFootBot->GetControllableEntity().GetController());
+void CCrossroadFunctionsFb::Init(TConfigurationNode& t_node) {
+	m_pcEFootBot = dynamic_cast<CFootBotEntity*>(&GetSpace().GetEntity("fu0"));
+	m_pcController = &dynamic_cast<CFootBotCrossroadController&>(m_pcEFootBot->GetControllableEntity().GetController());
 }
 
 /****************************************/
 /****************************************/
 
-void CCrossroadFunctions::SetPovCamera()
+void CCrossroadFunctionsFb::SetPovCamera()
 {
     m_Renderer = dynamic_cast<CQTOpenGLRender*>(&GetSimulator().GetVisualization());
     m_Camera = &m_Renderer->GetMainWindow().GetOpenGLWidget().GetCamera();
@@ -52,7 +46,7 @@ void CCrossroadFunctions::SetPovCamera()
 
 
     m_CameraSettings = &m_Camera->GetActiveSettings();
-    m_SelectedEntity = dynamic_cast<CEFootBotEntity*>(m_Renderer->GetMainWindow().GetOpenGLWidget().GetSelectedEntity());
+    m_SelectedEntity = dynamic_cast<CFootBotEntity*>(m_Renderer->GetMainWindow().GetOpenGLWidget().GetSelectedEntity());
 
     if(m_SelectedEntity != NULL){
         // get robot position and orientation
@@ -78,7 +72,7 @@ void CCrossroadFunctions::SetPovCamera()
 /****************************************/
 /****************************************/
 
-void CCrossroadFunctions::PostStep(){
+void CCrossroadFunctionsFb::PostStep(){
 	ResetPosition();
     SetPovCamera();
 
@@ -92,15 +86,15 @@ void CCrossroadFunctions::PostStep(){
 /****************************************/
 /****************************************/
 
-void CCrossroadFunctions::ResetPosition(){
-	CSpace::TMapPerType& m_cFootbots = GetSpace().GetEntitiesByType("efootbot");
+void CCrossroadFunctionsFb::ResetPosition(){
+	CSpace::TMapPerType& m_cFootbots = GetSpace().GetEntitiesByType("foot-bot");
 
 	if(m_pcController != NULL){
 		m_pcController->positions_all.clear();
 	}
 
 	for(CSpace::TMapPerType::iterator it = m_cFootbots.begin(); it != m_cFootbots.end(); ++it) {
-		CEFootBotEntity& cFootBot = *any_cast<CEFootBotEntity*>(it->second);
+		CFootBotEntity& cFootBot = *any_cast<CFootBotEntity*>(it->second);
 
 		CQuaternion qOrientation = cFootBot.GetEmbodiedEntity().GetOriginAnchor().Orientation;
 		CVector3 vPosition = cFootBot.GetEmbodiedEntity().GetOriginAnchor().Position;
@@ -122,4 +116,4 @@ void CCrossroadFunctions::ResetPosition(){
 }
 
 
-REGISTER_LOOP_FUNCTIONS(CCrossroadFunctions, "crossroad_functions")
+REGISTER_LOOP_FUNCTIONS(CCrossroadFunctionsFb, "crossroad_loop_footbot")
