@@ -97,7 +97,7 @@ class CFootBotCrossroadController : public CCI_Controller {
    int bytesCount;
    int bytesPerLine;
    std::map<std::string, CVector3> positions_all;
-
+   std::string selected_robot;
 
 private:
 

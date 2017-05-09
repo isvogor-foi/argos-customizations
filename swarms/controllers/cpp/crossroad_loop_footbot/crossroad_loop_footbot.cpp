@@ -48,6 +48,7 @@ void CCrossroadFunctionsFb::SetPovCamera()
     m_CameraSettings = &m_Camera->GetActiveSettings();
     m_SelectedEntity = dynamic_cast<CFootBotEntity*>(m_Renderer->GetMainWindow().GetOpenGLWidget().GetSelectedEntity());
 
+
     if(m_SelectedEntity != NULL){
         // get robot position and orientation
         CVector3 pos_vec = m_SelectedEntity->GetEmbodiedEntity().GetOriginAnchor().Position;
@@ -76,6 +77,14 @@ void CCrossroadFunctionsFb::PostStep(){
 	ResetPosition();
     SetPovCamera();
 
+    if(m_pcController != NULL){
+    	if(m_pcController->selected_robot != "none"){
+    		CFootBotEntity &cFootBot = dynamic_cast<CFootBotEntity&>(GetSpace().GetEntity(m_pcController->selected_robot));
+    		m_Renderer->GetMainWindow().GetOpenGLWidget().SelectEntity(cFootBot);
+    	    //m_Renderer = dynamic_cast<CQTOpenGLRender*>(&GetSimulator().GetVisualization());
+    	    //m_Renderer->GetMainWindow().GetOpenGLWidget().GetSelectedEntity();
+    	}
+    }
 	//CSpace::TMapPerType& boxes = GetSpace().GetEntitiesByType("box");
 	//for(CSpace::TMapPerType::iterator it = boxes.begin(); it != boxes.end(); ++it) {
 	//	CBoxEntity& box = *any_cast<CBoxEntity*>(it->second);

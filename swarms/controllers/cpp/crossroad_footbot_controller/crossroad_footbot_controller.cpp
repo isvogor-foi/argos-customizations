@@ -62,6 +62,7 @@ void CFootBotCrossroadController::Init(TConfigurationNode& t_node) {
    GetNodeAttributeOrDefault(t_node, "delta", m_fDelta, m_fDelta);
    GetNodeAttributeOrDefault(t_node, "velocity", m_fWheelVelocity, m_fWheelVelocity);
 
+   selected_robot = "fu0";
 }
 
 /****************************************/
