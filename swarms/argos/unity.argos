@@ -6,9 +6,9 @@
   <!-- ************************* -->
   <framework>
     <system threads="0" />
-    <experiment length="0"
+    <experiment length="10"
                 ticks_per_second="10"
-                random_seed="124" />
+                random_seed="124"/>
   </framework>
 
   <!-- *************** -->
@@ -69,8 +69,9 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/floor_loops/libid_loop_functions.so" label="floor_power_functions">
-  </loop_functions>
+  <!-- cannot exactley take screenshots if there is no UI, right? - right! -->
+  <!--loop_functions library="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/floor_loops/libid_loop_functions.so" label="floor_power_functions">
+  </loop_functions -->
 
   <!-- *********************** -->
   <!-- * Arena configuration * -->
@@ -123,7 +124,7 @@
     <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="9" max_trials="100">
+      <entity quantity="5" max_trials="100">
         <e-footbot id="fb" rab_data_size="1000" rab_range="15">
           <controller config="fdc" />
         </e-footbot>
@@ -174,16 +175,8 @@
   <!-- * Visualization * -->
   <!-- ****************** -->
   <visualization>
-    <qt-opengl>
-        <user_functions
-            library="/home/ivan/dev/argos-custom/argos3/plugins/robots/misc/id_loop_functions/libid_loop_functions.so"
-            label="id_qtuser_functions2" />
-      <camera>
-        <placement idx="0" position="-5,0,2" look_at="0,0,0" lens_focal_length="20" />
-        <placement idx="2" position="-5.08818,0,5.0449" look_at="-4.52332, 0,4.21973" lens_focal_length="20" />
-      </camera>
-    </qt-opengl>
-
+    <unity autoplay="true"/>
+    <!-- qt-opengl autoplay="true"/ -->
   </visualization>
 
 </argos-configuration>

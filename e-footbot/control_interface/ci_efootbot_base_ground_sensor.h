@@ -38,6 +38,7 @@ namespace argos {
 
 #include <argos3/core/control_interface/ci_sensor.h>
 #include <argos3/core/utility/math/vector2.h>
+#include <argos3/core/utility/datatypes/color.h>
 #include <vector>
 
 namespace argos {
@@ -69,6 +70,8 @@ namespace argos {
       
       const TReadings& GetReadings() const;
       
+      const CColor GetFloorColor() const;
+
 #ifdef ARGOS_WITH_LUA
       virtual void CreateLuaState(lua_State* pt_lua_state);
 
@@ -78,6 +81,8 @@ namespace argos {
    protected:
 
       TReadings m_tReadings;
+
+      CColor m_floorColor;
 
    };
 

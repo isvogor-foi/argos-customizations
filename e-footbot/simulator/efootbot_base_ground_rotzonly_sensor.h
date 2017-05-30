@@ -9,6 +9,8 @@
 
 #include <string>
 #include <map>
+#include <argos3/core/utility/datatypes/color.h>
+
 
 namespace argos {
    class CEFootBotBaseGroundRotZOnlySensor;
@@ -63,6 +65,7 @@ namespace argos {
 
       /** Reference to the space */
       CSpace& m_cSpace;
+
    };
 
 }

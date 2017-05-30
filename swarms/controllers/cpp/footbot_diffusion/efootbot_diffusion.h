@@ -34,10 +34,13 @@
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_id_sensor.h"
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_trilaser_sensor.h"
 #include <argos3/plugins/robots/generic/control_interface/ci_positioning_sensor.h>
+#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_base_ground_sensor.h"
 #include <argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_sensor.h>
 #include <argos3/plugins/robots/generic/control_interface/ci_range_and_bearing_actuator.h>
 #include <argos3/plugins/robots/generic/control_interface/ci_leds_actuator.h>
 #include <argos3/core/simulator/entity/entity.h>
+#include <argos3/core/utility/datatypes/color.h>
+
 
 #include <QGLWidget>
 #include <QElapsedTimer>
@@ -97,11 +100,14 @@ class CEFootBotDiffusion : public CCI_Controller {
     */
    virtual void Destroy() {}
 
+   /*
    uchar* img_bits;
    int bytesCount;
    int bytesPerLine;
    std::map<std::string, CVector3> positions_all;
+   */
 
+   CColor m_clrBottomColor;
 
 
 private:
@@ -137,6 +143,7 @@ private:
     */
    CCI_BatterySensor* m_batterySensor;
    CCI_PositioningSensor *m_positioningSensor;
+   CCI_EFootBotBaseGroundSensor* m_groundSensor;
 
    //void UpdateAngle(CRadians angle);
    
@@ -155,6 +162,7 @@ private:
 	int rotation;
 	Real simulationTime;
 	std::string active_robot;
+
 
 };
 

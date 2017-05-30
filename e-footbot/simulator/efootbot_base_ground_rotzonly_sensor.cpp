@@ -89,6 +89,8 @@ namespace argos {
          /* Get the color */
          const CColor& cColor = m_pcFloorEntity->GetColorAtPoint(cSensorPos.GetX(),
                                                                  cSensorPos.GetY());
+
+         m_floorColor = cColor;
          /* Set the reading */
          m_tReadings[i].Value = cColor.ToGrayScale() / 255.0f;
          /* Apply noise to the sensor */

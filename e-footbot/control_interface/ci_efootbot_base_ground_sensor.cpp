@@ -89,6 +89,13 @@ namespace argos {
    /****************************************/
    /****************************************/
 
+   const CColor CCI_EFootBotBaseGroundSensor::GetFloorColor() const{
+	   return m_floorColor;
+   }
+
+   /****************************************/
+   /****************************************/
+
 #ifdef ARGOS_WITH_LUA
    void CCI_EFootBotBaseGroundSensor::CreateLuaState(lua_State* pt_lua_state) {
       CLuaUtility::OpenRobotStateTable(pt_lua_state, "base_ground");

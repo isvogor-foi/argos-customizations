@@ -21,7 +21,6 @@ CEFootBotDiffusion::CEFootBotDiffusion() :
    c_entity(NULL),
    m_cAlpha(10.0f),
    m_fDelta(0.5f),
-   img_bits(NULL),
    //possitions_all(NULL),
    m_fWheelVelocity(2.5f),
    m_cGoStraightAngleRange(-ToRadians(m_cAlpha), ToRadians(m_cAlpha)) {}
@@ -59,8 +58,9 @@ void CEFootBotDiffusion::Init(TConfigurationNode& t_node) {
    m_positioningSensor = GetSensor<CCI_PositioningSensor		>("positioning");
    m_pcRABS      = GetSensor  <CCI_RangeAndBearingSensor        >("range_and_bearing");
    m_pcRABA       = GetActuator  <CCI_RangeAndBearingActuator  	>("range_and_bearing");
+   m_groundSensor = GetSensor<CCI_EFootBotBaseGroundSensor>("efootbot_base_ground");
 
-   GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner")->Enable();
+   //GetActuator <CCI_EFootBotDistanceScannerActuator>("efootbot_distance_scanner")->Enable();
 
 
    //c_entity = GetEntity<CEntity>("e-footbot");
@@ -99,14 +99,19 @@ void CEFootBotDiffusion::ControlStep() {
     * is far enough, continue going straight, otherwise curve a little
     */
    CRadians cAngle = cAccumulator.Angle();
+
+   float mean = (m_groundSensor->GetFloorColor().GetRed() +
+		   m_groundSensor->GetFloorColor().GetGreen() +
+		   m_groundSensor->GetFloorColor().GetBlue()) / 3.0f;
+
    if(m_cGoStraightAngleRange.WithinMinBoundIncludedMaxBoundIncluded(cAngle) &&
-      cAccumulator.Length() < m_fDelta ) {
+      cAccumulator.Length() < m_fDelta && mean >= 130.0f) {
       /* Go straight */
       m_pcWheels->SetLinearVelocity(m_fWheelVelocity, m_fWheelVelocity);
    }
    else {
       /* Turn, depending on the sign of the angle */
-      if(cAngle.GetValue() > 0.0f) {
+      if(cAngle.GetValue() > 0.0f || mean < 130.0f) {
          m_pcWheels->SetLinearVelocity(m_fWheelVelocity, 0.0f);
       }
       else {
@@ -114,20 +119,13 @@ void CEFootBotDiffusion::ControlStep() {
       }
    }
 
-   RLOG << "Position: " << m_positioningSensor->GetReading().Position << std::endl;
-   if(img_bits != NULL){
-	   RLOG << "Img bits: " << img_bits << std::endl;
-	   RLOG << "Bytes count: " << bytesCount << std::endl;
-	   RLOG << "Bytes per line: " << bytesPerLine << std::endl;
-   }
 
-	std::map<std::string, CVector3>::iterator it = positions_all.begin();
-	for(; it != positions_all.end(); ++it){
-		RLOG << it->first << ". Readings: " << it->second << std::endl;
-	}
 
-	// TODO:
-	// images
+   // from loop functions
+   //LOG << m_id << " Current floor (loop): " << m_clrBottomColor <<std::endl;
+   // from sensor
+   LOG << m_id << " Current floor color: " << mean <<std::endl;
+
 
 }
 

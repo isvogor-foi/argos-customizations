@@ -8,6 +8,8 @@
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_render.h>
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_camera.h>
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_user_functions.h>
+#include "/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/footbot_diffusion/efootbot_diffusion.h"
+
 using namespace argos;
 
 class CFloorPowerFunctions : public CLoopFunctions {
@@ -32,6 +34,9 @@ private:
 	CQTOpenGLCamera *m_Camera;
 	CQTOpenGLCamera::SSettings *m_CameraSettings;
 	CEFootBotEntity *m_SelectedEntity;
+	CEFootBotDiffusion* m_pcController;
+	CEFootBotEntity* m_pcEFootBot;
+
 };
 
 #endif

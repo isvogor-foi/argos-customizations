@@ -17,6 +17,7 @@ namespace argos {
 #include <argos3/plugins/simulator/physics_engines/dynamics2d/dynamics2d_differentialsteering_control.h>
 #include "efootbot_entity.h"
 
+
 namespace argos {
 
    class CDynamics2DEFootBotModel : public CDynamics2DMultiBodyObjectModel {

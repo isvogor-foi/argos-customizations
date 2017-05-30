@@ -29,6 +29,8 @@ argos3/core/control_interface/ci_sensor.h
 -
 argos3/core/utility/math/vector2.h
 -
+argos3/core/utility/datatypes/color.h
+-
 vector
 -
 
@@ -266,6 +268,8 @@ efootbot_base_ground_rotzonly_sensor.h
 string
 -
 map
+-
+argos3/core/utility/datatypes/color.h
 -
 ../control_interface/ci_efootbot_base_ground_sensor.h
 /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_base_ground_sensor.h

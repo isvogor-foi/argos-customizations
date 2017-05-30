@@ -13,6 +13,8 @@ CFloorPowerFunctions::CFloorPowerFunctions() {
 
 void CFloorPowerFunctions::Init(TConfigurationNode& t_node) {
     m_pcFloor = &GetSpace().GetFloorEntity();
+	//m_pcEFootBot = dynamic_cast<CEFootBotEntity*>(&GetSpace().GetEntity("fb1"));
+	//m_pcController = &dynamic_cast<CEFootBotDiffusion&>(m_pcEFootBot->GetControllableEntity().GetController());
 }
 
 /****************************************/
@@ -88,7 +90,9 @@ void CFloorPowerFunctions::ResetPosition(){
 		}
 		cFootBot.GetEmbodiedEntity().MoveTo(vPosition, qOrientation, false);
 
-		//LOG<<"Current floor color: " << m_pcFloor->GetColorAtPoint(vPosition.GetX(), vPosition.GetY())<<std::endl;
+		m_pcController = &dynamic_cast<CEFootBotDiffusion&>(cFootBot.GetControllableEntity().GetController());
+		//LOG << "Current floor color: " << m_pcFloor->GetColorAtPoint(vPosition.GetX(), vPosition.GetY())<<std::endl;
+		m_pcController->m_clrBottomColor = m_pcFloor->GetColorAtPoint(vPosition.GetX(), vPosition.GetY());
 	}
 }
 
