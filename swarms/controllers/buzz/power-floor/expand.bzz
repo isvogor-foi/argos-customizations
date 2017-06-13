@@ -1,0 +1,88 @@
+# We need this for 2D vectors
+include "../include/vec2.bzz"
+
+# Lennard-Jones parameters
+TARGET     = 200.0
+EPSILON    = 250.0
+STOP_THRESHOLD = 2
+CURSTATE = "init"
+
+# Lennard-Jones interaction magnitude
+function lj_magnitude(dist, target, epsilon) {
+	return -(epsilon / dist) * ((target / dist)^4 - (target / dist)^2)
+}
+
+# Neighbor data to LJ interaction vector
+function lj_vector(rid, data) {
+	return math.vec2.newp(lj_magnitude(data.distance, TARGET, EPSILON), data.azimuth)
+}
+
+# Accumulator of neighbor LJ interactions
+function lj_sum(rid, data, accum) {
+	return math.vec2.add(data, accum)
+}
+
+function stop(){
+	state = stop
+	goto(0, 0)
+}
+
+# Calculates and actuates the flocking interaction
+function hexagon() {
+	var accum = neighbors.map(lj_vector).reduce(lj_sum, math.vec2.new(0.0, 0.0))
+	if(neighbors.count() > 0) {
+		math.vec2.scale(accum, 1.0 / neighbors.count())
+	}
+
+	if(math.abs(accum.x) <= STOP_THRESHOLD and math.abs(accum.y) <= STOP_THRESHOLD){
+		barrier_ready()
+		barrier_set(barrier_robots, stop)
+	
+	} 
+	else {
+		goto(accum.x, accum.y)
+	}
+			log( "X: ", accum.x, "Y: ", accum.y)
+
+}
+
+# ---------------------- Main ----------------------
+
+# Executed at init time
+function init() {
+	state=hexagon
+	barrier = stigmergy.create(1)
+}
+
+# Executed every time step
+function step() {
+	state()
+	#log("Size: ", barrier.size())
+}
+
+# Execute at exit
+function destroy() { }
+
+
+# ---------------------- Barrier ----------------------
+
+# Create barrier
+function barrier_set(threshold, transf) {
+	if(barrier.size() >= threshold){
+		transf()
+		state=transf
+	} 
+}
+
+# Make yourself ready
+function barrier_ready() {
+	barrier.put(id, 1)
+	state = stop
+}
+
+function barrier_wait(threshold, transf) {
+	if(barrier.size() >= threshold){
+		barrier = nil
+		log("We all stopped!")
+	} 
+}

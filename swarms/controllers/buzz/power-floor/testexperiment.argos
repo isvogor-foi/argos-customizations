@@ -16,7 +16,7 @@
   <!-- *************** -->
   <controllers>
 
-    <buzz_controller_footbot id="bcf">
+    <buzz_controller_efootbot id="bcf">
       <actuators>
         <differential_steering implementation="default" />
         <leds                  implementation="default" medium="leds" />
@@ -25,13 +25,13 @@
       <sensors>
         <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
       </sensors>
-      <params bytecode_file="testhexagon.bo" debug_file="testhexagon.bdb">
+      <params bytecode_file="expand.bo" debug_file="expand.bdb">
         <wheel_turning hard_turn_angle_threshold="90"
                        soft_turn_angle_threshold="70"
                        no_turn_angle_threshold="10"
                        max_speed="10" />
       </params>
-    </buzz_controller_footbot>
+    </buzz_controller_efootbot>
 
     <!-- <buzz_controller_spiri id="bcs"> -->
     <!--   <actuators> -->
@@ -69,10 +69,10 @@
     <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="15" max_trials="100">
-        <foot-bot id="fb" rab_data_size="30">
+      <entity quantity="4" max_trials="100">
+        <e-footbot id="fb" rab_data_size="30" rab_range="3">
           <controller config="bcf" />
-        </foot-bot>
+        </e-footbot>
       </entity>
     </distribute>
 
@@ -133,6 +133,9 @@
   <!-- ****************** -->
   <visualization>
     <qt-opengl>
+          <user_functions
+    library="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/tree_loops/libtree_loops.so"
+    label="tree_loop_functions" />
       <user_functions label="buzz_qt" />
     </qt-opengl>
     <!-- <qt-opengl> -->
