@@ -24,18 +24,18 @@ public:
  
    virtual ~TreeQtFunctions() {}
  
-   void Draw(CEFootBotEntity& c_entity);
-
-   void Draw(CEBaseStationEntity& c_entity);
+   //void Draw(CEFootBotEntity& c_entity);
+   //void Draw(CEBaseStationEntity& c_entity);
+   void DrawInWorld();
 
 private:
    std::vector<std::string> Split(std::string str, char delimiter);
-   void DrawTree(CVector3 currentEntityPosition, CQuaternion currentEntityOrientation, std::string current_id);
+   //void DrawTree(CVector3 currentEntityPosition, CQuaternion currentEntityOrientation, std::string current_id);
 
    CBuzzControllerBaseStation* m_pcController;
    CEBaseStationEntity* m_pcBaseStation;
    CEFootBotEntity* m_pcFb;
-
+   //CQTOpenGLMainWindow m_pcMainWindow;
 
 };
  

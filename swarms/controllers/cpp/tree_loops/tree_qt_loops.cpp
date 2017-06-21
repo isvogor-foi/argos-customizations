@@ -2,66 +2,48 @@
 
  
 TreeQtFunctions::TreeQtFunctions() {
-   RegisterUserFunction<TreeQtFunctions,CEFootBotEntity>(&TreeQtFunctions::Draw);
-   RegisterUserFunction<TreeQtFunctions,CEBaseStationEntity>(&TreeQtFunctions::Draw);
+   //RegisterUserFunction<TreeQtFunctions,CEFootBotEntity>(&TreeQtFunctions::Draw);
+   //RegisterUserFunction<TreeQtFunctions,CEBaseStationEntity>(&TreeQtFunctions::Draw);
 
    m_pcBaseStation = dynamic_cast<CEBaseStationEntity*>(&CSimulator::GetInstance().GetSpace().GetEntity("fb100"));
    m_pcController = &dynamic_cast<CBuzzControllerBaseStation&>(m_pcBaseStation->GetControllableEntity().GetController());
+   //m_pcMainWindow = GetMainWindow();
 
 }
  
-/****************************************/
-/****************************************/
- 
-void TreeQtFunctions::Draw(CEFootBotEntity& c_entity) {
-	std::string message = c_entity.GetId() + ": " + m_pcController->GetDebugMsg();
-	DrawText(CVector3(0.0, 0.0, 0.3), message.c_str());
 
-	std::string current_id = c_entity.GetId().substr(2, c_entity.GetId().length());
-	CVector3 currentEntityPosition = c_entity.GetEmbodiedEntity().GetOriginAnchor().Position;
-	CQuaternion currentEntityOrientation = c_entity.GetEmbodiedEntity().GetOriginAnchor().Orientation.Inverse();
-	DrawTree(currentEntityPosition, currentEntityOrientation, current_id);
-}
+void TreeQtFunctions::DrawInWorld() {
+	std::vector<std::string> result = Split(m_pcController->m_GeneratedTree,';');
+	for(int i = 0; i < result.size(); i++){
+		std::vector<std::string> current = Split(result[i],'-');
+		std::stringstream strR1;
+		strR1 << "fb" << current[0];
 
-/****************************************/
-/****************************************/
+		std::stringstream strR2;
+		strR2 << "fb" << current[1];
 
-void TreeQtFunctions::Draw(CEBaseStationEntity& c_entity) {
-	std::string current_id = c_entity.GetId().substr(2, c_entity.GetId().length());
-	CVector3 currentEntityPosition = c_entity.GetEmbodiedEntity().GetOriginAnchor().Position;
-	CQuaternion currentEntityOrientation = c_entity.GetEmbodiedEntity().GetOriginAnchor().Orientation.Inverse();
-	DrawTree(currentEntityPosition, currentEntityOrientation, current_id);
-}
+		CEntity *robot1 = &CSimulator::GetInstance().GetSpace().GetEntity(strR1.str());
+		CEntity *robot2 = &CSimulator::GetInstance().GetSpace().GetEntity(strR2.str());
 
-/****************************************/
-/****************************************/
+		CVector3 posRobot1;
+		CVector3 posRobot2;
 
-void TreeQtFunctions::DrawTree(CVector3 currentEntityPosition, CQuaternion currentEntityOrientation, std::string current_id){
-
-	if(m_pcController->m_GeneratedTree != ""){
-		std::vector<std::string> result = Split(m_pcController->m_GeneratedTree,';');
-		for(int i = 0; i < result.size(); i++){
-			std::vector<std::string> current = Split(result[i],'-');
-			if(!strcmp(current[0].c_str(), current_id.c_str())){
-				std::stringstream sstm;
-				sstm << "fb" << current[1];
-
-				CEntity *e = &CSimulator::GetInstance().GetSpace().GetEntity(sstm.str());
-				CVector3 pos;
-
-				if(std::atoi(current[1].c_str()) < 100){
-					pos = (dynamic_cast<CEFootBotEntity*>(e))->GetEmbodiedEntity().GetOriginAnchor().Position;
-				} else {
-					pos = (dynamic_cast<CEBaseStationEntity*>(e))->GetEmbodiedEntity().GetOriginAnchor().Position;
-				}
-
-				pos -= currentEntityPosition;
-				pos.Rotate(currentEntityOrientation);
-				pos.SetZ(0.1);
-
-				DrawRay(CRay3(CVector3(0,0,0.1), pos), CColor::BLUE, 4);
-			}
+		if(std::atoi(current[0].c_str()) < 100){
+			posRobot1 = (dynamic_cast<CEFootBotEntity*>(robot1))->GetEmbodiedEntity().GetOriginAnchor().Position;
+		} else {
+			posRobot1 = (dynamic_cast<CEBaseStationEntity*>(robot1))->GetEmbodiedEntity().GetOriginAnchor().Position;
 		}
+
+		if(std::atoi(current[1].c_str()) < 100){
+			posRobot2 = (dynamic_cast<CEFootBotEntity*>(robot2))->GetEmbodiedEntity().GetOriginAnchor().Position;
+		} else {
+			posRobot2 = (dynamic_cast<CEBaseStationEntity*>(robot2))->GetEmbodiedEntity().GetOriginAnchor().Position;
+		}
+
+		posRobot1.SetZ(0.2);
+		posRobot2.SetZ(0.2);
+
+		DrawRay(CRay3(posRobot1, posRobot2), CColor::BLUE, 3);
 	}
 }
 
