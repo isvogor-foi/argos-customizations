@@ -120,7 +120,6 @@ private:
 	Real FindCapacity(Real capacity);
 	float simulation_tick_factor;
 
-
 }; // end CBatterySensor
 
 } // end argos

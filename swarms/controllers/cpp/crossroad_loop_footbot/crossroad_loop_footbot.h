@@ -41,6 +41,7 @@ private:
 	CQTOpenGLCamera::SSettings* m_CameraSettings;
 	CFootBotEntity* m_SelectedEntity;
 	CFootBotEntity* m_pcEFootBot;
+	CFootBotEntity* m_pcEFootBot2;
 	CFootBotCrossroadController* m_pcController;
 };
 

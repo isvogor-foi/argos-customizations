@@ -48,6 +48,13 @@
 
   </controllers>
 
+  
+  <!-- ****************** -->
+  <!-- * Loop functions * -->
+  <!-- ****************** -->
+  <loop_functions library="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/creation_loops/libcreation_loops.so" label="creation_functions">
+  </loop_functions>
+
   <!-- *********************** -->
   <!-- * Arena configuration * -->
   <!-- *********************** -->
@@ -69,7 +76,7 @@
     <distribute>
       <position method="uniform" min="-2,-2,0" max="2,2,0" />
       <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="4" max_trials="100">
+      <entity quantity="10" max_trials="100">
         <e-footbot id="fb" rab_data_size="30" rab_range="3">
           <controller config="bcf" />
         </e-footbot>
@@ -133,9 +140,6 @@
   <!-- ****************** -->
   <visualization>
     <qt-opengl>
-          <user_functions
-    library="/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/tree_loops/libtree_loops.so"
-    label="tree_loop_functions" />
       <user_functions label="buzz_qt" />
     </qt-opengl>
     <!-- <qt-opengl> -->

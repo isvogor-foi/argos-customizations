@@ -9,6 +9,7 @@
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_camera.h>
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_user_functions.h>
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/footbot_diffusion/efootbot_diffusion.h"
+#include <argos3/core/utility/math/rng.h>
 
 using namespace argos;
 
@@ -36,6 +37,7 @@ private:
 	CEFootBotEntity *m_SelectedEntity;
 	CEFootBotDiffusion* m_pcController;
 	CEFootBotEntity* m_pcEFootBot;
+	CRandom::CRNG* m_pcRNG;
 
 };
 

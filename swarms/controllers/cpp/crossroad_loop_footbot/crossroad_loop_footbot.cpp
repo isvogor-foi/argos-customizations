@@ -16,6 +16,10 @@ CCrossroadFunctionsFb::CCrossroadFunctionsFb() :
 void CCrossroadFunctionsFb::Init(TConfigurationNode& t_node) {
 	m_pcEFootBot = dynamic_cast<CFootBotEntity*>(&GetSpace().GetEntity("fu0"));
 	m_pcController = &dynamic_cast<CFootBotCrossroadController&>(m_pcEFootBot->GetControllableEntity().GetController());
+    m_pcEFootBot2 = new CFootBotEntity("fb15", "fdc");
+    //CSimulator::GetInstance().GetSpace().
+    //AddEntity(*m_pcEFootBot2);
+
 }
 
 /****************************************/
