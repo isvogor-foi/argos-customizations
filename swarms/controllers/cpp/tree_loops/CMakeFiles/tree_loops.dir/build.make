@@ -93,7 +93,7 @@ libtree_loops.so: CMakeFiles/tree_loops.dir/build.make
 libtree_loops.so: /home/ivan/dev/argos3/core/libargos3core_simulator.so
 libtree_loops.so: /home/ivan/dev/argos3/plugins/simulator/entities/libargos3plugin_simulator_entities.so
 libtree_loops.so: /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/libargos3plugin_simulator_efootbot.so
-libtree_loops.so: /home/ivan/dev/argos3/plugins/simulator/visualizations/qt-opengl/libargos3plugin_simulator_qtopengl.so
+libtree_loops.so: /home/ivan/dev/argos-custom/argos3/plugins/simulator/visualizations/qt-mod/build/libargos3plugin_mod_qtopengl.so
 libtree_loops.so: /usr/lib/x86_64-linux-gnu/libQtOpenGL.so
 libtree_loops.so: /usr/lib/x86_64-linux-gnu/libQtGui.so
 libtree_loops.so: /usr/lib/x86_64-linux-gnu/libQtCore.so

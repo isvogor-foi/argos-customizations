@@ -11,17 +11,29 @@ TreeQtFunctions::TreeQtFunctions(){
    m_pcBaseStation = dynamic_cast<CEBaseStationEntity*>(&CSimulator::GetInstance().GetSpace().GetEntity("fb100"));
    m_pcController = &dynamic_cast<CBuzzControllerBaseStation&>(m_pcBaseStation->GetControllableEntity().GetController());
    m_pcRNG = CRandom::CreateRNG("argos");
-   //   m_cTrajLF(dynamic_cast<CTrajectoryLoopFunctions&>(CSimulator::GetInstance().GetLoopFunctions())) {
-   textBox = new QLineEdit();
-   button = new QPushButton();
+
+   if(&GetMainWindow() != NULL){
+	   CQTOpenGLWidget* mw = &GetMainWindow().GetOpenGLWidget();
+	   std::cout<< "OK!!!!!!!!!!!!!!"<< GetMainWindow().getMyBool() <<std::endl;
+
+
+   } else {
+	   std::cout<< "NUL!!!!!!!!!!!!!!!"<<std::endl;
+   }
+
 }
 
 void TreeQtFunctions::DrawInWorld() {
-	if(&GetMainWindow() != NULL && !menuDrawn){
-		m_pcTest = GetMainWindow().menuBar()->addMenu(QObject::tr("&Test"));
-		m_pcTest->AddAction(helloAction);
-		menuDrawn = true;
-	}
+
+	  if(&GetMainWindow() != NULL){
+		   CQTOpenGLWidget* mw = &GetMainWindow().GetOpenGLWidget();
+		   mw->SelectEntity(m_pcBaseStation->GetEmbodiedEntity());
+		   std::cout<< "OK!!!!!!!!!!!!!!"<< GetMainWindow().getMyBool() <<std::endl;
+
+	   } else {
+		   std::cout<< "NUL!!!!!!!!!!!!!!!"<<std::endl;
+	   }
+
 	std::vector<std::string> result = Split(m_pcController->m_GeneratedTree,';');
 	if(m_treeDrawn){
 		for(std::vector<Edge>::size_type i = 0; i != treeEdges.size(); i++) {
@@ -93,12 +105,13 @@ void TreeQtFunctions::KeyPressed(QKeyEvent* pc_event){
 /****************************************/
 
 void TreeQtFunctions::DrawOverlay(QPainter& c_painter){
-
+/*
      QStyleOptionButton opt;
      opt.state = QStyle::State_Active | QStyle::State_Enabled;
      opt.rect = QRect(20, 20, 100, 25);
      textBox->setPlaceholderText("Placeholder Text");
      textBox->style()->drawControl(QStyle::CE_PushButton, &opt, &c_painter);
+     */
 }
 
 
