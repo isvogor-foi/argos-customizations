@@ -5,35 +5,21 @@ TreeQtFunctions::TreeQtFunctions(){
    RegisterUserFunction<TreeQtFunctions,CEFootBotEntity>(&TreeQtFunctions::Draw);
    RegisterUserFunction<TreeQtFunctions,CEBaseStationEntity>(&TreeQtFunctions::Draw);
 
+   SetControllerName("bcf");
+
    m_treeDrawn = false;
    menuDrawn = false;
 
    m_pcBaseStation = dynamic_cast<CEBaseStationEntity*>(&CSimulator::GetInstance().GetSpace().GetEntity("fb100"));
    m_pcController = &dynamic_cast<CBuzzControllerBaseStation&>(m_pcBaseStation->GetControllableEntity().GetController());
    m_pcRNG = CRandom::CreateRNG("argos");
-
-   if(&GetMainWindow() != NULL){
-	   CQTOpenGLWidget* mw = &GetMainWindow().GetOpenGLWidget();
-	   std::cout<< "OK!!!!!!!!!!!!!!"<< GetMainWindow().getMyBool() <<std::endl;
-
-
-   } else {
-	   std::cout<< "NUL!!!!!!!!!!!!!!!"<<std::endl;
-   }
-
 }
 
 void TreeQtFunctions::DrawInWorld() {
-
-	  if(&GetMainWindow() != NULL){
-		   CQTOpenGLWidget* mw = &GetMainWindow().GetOpenGLWidget();
-		   mw->SelectEntity(m_pcBaseStation->GetEmbodiedEntity());
-		   std::cout<< "OK!!!!!!!!!!!!!!"<< GetMainWindow().getMyBool() <<std::endl;
-
-	   } else {
-		   std::cout<< "NUL!!!!!!!!!!!!!!!"<<std::endl;
-	   }
-
+	// todo: return multiple trees
+	// todo: play around with graph partitions
+	// todo: add a buzz function to remove robots
+	// todo: draw a sea surface for Li
 	std::vector<std::string> result = Split(m_pcController->m_GeneratedTree,';');
 	if(m_treeDrawn){
 		for(std::vector<Edge>::size_type i = 0; i != treeEdges.size(); i++) {
@@ -81,6 +67,7 @@ void TreeQtFunctions::DrawInWorld() {
 void TreeQtFunctions::Draw(CEFootBotEntity& c_entity) {
 	std::string message = c_entity.GetId() + ": " + m_pcController->GetDebugMsg();
 	DrawText(CVector3(0.0, 0.0, 0.3), message.c_str());
+	DrawRay(CRay3(CVector3(0,0,0.1), CVector3(0.14,0,0.1)), CColor::YELLOW, 2);
 }
 
 /****************************************/
@@ -89,31 +76,26 @@ void TreeQtFunctions::Draw(CEFootBotEntity& c_entity) {
 void TreeQtFunctions::Draw(CEBaseStationEntity& c_entity) {
 	std::string message = c_entity.GetId() + ": " + m_pcController->GetDebugMsg();
 	DrawText(CVector3(0.0, 0.0, 0.3), message.c_str());
+	DrawRay(CRay3(CVector3(0,0,0.1), CVector3(0.14,0,0.1)), CColor::YELLOW, 2);
 }
 
 /****************************************/
 /****************************************/
 
-void TreeQtFunctions::KeyPressed(QKeyEvent* pc_event){
-	std::stringstream name;
-	name << "fb" << GetRandomInteger(11, 99, m_pcRNG);
-	CEFootBotEntity* fb = new CEFootBotEntity(name.str(), "bcf", CVector3(GetRandomInteger(0, 100, m_pcRNG) / 100.0f, GetRandomInteger(0, 100, m_pcRNG) / 100.0f, 0), CQuaternion(0,0,0,0), 3, 1000);
-	AddEntity(*fb);
-}
+void TreeQtFunctions::KeyPressed(QKeyEvent* pc_event){ }
 
 /****************************************/
 /****************************************/
 
-void TreeQtFunctions::DrawOverlay(QPainter& c_painter){
-/*
-     QStyleOptionButton opt;
-     opt.state = QStyle::State_Active | QStyle::State_Enabled;
-     opt.rect = QRect(20, 20, 100, 25);
-     textBox->setPlaceholderText("Placeholder Text");
-     textBox->style()->drawControl(QStyle::CE_PushButton, &opt, &c_painter);
-     */
-}
+void TreeQtFunctions::DrawOverlay(QPainter& c_painter){ }
 
+
+/****************************************/
+/****************************************/
+
+//std::string TreeQtFunctions::GetControllerName(){
+//	return "bcf";
+//}
 
 /****************************************/
 /****************************************/

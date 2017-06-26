@@ -20,6 +20,7 @@ CMakeFiles/tree_loops.dir/tree_qt_loops.cpp.o: /usr/include/qt4/QtCore/QPoint
 CMakeFiles/tree_loops.dir/tree_qt_loops.cpp.o: /usr/include/qt4/QtCore/QPointF
 CMakeFiles/tree_loops.dir/tree_qt_loops.cpp.o: /usr/include/qt4/QtCore/QRect
 CMakeFiles/tree_loops.dir/tree_qt_loops.cpp.o: /usr/include/qt4/QtCore/QSize
+CMakeFiles/tree_loops.dir/tree_qt_loops.cpp.o: /usr/include/qt4/QtCore/QString
 CMakeFiles/tree_loops.dir/tree_qt_loops.cpp.o: /usr/include/qt4/QtCore/QStringList
 CMakeFiles/tree_loops.dir/tree_qt_loops.cpp.o: /usr/include/qt4/QtCore/QTime
 CMakeFiles/tree_loops.dir/tree_qt_loops.cpp.o: /usr/include/qt4/QtCore/QTimer
