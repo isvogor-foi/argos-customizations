@@ -3,6 +3,8 @@
 
 CMakeFiles/tree_loops.dir/tree_qt_loops.cpp.o
  /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/simulator/base_station_entity.h
+ /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_battery_sensor.h
+ /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/control_interface/ci_efootbot_proximity_sensor.h
  /home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/efootbot_entity.h
  /home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/tree_loops/tree_qt_loops.cpp
  /home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/tree_loops/tree_qt_loops.h
@@ -12,6 +14,7 @@ CMakeFiles/tree_loops.dir/tree_qt_loops.cpp.o
  /home/ivan/dev/argos-custom/argos3/plugins/simulator/visualizations/qt-mod/qtopengl_mod_user_functions.h
  /home/ivan/dev/argos-custom/argos3/plugins/simulator/visualizations/qt-mod/qtopengl_mod_widget.h
  /home/ivan/dev/buzz-ext/buzz/src/buzz/argos/buzz_controller_base_station.h
+ /home/ivan/dev/buzz-ext/buzz/src/buzz/argos/buzz_controller_efootbot.h
  /usr/include/qt4/Qt3Support/q3cstring.h
  /usr/include/qt4/Qt3Support/q3valuelist.h
  /usr/include/qt4/QtCore/QElapsedTimer

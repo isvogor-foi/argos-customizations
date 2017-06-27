@@ -8,6 +8,7 @@
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/e-footbot/simulator/efootbot_entity.h"
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/simulator/base_station_entity.h"
 #include "/home/ivan/dev/buzz-ext/buzz/src/buzz/argos/buzz_controller_base_station.h"
+#include "/home/ivan/dev/buzz-ext/buzz/src/buzz/argos/buzz_controller_efootbot.h"
 #include "/home/ivan/dev/argos-custom/argos3/plugins/simulator/visualizations/qt-mod/qtopengl_mod_main_window.h"
 #include <argos3/core/simulator/simulator.h>
 #include <vector>
@@ -33,7 +34,7 @@
 
 using namespace argos;
  
-class TreeQtFunctions : public CQTOpenGLModUserFunctions, public CLoopFunctions {
+class TreeQtFunctions : public CQTOpenGLModUserFunctions {
 
 public:
 
