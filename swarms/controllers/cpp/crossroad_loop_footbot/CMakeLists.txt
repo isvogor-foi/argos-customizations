@@ -8,10 +8,11 @@ add_library(crossroad_loop_footbot MODULE
   crossroad_loop_footbot.cpp)
 
 target_link_libraries(crossroad_loop_footbot
-  /home/ivan/dev/argos3/core/libargos3core_simulator.so
-  /home/ivan/dev/argos3/plugins/simulator/entities/libargos3plugin_simulator_entities.so
-  /home/ivan/dev/argos3/plugins/robots/foot-bot/libargos3plugin_simulator_footbot.so
-  /home/ivan/dev/argos3/plugins/simulator/visualizations/qt-opengl/libargos3plugin_simulator_qtopengl.so
+  /home/ivan/dev/argos3/build_simulator/core/libargos3core_simulator.so
+  /home/ivan/dev/argos3/build_simulator/plugins/simulator/entities/libargos3plugin_simulator_entities.so
+  /home/ivan/dev/argos3/build_simulator/plugins/robots/foot-bot/libargos3plugin_simulator_footbot.so
+  /home/ivan/dev/argos3/build_simulator/plugins/simulator/visualizations/qt-opengl/libargos3plugin_simulator_qtopengl.so
+
   ${QT_LIBRARIES} ${GLUT_LIBRARY} ${OPENGL_LIBRARY})
 
 MESSAGE( STATUS "QT_LIBRARIES -> : " ${QT_LIBRARIES} )

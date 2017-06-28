@@ -123,6 +123,19 @@ crossroad_footbot_controller/fast:
 	$(MAKE) -f CMakeFiles/crossroad_footbot_controller.dir/build.make CMakeFiles/crossroad_footbot_controller.dir/build
 .PHONY : crossroad_footbot_controller/fast
 
+#=============================================================================
+# Target rules for targets named crossroad_footbot_controller_automoc
+
+# Build rule for target.
+crossroad_footbot_controller_automoc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 crossroad_footbot_controller_automoc
+.PHONY : crossroad_footbot_controller_automoc
+
+# fast build rule for target.
+crossroad_footbot_controller_automoc/fast:
+	$(MAKE) -f CMakeFiles/crossroad_footbot_controller_automoc.dir/build.make CMakeFiles/crossroad_footbot_controller_automoc.dir/build
+.PHONY : crossroad_footbot_controller_automoc/fast
+
 crossroad_footbot_controller.o: crossroad_footbot_controller.cpp.o
 
 .PHONY : crossroad_footbot_controller.o
@@ -150,6 +163,33 @@ crossroad_footbot_controller.cpp.s:
 	$(MAKE) -f CMakeFiles/crossroad_footbot_controller.dir/build.make CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller.cpp.s
 .PHONY : crossroad_footbot_controller.cpp.s
 
+crossroad_footbot_controller_automoc.o: crossroad_footbot_controller_automoc.cpp.o
+
+.PHONY : crossroad_footbot_controller_automoc.o
+
+# target to build an object file
+crossroad_footbot_controller_automoc.cpp.o:
+	$(MAKE) -f CMakeFiles/crossroad_footbot_controller.dir/build.make CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o
+.PHONY : crossroad_footbot_controller_automoc.cpp.o
+
+crossroad_footbot_controller_automoc.i: crossroad_footbot_controller_automoc.cpp.i
+
+.PHONY : crossroad_footbot_controller_automoc.i
+
+# target to preprocess a source file
+crossroad_footbot_controller_automoc.cpp.i:
+	$(MAKE) -f CMakeFiles/crossroad_footbot_controller.dir/build.make CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.i
+.PHONY : crossroad_footbot_controller_automoc.cpp.i
+
+crossroad_footbot_controller_automoc.s: crossroad_footbot_controller_automoc.cpp.s
+
+.PHONY : crossroad_footbot_controller_automoc.s
+
+# target to generate assembly for a file
+crossroad_footbot_controller_automoc.cpp.s:
+	$(MAKE) -f CMakeFiles/crossroad_footbot_controller.dir/build.make CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.s
+.PHONY : crossroad_footbot_controller_automoc.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +199,13 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... crossroad_footbot_controller"
+	@echo "... crossroad_footbot_controller_automoc"
 	@echo "... crossroad_footbot_controller.o"
 	@echo "... crossroad_footbot_controller.i"
 	@echo "... crossroad_footbot_controller.s"
+	@echo "... crossroad_footbot_controller_automoc.o"
+	@echo "... crossroad_footbot_controller_automoc.i"
+	@echo "... crossroad_footbot_controller_automoc.s"
 .PHONY : help
 
 

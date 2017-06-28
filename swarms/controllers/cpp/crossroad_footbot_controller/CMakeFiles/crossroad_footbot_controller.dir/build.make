@@ -81,28 +81,51 @@ CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller.cpp.o.p
 CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller.cpp.o.provides.build: CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller.cpp.o
 
 
+CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o: CMakeFiles/crossroad_footbot_controller.dir/flags.make
+CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o: crossroad_footbot_controller_automoc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/crossroad_footbot_controller/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/crossroad_footbot_controller/crossroad_footbot_controller_automoc.cpp
+
+CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/crossroad_footbot_controller/crossroad_footbot_controller_automoc.cpp > CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.i
+
+CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/crossroad_footbot_controller/crossroad_footbot_controller_automoc.cpp -o CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.s
+
+CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o.requires:
+
+.PHONY : CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o.requires
+
+CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o.provides: CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o.requires
+	$(MAKE) -f CMakeFiles/crossroad_footbot_controller.dir/build.make CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o.provides.build
+.PHONY : CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o.provides
+
+CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o.provides.build: CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o
+
+
 # Object files for target crossroad_footbot_controller
 crossroad_footbot_controller_OBJECTS = \
-"CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller.cpp.o"
+"CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller.cpp.o" \
+"CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o"
 
 # External object files for target crossroad_footbot_controller
 crossroad_footbot_controller_EXTERNAL_OBJECTS =
 
 libcrossroad_footbot_controller.so: CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller.cpp.o
+libcrossroad_footbot_controller.so: CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o
 libcrossroad_footbot_controller.so: CMakeFiles/crossroad_footbot_controller.dir/build.make
 libcrossroad_footbot_controller.so: /usr/local/lib/argos3/libargos3core_simulator.so
 libcrossroad_footbot_controller.so: /usr/local/lib/argos3/libargos3plugin_simulator_footbot.so
 libcrossroad_footbot_controller.so: /usr/local/lib/argos3/libargos3plugin_simulator_genericrobot.so
-libcrossroad_footbot_controller.so: /usr/lib/x86_64-linux-gnu/libQtOpenGL.so
-libcrossroad_footbot_controller.so: /usr/lib/x86_64-linux-gnu/libQtGui.so
-libcrossroad_footbot_controller.so: /usr/lib/x86_64-linux-gnu/libQtCore.so
 libcrossroad_footbot_controller.so: /usr/lib/x86_64-linux-gnu/libglut.so
 libcrossroad_footbot_controller.so: /usr/lib/x86_64-linux-gnu/libXmu.so
 libcrossroad_footbot_controller.so: /usr/lib/x86_64-linux-gnu/libXi.so
 libcrossroad_footbot_controller.so: /usr/lib/x86_64-linux-gnu/libGLU.so
 libcrossroad_footbot_controller.so: /usr/lib/x86_64-linux-gnu/libGL.so
 libcrossroad_footbot_controller.so: CMakeFiles/crossroad_footbot_controller.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/crossroad_footbot_controller/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module libcrossroad_footbot_controller.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/crossroad_footbot_controller/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared module libcrossroad_footbot_controller.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/crossroad_footbot_controller.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -111,6 +134,7 @@ CMakeFiles/crossroad_footbot_controller.dir/build: libcrossroad_footbot_controll
 .PHONY : CMakeFiles/crossroad_footbot_controller.dir/build
 
 CMakeFiles/crossroad_footbot_controller.dir/requires: CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller.cpp.o.requires
+CMakeFiles/crossroad_footbot_controller.dir/requires: CMakeFiles/crossroad_footbot_controller.dir/crossroad_footbot_controller_automoc.cpp.o.requires
 
 .PHONY : CMakeFiles/crossroad_footbot_controller.dir/requires
 

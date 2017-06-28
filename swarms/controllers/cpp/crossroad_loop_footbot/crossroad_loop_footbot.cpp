@@ -42,15 +42,16 @@ void CCrossroadFunctionsFb::SetPovCamera()
     */
 
     if(m_pcController != NULL){
-    	m_pcController->img_bits = m_OpenGlWidget->grabFrameBuffer().bits();
-    	m_pcController->bytesCount = m_OpenGlWidget->grabFrameBuffer().byteCount();
-		m_pcController->bytesPerLine = m_OpenGlWidget->grabFrameBuffer().bytesPerLine();
+    	m_pcController->img_bits = m_OpenGlWidget->grabFramebuffer().bits();
+    	m_pcController->bytesCount = m_OpenGlWidget->grabFramebuffer().byteCount();
+		m_pcController->bytesPerLine = m_OpenGlWidget->grabFramebuffer().bytesPerLine();
     }
 
 
 
     m_CameraSettings = &m_Camera->GetActiveSettings();
-    m_SelectedEntity = dynamic_cast<CFootBotEntity*>(m_Renderer->GetMainWindow().GetOpenGLWidget().GetSelectedEntity());
+    m_SelectedEntity = dynamic_cast<CFootBotEntity*>(&GetSpace().GetEntity("fu0"));
+    //m_SelectedEntity = dynamic_cast<CFootBotEntity*>(m_Renderer->GetMainWindow().GetOpenGLWidget().GetSelectedEntity());
 
 
     if(m_SelectedEntity != NULL){
@@ -81,6 +82,7 @@ void CCrossroadFunctionsFb::PostStep(){
 	ResetPosition();
     SetPovCamera();
 
+
     if(m_pcController != NULL){
     	if(m_pcController->selected_robot != "none"){
     		CFootBotEntity &cFootBot = dynamic_cast<CFootBotEntity&>(GetSpace().GetEntity(m_pcController->selected_robot));
@@ -89,6 +91,7 @@ void CCrossroadFunctionsFb::PostStep(){
     	    //m_Renderer->GetMainWindow().GetOpenGLWidget().GetSelectedEntity();
     	}
     }
+    
 	//CSpace::TMapPerType& boxes = GetSpace().GetEntitiesByType("box");
 	//for(CSpace::TMapPerType::iterator it = boxes.begin(); it != boxes.end(); ++it) {
 	//	CBoxEntity& box = *any_cast<CBoxEntity*>(it->second);

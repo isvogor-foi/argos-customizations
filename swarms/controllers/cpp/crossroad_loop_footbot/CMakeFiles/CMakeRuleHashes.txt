@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+f9cd2f402391a625b8c5fe9bdcd17ffa CMakeFiles/crossroad_loop_footbot_automoc

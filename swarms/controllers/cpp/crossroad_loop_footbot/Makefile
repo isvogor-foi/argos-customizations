@@ -123,6 +123,19 @@ crossroad_loop_footbot/fast:
 	$(MAKE) -f CMakeFiles/crossroad_loop_footbot.dir/build.make CMakeFiles/crossroad_loop_footbot.dir/build
 .PHONY : crossroad_loop_footbot/fast
 
+#=============================================================================
+# Target rules for targets named crossroad_loop_footbot_automoc
+
+# Build rule for target.
+crossroad_loop_footbot_automoc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 crossroad_loop_footbot_automoc
+.PHONY : crossroad_loop_footbot_automoc
+
+# fast build rule for target.
+crossroad_loop_footbot_automoc/fast:
+	$(MAKE) -f CMakeFiles/crossroad_loop_footbot_automoc.dir/build.make CMakeFiles/crossroad_loop_footbot_automoc.dir/build
+.PHONY : crossroad_loop_footbot_automoc/fast
+
 crossroad_loop_footbot.o: crossroad_loop_footbot.cpp.o
 
 .PHONY : crossroad_loop_footbot.o
@@ -150,6 +163,33 @@ crossroad_loop_footbot.cpp.s:
 	$(MAKE) -f CMakeFiles/crossroad_loop_footbot.dir/build.make CMakeFiles/crossroad_loop_footbot.dir/crossroad_loop_footbot.cpp.s
 .PHONY : crossroad_loop_footbot.cpp.s
 
+crossroad_loop_footbot_automoc.o: crossroad_loop_footbot_automoc.cpp.o
+
+.PHONY : crossroad_loop_footbot_automoc.o
+
+# target to build an object file
+crossroad_loop_footbot_automoc.cpp.o:
+	$(MAKE) -f CMakeFiles/crossroad_loop_footbot.dir/build.make CMakeFiles/crossroad_loop_footbot.dir/crossroad_loop_footbot_automoc.cpp.o
+.PHONY : crossroad_loop_footbot_automoc.cpp.o
+
+crossroad_loop_footbot_automoc.i: crossroad_loop_footbot_automoc.cpp.i
+
+.PHONY : crossroad_loop_footbot_automoc.i
+
+# target to preprocess a source file
+crossroad_loop_footbot_automoc.cpp.i:
+	$(MAKE) -f CMakeFiles/crossroad_loop_footbot.dir/build.make CMakeFiles/crossroad_loop_footbot.dir/crossroad_loop_footbot_automoc.cpp.i
+.PHONY : crossroad_loop_footbot_automoc.cpp.i
+
+crossroad_loop_footbot_automoc.s: crossroad_loop_footbot_automoc.cpp.s
+
+.PHONY : crossroad_loop_footbot_automoc.s
+
+# target to generate assembly for a file
+crossroad_loop_footbot_automoc.cpp.s:
+	$(MAKE) -f CMakeFiles/crossroad_loop_footbot.dir/build.make CMakeFiles/crossroad_loop_footbot.dir/crossroad_loop_footbot_automoc.cpp.s
+.PHONY : crossroad_loop_footbot_automoc.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +199,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... crossroad_loop_footbot"
+	@echo "... crossroad_loop_footbot_automoc"
 	@echo "... crossroad_loop_footbot.o"
 	@echo "... crossroad_loop_footbot.i"
 	@echo "... crossroad_loop_footbot.s"
+	@echo "... crossroad_loop_footbot_automoc.o"
+	@echo "... crossroad_loop_footbot_automoc.i"
+	@echo "... crossroad_loop_footbot_automoc.s"
 .PHONY : help
 
 

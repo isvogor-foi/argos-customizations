@@ -9,8 +9,8 @@
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_camera.h>
 #include <argos3/plugins/simulator/visualizations/qt-opengl/qtopengl_user_functions.h>
 #include "/home/ivan/dev/argos-custom/argos3/plugins/robots/swarms/controllers/cpp/crossroad_footbot_controller/crossroad_footbot_controller.h"
-#include <QGLWidget>
-#include <QElapsedTimer>
+//#include <QOpenGLWidget>
+//#include <QElapsedTimer>
 
 #ifdef __APPLE__
 #include <glu.h>

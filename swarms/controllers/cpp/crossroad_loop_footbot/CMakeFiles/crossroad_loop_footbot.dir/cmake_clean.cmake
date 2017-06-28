@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
+  "crossroad_loop_footbot_automoc.cpp"
   "CMakeFiles/crossroad_loop_footbot.dir/crossroad_loop_footbot.cpp.o"
+  "CMakeFiles/crossroad_loop_footbot.dir/crossroad_loop_footbot_automoc.cpp.o"
   "libcrossroad_loop_footbot.pdb"
   "libcrossroad_loop_footbot.so"
 )

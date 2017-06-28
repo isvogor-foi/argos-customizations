@@ -11,7 +11,7 @@ TreeQtFunctions::TreeQtFunctions(){
    m_treeDrawn = false;
    menuDrawn = false;
 
-   m_pcBaseStation = dynamic_cast<CEBaseStationEntity*>(&CSimulator::GetInstance().GetSpace().GetEntity("fb100"));
+   m_pcBaseStation = dynamic_cast<CEBaseStationEntity*>(&CSimulator::GetInstance().GetSpace().GetEntity("bs0"));
    m_pcController = &dynamic_cast<CBuzzControllerBaseStation&>(m_pcBaseStation->GetControllableEntity().GetController());
 
    m_pcRNG = CRandom::CreateRNG("argos");
@@ -22,6 +22,7 @@ void TreeQtFunctions::DrawInWorld() {
 	// todo: play around with graph partitions
 	// todo: add a buzz function to remove robots
 	// todo: draw a sea surface for Li
+
 	std::vector<std::string> result = Split(m_pcController->m_GeneratedTree,';');
 	if(m_treeDrawn){
 		for(std::vector<Edge>::size_type i = 0; i != treeEdges.size(); i++) {
@@ -61,6 +62,7 @@ void TreeQtFunctions::DrawInWorld() {
 		m_treeDrawn = true;
 		}
 	}
+
 }
 
 /****************************************/
