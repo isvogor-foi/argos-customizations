@@ -34,7 +34,7 @@
 
 using namespace argos;
  
-class TreeQtFunctions : public CQTOpenGLModUserFunctions {
+class TreeQtFunctions : public CQTOpenGLModUserFunctions, public CLoopFunctions  {
 
 public:
 
@@ -55,13 +55,13 @@ public:
 	void Draw(CEFootBotEntity& c_entity);
 	void Draw(CEBaseStationEntity& c_entity);
 	void DrawInWorld();
-
 	void KeyPressed(QKeyEvent* pc_event);
 	void DrawOverlay(QPainter& c_painter);
 
 private:
 	std::vector<std::string> Split(std::string str, char delimiter);
 
+	CBuzzControllerEFootBot* test;
 	CBuzzControllerBaseStation* m_pcController;
 	CEBaseStationEntity* m_pcBaseStation;
 	CEFootBotEntity* m_pcFb;

@@ -5,7 +5,8 @@ TreeQtFunctions::TreeQtFunctions(){
    RegisterUserFunction<TreeQtFunctions,CEFootBotEntity>(&TreeQtFunctions::Draw);
    RegisterUserFunction<TreeQtFunctions,CEBaseStationEntity>(&TreeQtFunctions::Draw);
 
-   SetControllerName("bcf");
+   SetFbControllerName("bcf");
+   SetBsControllerName("bsf");
 
    m_treeDrawn = false;
    menuDrawn = false;
@@ -68,7 +69,6 @@ void TreeQtFunctions::DrawInWorld() {
 void TreeQtFunctions::Draw(CEFootBotEntity& c_entity) {
 	CBuzzControllerEFootBot *controller = &dynamic_cast<CBuzzControllerEFootBot&>(c_entity.GetControllableEntity().GetController());
 	std::string message = c_entity.GetId() + ": " + controller->GetDebugMsg();
-	std::cout << "Debug (FB): " << message.c_str() <<std::endl;
 	DrawText(CVector3(0.0, 0.0, 0.3), message.c_str());
 	DrawRay(CRay3(CVector3(0,0,0.1), CVector3(0.14,0,0.1)), CColor::YELLOW, 2);
 }
@@ -80,7 +80,6 @@ void TreeQtFunctions::Draw(CEFootBotEntity& c_entity) {
 void TreeQtFunctions::Draw(CEBaseStationEntity& c_entity) {
 	CBuzzControllerBaseStation *controller = &dynamic_cast<CBuzzControllerBaseStation&>(c_entity.GetControllableEntity().GetController());
 	std::string message = c_entity.GetId() + ": " + controller->GetDebugMsg();
-	std::cout << "Debug (BS): " << message.c_str() <<std::endl;
 	DrawText(CVector3(0.0, 0.0, 0.3), message.c_str());
 	DrawRay(CRay3(CVector3(0,0,0.1), CVector3(0.14,0,0.1)), CColor::YELLOW, 2);
 }
