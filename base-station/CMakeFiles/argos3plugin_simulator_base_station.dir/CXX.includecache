@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+/home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/argos3plugin_simulator_base_station_automoc.cpp
+
 /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/simulator/base_station_entity.cpp
 base_station_entity.h
 /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/simulator/base_station_entity.h

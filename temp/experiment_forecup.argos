@@ -111,7 +111,7 @@
   <!-- ****************** -->
 <visualization>
   <qt-opengl>
-    <user_functions label="buzz_qt" />
+    <!--user_functions label="buzz_qt" /-->
   </qt-opengl>
 </visualization>
 

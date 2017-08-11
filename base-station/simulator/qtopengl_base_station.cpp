@@ -53,6 +53,9 @@ namespace argos {
       m_unBodyList    = m_unLists + 2;
       m_unLEDList     = m_unLists + 3;
 
+      //loadObj("/home/ivan/Downloads/models/Wood_Fence_01.obj");
+
+
       /* Create the wheel display list */
       //glNewList(m_unWheelList, GL_COMPILE);
       //RenderWheel();
@@ -72,6 +75,7 @@ namespace argos {
       //glNewList(m_unLEDList, GL_COMPILE);
       //RenderLED();
       //glEndList();
+
    }
 
    /****************************************/
@@ -81,6 +85,19 @@ namespace argos {
       glDeleteLists(m_unLists, 4);
    }
 
+
+
+
+   void CQTOpenGLBaseStation::drawElephant()
+   {
+	   SetGreenPlasticMaterial();
+       glPushMatrix();
+       //glColor3f(1.0,0.23,0.27);
+       glScalef(0.1,0.1,0.1);
+       glCallList(model);
+       glPopMatrix();
+   }
+
    /****************************************/
    /****************************************/
 
@@ -88,6 +105,8 @@ namespace argos {
       /* Place the chassis */
       /* Place the body */
       //glCallList(m_unBodyList);
+
+
 
       glPushMatrix();
       glTranslatef(0.0f, 0.0f, 0.001f);
@@ -112,6 +131,12 @@ namespace argos {
       }
       glPopMatrix();
       */
+
+      //glClearColor (0.0,0.0,0.0,1.0);
+  		//glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  		//glLoadIdentity();
+  		drawElephant();
+		//glutSwapBuffers();
    }
 
    /****************************************/

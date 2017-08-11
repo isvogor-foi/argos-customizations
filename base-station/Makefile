@@ -123,6 +123,46 @@ argos3plugin_simulator_base_station/fast:
 	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station.dir/build.make CMakeFiles/argos3plugin_simulator_base_station.dir/build
 .PHONY : argos3plugin_simulator_base_station/fast
 
+#=============================================================================
+# Target rules for targets named argos3plugin_simulator_base_station_automoc
+
+# Build rule for target.
+argos3plugin_simulator_base_station_automoc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 argos3plugin_simulator_base_station_automoc
+.PHONY : argos3plugin_simulator_base_station_automoc
+
+# fast build rule for target.
+argos3plugin_simulator_base_station_automoc/fast:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/build.make CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/build
+.PHONY : argos3plugin_simulator_base_station_automoc/fast
+
+argos3plugin_simulator_base_station_automoc.o: argos3plugin_simulator_base_station_automoc.cpp.o
+
+.PHONY : argos3plugin_simulator_base_station_automoc.o
+
+# target to build an object file
+argos3plugin_simulator_base_station_automoc.cpp.o:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station.dir/build.make CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o
+.PHONY : argos3plugin_simulator_base_station_automoc.cpp.o
+
+argos3plugin_simulator_base_station_automoc.i: argos3plugin_simulator_base_station_automoc.cpp.i
+
+.PHONY : argos3plugin_simulator_base_station_automoc.i
+
+# target to preprocess a source file
+argos3plugin_simulator_base_station_automoc.cpp.i:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station.dir/build.make CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.i
+.PHONY : argos3plugin_simulator_base_station_automoc.cpp.i
+
+argos3plugin_simulator_base_station_automoc.s: argos3plugin_simulator_base_station_automoc.cpp.s
+
+.PHONY : argos3plugin_simulator_base_station_automoc.s
+
+# target to generate assembly for a file
+argos3plugin_simulator_base_station_automoc.cpp.s:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station.dir/build.make CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.s
+.PHONY : argos3plugin_simulator_base_station_automoc.cpp.s
+
 simulator/base_station_entity.o: simulator/base_station_entity.cpp.o
 
 .PHONY : simulator/base_station_entity.o
@@ -213,6 +253,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... argos3plugin_simulator_base_station"
+	@echo "... argos3plugin_simulator_base_station_automoc"
+	@echo "... argos3plugin_simulator_base_station_automoc.o"
+	@echo "... argos3plugin_simulator_base_station_automoc.i"
+	@echo "... argos3plugin_simulator_base_station_automoc.s"
 	@echo "... simulator/base_station_entity.o"
 	@echo "... simulator/base_station_entity.i"
 	@echo "... simulator/base_station_entity.s"

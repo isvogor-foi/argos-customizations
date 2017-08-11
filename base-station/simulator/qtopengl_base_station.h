@@ -7,6 +7,8 @@
 #ifndef QTOPENGL_BASE_STATION_H
 #define QTOPENGL_BASE_STATION_H
 
+
+
 namespace argos {
    class CQTOpenGLBaseStation;
    class CEBaseStationEntity;
@@ -18,6 +20,7 @@ namespace argos {
 #include <GL/gl.h>
 #include <GL/glut.h>
 #endif
+
 
 namespace argos {
 
@@ -53,6 +56,8 @@ namespace argos {
       void RenderBody();
       /** A single LED of the ring */
       void RenderLED();
+      void loadObj(char *fname);
+      void drawElephant();
 
    private:
 
@@ -77,6 +82,12 @@ namespace argos {
 
       /* Angle gap between two leds */
       GLfloat m_fLEDAngleSlice;
+
+      GLuint model;
+
+      float model_rot;
+
+
 
    };
 

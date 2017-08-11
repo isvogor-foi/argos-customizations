@@ -11,16 +11,16 @@ TreeQtFunctions::TreeQtFunctions(){
    m_treeDrawn = false;
    menuDrawn = false;
 
-   m_pcBaseStation = dynamic_cast<CEBaseStationEntity*>(&CSimulator::GetInstance().GetSpace().GetEntity("bs0"));
+   m_pcBaseStation = dynamic_cast<CEBaseStationEntity*>(&CSimulator::GetInstance().GetSpace().GetEntity("fb100"));
    m_pcController = &dynamic_cast<CBuzzControllerBaseStation&>(m_pcBaseStation->GetControllableEntity().GetController());
 
    m_pcRNG = CRandom::CreateRNG("argos");
 }
 
 void TreeQtFunctions::DrawInWorld() {
-	// todo: return multiple trees
-	// todo: play around with graph partitions
-	// todo: add a buzz function to remove robots
+	// todo: return multiple trees - done
+	// todo: play around with graph partitions - dome
+	// todo: add a buzz function to remove robots - done
 	// todo: draw a sea surface for Li
 
 	std::vector<std::string> result = Split(m_pcController->m_GeneratedTree,';');
@@ -69,10 +69,12 @@ void TreeQtFunctions::DrawInWorld() {
 /****************************************/
 
 void TreeQtFunctions::Draw(CEFootBotEntity& c_entity) {
+
 	CBuzzControllerEFootBot *controller = &dynamic_cast<CBuzzControllerEFootBot&>(c_entity.GetControllableEntity().GetController());
 	std::string message = c_entity.GetId() + ": " + controller->GetDebugMsg();
 	DrawText(CVector3(0.0, 0.0, 0.3), message.c_str());
 	DrawRay(CRay3(CVector3(0,0,0.1), CVector3(0.14,0,0.1)), CColor::YELLOW, 2);
+
 }
 
 /****************************************/
@@ -80,10 +82,12 @@ void TreeQtFunctions::Draw(CEFootBotEntity& c_entity) {
 
 
 void TreeQtFunctions::Draw(CEBaseStationEntity& c_entity) {
+
 	CBuzzControllerBaseStation *controller = &dynamic_cast<CBuzzControllerBaseStation&>(c_entity.GetControllableEntity().GetController());
 	std::string message = c_entity.GetId() + ": " + controller->GetDebugMsg();
 	DrawText(CVector3(0.0, 0.0, 0.3), message.c_str());
 	DrawRay(CRay3(CVector3(0,0,0.1), CVector3(0.14,0,0.1)), CColor::YELLOW, 2);
+
 }
 
 

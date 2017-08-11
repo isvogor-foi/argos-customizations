@@ -54,6 +54,7 @@ public:
 
 	void Draw(CEFootBotEntity& c_entity);
 	void Draw(CEBaseStationEntity& c_entity);
+
 	void DrawInWorld();
 	void KeyPressed(QKeyEvent* pc_event);
 	void DrawOverlay(QPainter& c_painter);

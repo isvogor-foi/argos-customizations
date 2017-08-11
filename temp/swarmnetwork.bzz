@@ -1045,7 +1045,7 @@ while(i<m_neighbourCunt){
 	}
 
 	var mypred=m_vecNodes[m_nLabel].Pred
-	if(type!=89){
+	if(robot_type!=89){
 	if(m_MessageLabel[i]==m_vecNodes[mypred].Pred and (m_MessageState[i]=="STATE_GODOWN" or m_MessageState[i]=="STATE_GOUP")){
 	shouldheal=-1
 	}
@@ -1633,7 +1633,7 @@ function step(){
 #update the graph
  UpdateNodeInfo()
 #reset message package to be sent
-m_selfMessage={.State="STATE_FREE",.Label=0,.ReqLabel=0,.ReqID=0,.Response=0,.Energy=0,.IfRecycle="N",.KeepStill=-1,.IfComplete="Y",.Type=type}
+m_selfMessage={.State="STATE_FREE",.Label=0,.ReqLabel=0,.ReqID=0,.Response=0,.Energy=0,.IfRecycle="N",.KeepStill=-1,.IfComplete="Y",.Type=robot_type}
 #
 #act according to current state
 #
@@ -1707,12 +1707,12 @@ function Reset(){
 	#set initial state, only one robot choose [A], while the rest choose [B]
 	#
 	#[A]The robot used to triger the formation process is defined as joined,
-	if(type==89 and id==10){
+	if(robot_type==89 and id==10){
 	m_nLabel=0
 	TransitionToJoined()
 	}
 	#[B]Other robots are defined as free.
-	if(type==99){
+	if(robot_type==99){
 	TransitionToFree()
 	}
 }

@@ -129,11 +129,36 @@ CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/qtopengl_base_stati
 CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/qtopengl_base_station.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/qtopengl_base_station.cpp.o
 
 
+CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o: CMakeFiles/argos3plugin_simulator_base_station.dir/flags.make
+CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o: argos3plugin_simulator_base_station_automoc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o -c /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/argos3plugin_simulator_base_station_automoc.cpp
+
+CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/argos3plugin_simulator_base_station_automoc.cpp > CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.i
+
+CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/argos3plugin_simulator_base_station_automoc.cpp -o CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.s
+
+CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o.requires:
+
+.PHONY : CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o.requires
+
+CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o.provides: CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o.requires
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station.dir/build.make CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o.provides.build
+.PHONY : CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o.provides
+
+CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o.provides.build: CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o
+
+
 # Object files for target argos3plugin_simulator_base_station
 argos3plugin_simulator_base_station_OBJECTS = \
 "CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/dynamics2d_base_station_model.cpp.o" \
 "CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/base_station_entity.cpp.o" \
-"CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/qtopengl_base_station.cpp.o"
+"CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/qtopengl_base_station.cpp.o" \
+"CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o"
 
 # External object files for target argos3plugin_simulator_base_station
 argos3plugin_simulator_base_station_EXTERNAL_OBJECTS =
@@ -141,12 +166,13 @@ argos3plugin_simulator_base_station_EXTERNAL_OBJECTS =
 libargos3plugin_simulator_base_station.so: CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/dynamics2d_base_station_model.cpp.o
 libargos3plugin_simulator_base_station.so: CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/base_station_entity.cpp.o
 libargos3plugin_simulator_base_station.so: CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/qtopengl_base_station.cpp.o
+libargos3plugin_simulator_base_station.so: CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o
 libargos3plugin_simulator_base_station.so: CMakeFiles/argos3plugin_simulator_base_station.dir/build.make
 libargos3plugin_simulator_base_station.so: /usr/local/lib/argos3/libargos3plugin_simulator_genericrobot.so
 libargos3plugin_simulator_base_station.so: /usr/local/lib/argos3/libargos3plugin_simulator_dynamics2d.so
 libargos3plugin_simulator_base_station.so: /usr/local/lib/argos3/libargos3plugin_simulator_qtopengl.so
 libargos3plugin_simulator_base_station.so: CMakeFiles/argos3plugin_simulator_base_station.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library libargos3plugin_simulator_base_station.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library libargos3plugin_simulator_base_station.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/argos3plugin_simulator_base_station.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -157,6 +183,7 @@ CMakeFiles/argos3plugin_simulator_base_station.dir/build: libargos3plugin_simula
 CMakeFiles/argos3plugin_simulator_base_station.dir/requires: CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/dynamics2d_base_station_model.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_base_station.dir/requires: CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/base_station_entity.cpp.o.requires
 CMakeFiles/argos3plugin_simulator_base_station.dir/requires: CMakeFiles/argos3plugin_simulator_base_station.dir/simulator/qtopengl_base_station.cpp.o.requires
+CMakeFiles/argos3plugin_simulator_base_station.dir/requires: CMakeFiles/argos3plugin_simulator_base_station.dir/argos3plugin_simulator_base_station_automoc.cpp.o.requires
 
 .PHONY : CMakeFiles/argos3plugin_simulator_base_station.dir/requires
 

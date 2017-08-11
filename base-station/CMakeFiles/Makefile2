@@ -63,10 +63,10 @@ CMAKE_BINARY_DIR = /home/ivan/dev/argos-custom/argos3/plugins/robots/base-statio
 # Target rules for target CMakeFiles/argos3plugin_simulator_base_station.dir
 
 # All Build rule for target.
-CMakeFiles/argos3plugin_simulator_base_station.dir/all:
+CMakeFiles/argos3plugin_simulator_base_station.dir/all: CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/all
 	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station.dir/build.make CMakeFiles/argos3plugin_simulator_base_station.dir/depend
 	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station.dir/build.make CMakeFiles/argos3plugin_simulator_base_station.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles --progress-num=1,2,3,4 "Built target argos3plugin_simulator_base_station"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles --progress-num=1,2,3,4,5 "Built target argos3plugin_simulator_base_station"
 .PHONY : CMakeFiles/argos3plugin_simulator_base_station.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/argos3plugin_simulator_base_station.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/argos3plugin_simulator_base_station.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/argos3plugin_simulator_base_station.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles 0
 .PHONY : CMakeFiles/argos3plugin_simulator_base_station.dir/rule
@@ -93,6 +93,38 @@ CMakeFiles/argos3plugin_simulator_base_station.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/argos3plugin_simulator_base_station.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/argos3plugin_simulator_base_station_automoc.dir
+
+# All Build rule for target.
+CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/all:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/build.make CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/depend
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/build.make CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles --progress-num=6 "Built target argos3plugin_simulator_base_station_automoc"
+.PHONY : CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ivan/dev/argos-custom/argos3/plugins/robots/base-station/CMakeFiles 0
+.PHONY : CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/rule
+
+# Convenience name for target.
+argos3plugin_simulator_base_station_automoc: CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/rule
+
+.PHONY : argos3plugin_simulator_base_station_automoc
+
+# clean rule for target.
+CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/clean:
+	$(MAKE) -f CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/build.make CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/clean
+.PHONY : CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/argos3plugin_simulator_base_station_automoc.dir/clean
 
 .PHONY : clean
 
