@@ -57,6 +57,8 @@ argos3/plugins/robots/foot-bot/simulator/footbot_entity.h
 -
 argos3/core/simulator/simulator.h
 -
+argos3/core/utility/logging/argos_log.h
+-
 vector
 -
 string

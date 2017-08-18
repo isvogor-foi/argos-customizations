@@ -11,6 +11,7 @@
 #include "/home/ivan/dev/buzz-ext/buzz/src/buzz/argos/buzz_controller_base_station.h"
 #include "/home/ivan/dev/buzz-ext/buzz/src/buzz/argos/buzz_controller_efootbot.h"
 #include <argos3/core/simulator/simulator.h>
+#include <argos3/core/utility/logging/argos_log.h>
 #include <vector>
 #include <string>
 #include <sstream>

@@ -18,10 +18,6 @@ TreeQtFunctions::TreeQtFunctions(){
 }
 
 void TreeQtFunctions::DrawInWorld() {
-	// todo: return multiple trees - done
-	// todo: play around with graph partitions - dome
-	// todo: add a buzz function to remove robots - done
-	// todo: draw a sea surface for Li
 
 	std::vector<std::string> result = Split(m_pcController->m_GeneratedTree,';');
 	if(m_treeDrawn){
@@ -72,6 +68,15 @@ void TreeQtFunctions::Draw(CEFootBotEntity& c_entity) {
 
 	CBuzzControllerEFootBot *controller = &dynamic_cast<CBuzzControllerEFootBot&>(c_entity.GetControllableEntity().GetController());
 	std::string message = c_entity.GetId() + ": " + controller->GetDebugMsg();
+	std::stringstream x_coord;
+	std::stringstream y_coord;
+	x_coord << c_entity.GetEmbodiedEntity().GetOriginAnchor().Position.GetX();
+	y_coord << c_entity.GetEmbodiedEntity().GetOriginAnchor().Position.GetY();
+	//LOG << "Pos: " << x_coord.str() << ", " << y_coord.str();
+	//std::cout<< "Pos: " << x_coord.str() << ", " << y_coord.str() << std::endl;
+
+	//message += " " + x_coord.str();
+	//message += ", " + y_coord.str();
 	DrawText(CVector3(0.0, 0.0, 0.3), message.c_str());
 	DrawRay(CRay3(CVector3(0,0,0.1), CVector3(0.14,0,0.1)), CColor::YELLOW, 2);
 

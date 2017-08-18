@@ -1617,6 +1617,7 @@ function init() {
 	ROBOT_SAFETYDIST=40.0
 	MaxSpeed=100.0
 	Reset()
+	simtime = 0
 }
 
 #
@@ -1624,12 +1625,12 @@ function init() {
 #
 function step(){
 
+simtime = simtime + 1
+if(soc != nil and simtime % 10 == 0)
+  log("[t=", simtime, "] BUZZ: ", "ID: ", id, " SOC: ", soc, " Mov: ", MoveOrNot, " Processing: ", DiscgargeState)
+  #log("ID: ", id, " SOC: ", soc, " Mov: ", MoveOrNot, " Processing: ", DiscgargeState)
 
 
-  if(soc != nil)
-    log("ID: ", id, " SOC: ", soc, " Mov: ", MoveOrNot, " Processing: ", DiscgargeState)
-    #log("[t=",sim_step,"] BUZZ: )
-  sim_step = sim_step + 1
 #update the graph
  UpdateNodeInfo()
 #reset message package to be sent
